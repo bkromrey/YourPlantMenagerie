@@ -255,7 +255,6 @@ VALUES (
 -- Data for table `Plants`
 -- -----------------------------------------------------
 
-
 INSERT INTO Plants (
     displayName,
     isInside,
@@ -334,6 +333,7 @@ VALUES (
 -- -----------------------------------------------------
 -- Data for table `FertilizingEvents`
 -- -----------------------------------------------------
+
 INSERT INTO FertilizingEvents (
     fertilizingDate,
     plantID
@@ -366,6 +366,7 @@ VALUES (
 -- -----------------------------------------------------
 -- Data for table `PlantSoils`
 -- -----------------------------------------------------
+
 INSERT INTO PlantSoils (
     plantID,
     soilID
