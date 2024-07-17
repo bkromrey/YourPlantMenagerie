@@ -15,6 +15,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+SET FOREIGN_KEY_CHECKS=0;
+SET AUTOCOMMIT = 0;
+
 --
 -- Table structure for table `FertilizingEvents`
 --
@@ -29,7 +32,7 @@ CREATE TABLE `FertilizingEvents` (
   PRIMARY KEY (`eventID`,`plantID`),
   UNIQUE KEY `eventID_UNIQUE` (`eventID`),
   KEY `fk_FertilizingEvents_Plants1_idx` (`plantID`),
-  CONSTRAINT `fk_FertilizingEvents_Plants1` FOREIGN KEY (`plantID`) REFERENCES `Plants` (`plantID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_FertilizingEvents_Plants1` FOREIGN KEY (`plantID`) REFERENCES `Plants` (`plantID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -55,8 +58,8 @@ CREATE TABLE `PlantSoils` (
   PRIMARY KEY (`soilID`,`plantId`),
   KEY `fk_Plants_has_SoilTypes_SoilTypes1_idx` (`soilID`),
   KEY `fk_Plants_has_SoilTypes_Plants1_idx` (`plantId`),
-  CONSTRAINT `fk_Plants_has_SoilTypes_Plants1` FOREIGN KEY (`plantId`) REFERENCES `Plants` (`plantID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Plants_has_SoilTypes_SoilTypes1` FOREIGN KEY (`soilID`) REFERENCES `SoilTypes` (`soilID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Plants_has_SoilTypes_Plants1` FOREIGN KEY (`plantId`) REFERENCES `Plants` (`plantID`) ON DELETE CASCADE,
+  CONSTRAINT `fk_Plants_has_SoilTypes_SoilTypes1` FOREIGN KEY (`soilID`) REFERENCES `SoilTypes` (`soilID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -116,7 +119,7 @@ CREATE TABLE `Plants` (
   PRIMARY KEY (`plantID`,`plantTypeID`),
   UNIQUE KEY `plantID_UNIQUE` (`plantID`),
   KEY `fk_Plants_PlantType_idx` (`plantTypeID`),
-  CONSTRAINT `fk_Plants_PlantType` FOREIGN KEY (`plantTypeID`) REFERENCES `PlantTypes` (`plantTypeID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Plants_PlantType` FOREIGN KEY (`plantTypeID`) REFERENCES `PlantTypes` (`plantTypeID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -168,7 +171,7 @@ CREATE TABLE `WateringEvents` (
   PRIMARY KEY (`eventID`,`plantID`),
   UNIQUE KEY `wateringID_UNIQUE` (`eventID`),
   KEY `fk_WateringEvents_Plants1_idx` (`plantID`),
-  CONSTRAINT `fk_WateringEvents_Plants1` FOREIGN KEY (`plantID`) REFERENCES `Plants` (`plantID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_WateringEvents_Plants1` FOREIGN KEY (`plantID`) REFERENCES `Plants` (`plantID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -352,7 +355,7 @@ VALUES (
 ),
 ( 
     '2024-06-15',
-    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Living Room')   
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')   
 ),
 ( 
     '2024-07-02',
@@ -395,3 +398,6 @@ VALUES (
     (SELECT plantID FROM Plants WHERE displayName = 'Orange Cherry Tomatoes'),
     (SELECT soilID FROM SoilTypes WHERE soilType = 'Houseplant Potting Mix')
 );
+
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
