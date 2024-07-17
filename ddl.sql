@@ -195,6 +195,10 @@ UNLOCK TABLES;
 
 -- Import sample data
 
+-- -----------------------------------------------------
+-- Data for table `PlantTypes`
+-- -----------------------------------------------------
+
 INSERT INTO PlantTypes (
     commonName,
     toxicCat,
@@ -225,6 +229,10 @@ VALUES (
 );
 
 
+-- -----------------------------------------------------
+-- Data for table `SoilTypes`
+-- -----------------------------------------------------
+
 INSERT INTO SoilTypes (
     soilType,
     soilDescription
@@ -243,6 +251,10 @@ VALUES (
 );
 
 
+-- -----------------------------------------------------
+-- Data for table `Plants`
+-- -----------------------------------------------------
+
 
 INSERT INTO Plants (
     displayName,
@@ -257,7 +269,7 @@ VALUES (
     "Pothos in Living Room",
     1,
     "Medium",
-    (SELECT PlantTypes.plantTypeID FROM PlantTypes WHERE commonName = "Pothos"),
+    (SELECT plantTypeID FROM PlantTypes WHERE commonName = "Pothos"),
     6,
     14,
     "2023-01-15"   
@@ -266,7 +278,7 @@ VALUES (
     "Pothos in Dining Room",
     1,
     "Low",
-    (SELECT PlantTypes.plantTypeID FROM PlantTypes WHERE commonName = "Pothos"),
+    (SELECT plantTypeID FROM PlantTypes WHERE commonName = "Pothos"),
     7,
     14,
     "2020-03-02"    
@@ -275,7 +287,7 @@ VALUES (
     "String of Pearls",
     1,
     "High",
-    (SELECT PlantTypes.plantTypeID FROM PlantTypes WHERE latinName = "Senecio rowleyanus"),
+    (SELECT plantTypeID FROM PlantTypes WHERE latinName = "Senecio rowleyanus"),
     7,
     0,
     "2024-04-17"
@@ -284,13 +296,101 @@ VALUES (
     "Orange Cherry Tomatoes",
     0,
     "High",
-    (SELECT PlantTypes.plantTypeID FROM PlantTypes WHERE commonName = "Sungold Tomatoes"),
+    (SELECT plantTypeID FROM PlantTypes WHERE commonName = "Sungold Tomatoes"),
     1,
     28,
     "2024-06-01"
 );
 
+-- -----------------------------------------------------
+-- Data for table `WateringEvents`
+-- -----------------------------------------------------
 
+INSERT INTO WateringEvents (
+    wateringDate,
+    plantID
+)
+VALUES (
+    '2024-06-30',
+    (SELECT plantID FROM Plants WHERE displayName = 'String of Pearls')
+), 
+( 
+    '2024-07-01',
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')
+), 
+( 
+    '2024-07-09',
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')
+),
+( 
+    '2024-07-15',
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Living Room')
+),
+( 
+    '2024-07-16',
+    (SELECT plantID FROM Plants WHERE displayName = 'Orange Cherry Tomatoes')
+);
+    
+-- -----------------------------------------------------
+-- Data for table `FertilizingEvents`
+-- -----------------------------------------------------
+INSERT INTO FertilizingEvents (
+    fertilizingDate,
+    plantID
+)
+VALUES (
+    '2024-05-30',
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Living Room')   
+), 
+( 
+    '2024-05-30',
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')
+), 
+( 
+    '2024-06-15',
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Living Room')   
+),
+( 
+    '2024-06-15',
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Living Room')   
+),
+( 
+    '2024-07-02',
+    (SELECT plantID FROM Plants WHERE displayName = 'String of Pearls')
+),
+( 
+    '2024-07-03',
+    (SELECT plantID FROM Plants WHERE displayName = 'Orange Cherry Tomatoes')
+);
 
-
-
+-- -----------------------------------------------------
+-- Data for table `PlantSoils`
+-- -----------------------------------------------------
+INSERT INTO PlantSoils (
+    plantID,
+    soilID
+)
+VALUES (
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Living Room'), 
+    (SELECT soilID FROM SoilTypes WHERE soilType = 'Houseplant Potting Mix')
+), 
+( 
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room'),
+    (SELECT soilID FROM SoilTypes WHERE soilType = 'Houseplant Potting Mix')
+), 
+( 
+    (SELECT plantID FROM Plants WHERE displayName = 'String of Pearls'),
+    (SELECT soilID FROM SoilTypes WHERE soilType = 'Houseplant Potting Mix')
+),
+( 
+    (SELECT plantID FROM Plants WHERE displayName = 'String of Pearls'),
+    (SELECT soilID FROM SoilTypes WHERE soilType = 'sandy mix')
+),
+( 
+    (SELECT plantID FROM Plants WHERE displayName = 'Orange Cherry Tomatoes'),
+    (SELECT soilID FROM SoilTypes WHERE soilType = 'topsoil')
+),
+( 
+    (SELECT plantID FROM Plants WHERE displayName = 'Orange Cherry Tomatoes'),
+    (SELECT soilID FROM SoilTypes WHERE soilType = 'Houseplant Potting Mix')
+);
