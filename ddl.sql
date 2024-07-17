@@ -254,6 +254,10 @@ VALUES (
 -- -----------------------------------------------------
 -- Data for table `Plants`
 -- -----------------------------------------------------
+<<<<<<< HEAD
+=======
+
+>>>>>>> 93dd6b862003c2ed98464ff357dce763a61cae13
 
 INSERT INTO Plants (
     displayName,
@@ -333,7 +337,6 @@ VALUES (
 -- -----------------------------------------------------
 -- Data for table `FertilizingEvents`
 -- -----------------------------------------------------
-
 INSERT INTO FertilizingEvents (
     fertilizingDate,
     plantID
@@ -366,7 +369,6 @@ VALUES (
 -- -----------------------------------------------------
 -- Data for table `PlantSoils`
 -- -----------------------------------------------------
-
 INSERT INTO PlantSoils (
     plantID,
     soilID
