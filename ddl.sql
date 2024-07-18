@@ -26,9 +26,7 @@ CREATE OR REPLACE TABLE `FertilizingEvents` (
   `plantID` int(11) NOT NULL,
   PRIMARY KEY (`eventID`,`plantID`),
   UNIQUE KEY `eventID_UNIQUE` (`eventID`),
-  KEY `fk_FertilizingEvents_Plants1_idx` (`plantID`),
-  CONSTRAINT `fk_FertilizingEvents_Plants1` FOREIGN KEY (`plantID`) REFERENCES `Plants` (`plantID`) 
-  ON DELETE CASCADE
+  FOREIGN KEY (`plantID`) REFERENCES `Plants` (`plantID`) ON DELETE CASCADE
 );
 
 
@@ -38,10 +36,8 @@ CREATE OR REPLACE TABLE `PlantSoils` (
   `plantId` int(11) NOT NULL,
   `soilID` int(11) NOT NULL,
   PRIMARY KEY (`soilID`,`plantId`),
-  KEY `fk_Plants_has_SoilTypes_SoilTypes1_idx` (`soilID`),
-  KEY `fk_Plants_has_SoilTypes_Plants1_idx` (`plantId`),
-  CONSTRAINT `fk_Plants_has_SoilTypes_Plants1` FOREIGN KEY (`plantId`) REFERENCES `Plants` (`plantID`) ON DELETE CASCADE,
-  CONSTRAINT `fk_Plants_has_SoilTypes_SoilTypes1` FOREIGN KEY (`soilID`) REFERENCES `SoilTypes` (`soilID`) ON DELETE CASCADE
+  FOREIGN KEY (`plantId`) REFERENCES `Plants` (`plantID`) ON DELETE CASCADE,
+  FOREIGN KEY (`soilID`) REFERENCES `SoilTypes` (`soilID`) ON DELETE CASCADE
 );
 
 
@@ -72,8 +68,7 @@ CREATE OR REPLACE TABLE `Plants` (
   `plantedDate` date DEFAULT NULL,
   PRIMARY KEY (`plantID`,`plantTypeID`),
   UNIQUE KEY `plantID_UNIQUE` (`plantID`),
-  KEY `fk_Plants_PlantType_idx` (`plantTypeID`),
-  CONSTRAINT `fk_Plants_PlantType` FOREIGN KEY (`plantTypeID`) REFERENCES `PlantTypes` (`plantTypeID`) ON DELETE CASCADE
+  FOREIGN KEY (`plantTypeID`) REFERENCES `PlantTypes` (`plantTypeID`) ON DELETE CASCADE
 );
 
 
@@ -103,7 +98,7 @@ CREATE OR REPLACE TABLE `WateringEvents` (
 
 
 /* -----------------------------------------------------
-   IMPORT SAMPLE DATA 
+   ADD SAMPLE DATA 
 */ -----------------------------------------------------
 
 
@@ -296,5 +291,6 @@ VALUES (
     (SELECT soilID FROM SoilTypes WHERE soilType = 'Houseplant Potting Mix')
 );
 
+-- re-enable foreign key checks & autocommit that we previously disabled
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
