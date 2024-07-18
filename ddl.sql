@@ -3,7 +3,9 @@
 
     Code for the creation of tables modified from a dump from 
     MariaDB dump 10.19  Distrib 10.5.22-MariaDB, for Linux (x86_64)
-    after forward engineering the code from mySQLWorkbench.
+    after forward engineering the code from our schema in mySQLWorkbench,
+    per instructions in the assignment page.
+    
     Generated on 2024-07-16 18:44:08
 */
 
@@ -91,8 +93,7 @@ CREATE OR REPLACE TABLE `WateringEvents` (
   `plantID` int(11) NOT NULL,
   PRIMARY KEY (`eventID`,`plantID`),
   UNIQUE KEY `wateringID_UNIQUE` (`eventID`),
-  KEY `fk_WateringEvents_Plants1_idx` (`plantID`),
-  CONSTRAINT `fk_WateringEvents_Plants1` FOREIGN KEY (`plantID`) REFERENCES `Plants` (`plantID`) ON DELETE CASCADE
+  FOREIGN KEY (`plantID`) REFERENCES `Plants` (`plantID`) ON DELETE CASCADE
 );
 
 
