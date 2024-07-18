@@ -1,5 +1,5 @@
 /*  Your Plant Menagerie by Brenna Wilson & Brianna Kromrey
-    Project Group 39
+    Project Group 29
 
     Code for the creation of tables modified from a dump from 
     MariaDB dump 10.19  Distrib 10.5.22-MariaDB, for Linux (x86_64)
