@@ -16,95 +16,95 @@ SET AUTOCOMMIT = 0;
 
 
 
-/* -----------------------------------------------------
-   CREATE TABLES
-*/ -----------------------------------------------------
-
-
--- create table for FertilizingEvents
-CREATE OR REPLACE TABLE `FertilizingEvents` (
-  `eventID` int(11) NOT NULL AUTO_INCREMENT,
-  `fertilizingDate` date NOT NULL,
-  `plantID` int(11) NOT NULL,
-  PRIMARY KEY (`eventID`,`plantID`),
-  UNIQUE KEY `eventID_UNIQUE` (`eventID`),
-  FOREIGN KEY (`plantID`) REFERENCES `Plants` (`plantID`) ON DELETE CASCADE
-);
+-- -----------------------------------------------------
+-- CREATE TABLES
+-- -----------------------------------------------------
 
 
 
--- create table for PlantSoils
-CREATE OR REPLACE TABLE `PlantSoils` (
-  `plantId` int(11) NOT NULL,
-  `soilID` int(11) NOT NULL,
-  PRIMARY KEY (`soilID`,`plantId`),
-  FOREIGN KEY (`plantId`) REFERENCES `Plants` (`plantID`) ON DELETE CASCADE,
-  FOREIGN KEY (`soilID`) REFERENCES `SoilTypes` (`soilID`) ON DELETE CASCADE
-);
 
 
 
 -- create table for PlantTypes
-CREATE OR REPLACE TABLE `PlantTypes` (
-  `plantTypeID` int(11) NOT NULL AUTO_INCREMENT,
-  `commonName` varchar(150) NOT NULL,
-  `toxicCat` tinyint(4) NOT NULL DEFAULT 0,
-  `toxicDog` tinyint(4) NOT NULL DEFAULT 0,
-  `preferredLight` enum('Low','Medium','High') DEFAULT NULL,
-  `latinName` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`plantTypeID`),
-  UNIQUE KEY `plantTypeID_UNIQUE` (`plantTypeID`)
+CREATE OR REPLACE TABLE PlantTypes (
+  plantTypeID int(11) NOT NULL AUTO_INCREMENT,
+  commonName varchar(150) NOT NULL,
+  toxicCat tinyint(4) NOT NULL DEFAULT 0,
+  toxicDog tinyint(4) NOT NULL DEFAULT 0,
+  preferredLight enum('Low','Medium','High') DEFAULT NULL,
+  latinName varchar(150) DEFAULT NULL,
+  PRIMARY KEY (plantTypeID),
+  UNIQUE KEY plantTypeID_UNIQUE (plantTypeID)
 );
 
 
 
 -- create table for Plants
-CREATE OR REPLACE TABLE `Plants` (
-  `plantID` int(11) NOT NULL AUTO_INCREMENT,
-  `displayName` varchar(50) NOT NULL,
-  `isInside` tinyint(1) NOT NULL DEFAULT 1,
-  `currentLight` enum('Low','Medium','High') DEFAULT NULL,
-  `plantTypeID` int(11) NOT NULL,
-  `waterInterval` int(11) NOT NULL DEFAULT 7,
-  `fertilizerInterval` int(11) DEFAULT 14,
-  `plantedDate` date DEFAULT NULL,
-  PRIMARY KEY (`plantID`,`plantTypeID`),
-  UNIQUE KEY `plantID_UNIQUE` (`plantID`),
-  FOREIGN KEY (`plantTypeID`) REFERENCES `PlantTypes` (`plantTypeID`) ON DELETE CASCADE
+CREATE OR REPLACE TABLE Plants (
+  plantID int(11) NOT NULL AUTO_INCREMENT,
+  displayName varchar(50) NOT NULL,
+  isInside tinyint(1) NOT NULL DEFAULT 1,
+  currentLight enum('Low','Medium','High') DEFAULT NULL,
+  plantTypeID int(11) NOT NULL,
+  waterInterval int(11) NOT NULL DEFAULT 7,
+  fertilizerInterval int(11) DEFAULT 14,
+  plantedDate date DEFAULT NULL,
+  PRIMARY KEY (plantID,plantTypeID),
+  UNIQUE KEY plantID_UNIQUE (plantID),
+  FOREIGN KEY (plantTypeID) REFERENCES PlantTypes (plantTypeID) ON DELETE CASCADE
 );
 
 
 
 -- create table for SoilTypes
-CREATE OR REPLACE TABLE `SoilTypes` (
-  `soilID` int(11) NOT NULL AUTO_INCREMENT,
-  `soilType` varchar(100) NOT NULL,
-  `soilDescription` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`soilID`),
-  UNIQUE KEY `soilID_UNIQUE` (`soilID`)
+CREATE OR REPLACE TABLE SoilTypes (
+  soilID int(11) NOT NULL AUTO_INCREMENT,
+  soilType varchar(100) NOT NULL,
+  soilDescription varchar(150) DEFAULT NULL,
+  PRIMARY KEY (soilID),
+  UNIQUE KEY soilID_UNIQUE (soilID)
 );
 
+-- create table for PlantSoils
+CREATE OR REPLACE TABLE PlantSoils (
+  plantId int(11) NOT NULL,
+  soilID int(11) NOT NULL,
+  PRIMARY KEY (soilID,plantId),
+  FOREIGN KEY (plantId) REFERENCES Plants (plantID) ON DELETE CASCADE,
+  FOREIGN KEY (soilID) REFERENCES SoilTypes (soilID) ON DELETE CASCADE
+);
 
 
 -- create table for WateringEvents
-CREATE OR REPLACE TABLE `WateringEvents` (
-  `eventID` int(11) NOT NULL AUTO_INCREMENT,
-  `wateringDate` date NOT NULL,
-  `plantID` int(11) NOT NULL,
-  PRIMARY KEY (`eventID`,`plantID`),
-  UNIQUE KEY `wateringID_UNIQUE` (`eventID`),
-  FOREIGN KEY (`plantID`) REFERENCES `Plants` (`plantID`) ON DELETE CASCADE
+CREATE OR REPLACE TABLE WateringEvents (
+  eventID int(11) NOT NULL AUTO_INCREMENT,
+  wateringDate date NOT NULL,
+  plantID int(11) NOT NULL,
+  PRIMARY KEY (eventID,plantID),
+  UNIQUE KEY wateringID_UNIQUE (eventID),
+  FOREIGN KEY (plantID) REFERENCES Plants (plantID) ON DELETE CASCADE
+);
+
+-- create table for FertilizingEvents
+CREATE OR REPLACE TABLE FertilizingEvents (
+  eventID int(11) NOT NULL AUTO_INCREMENT,
+  fertilizingDate date NOT NULL,
+  plantID int(11) NOT NULL,
+  PRIMARY KEY (eventID,plantID),
+  UNIQUE KEY eventID_UNIQUE (eventID),
+  FOREIGN KEY (plantID) REFERENCES Plants (plantID) 
+  ON DELETE CASCADE
 );
 
 
 
-/* -----------------------------------------------------
-   ADD SAMPLE DATA 
-*/ -----------------------------------------------------
+-- -----------------------------------------------------
+--   ADD SAMPLE DATA 
+-- -----------------------------------------------------
 
 
 
--- import data for table `PlantTypes`
+-- import data for table PlantTypes
 INSERT INTO PlantTypes (
     commonName,
     toxicCat,
@@ -136,7 +136,7 @@ VALUES (
 
 
 
--- import data for table `SoilTypes`
+-- import data for table SoilTypes
 INSERT INTO SoilTypes (
     soilType,
     soilDescription
@@ -156,7 +156,7 @@ VALUES (
 
 
 
--- import data for table `Plants`
+-- import data for table Plants
 INSERT INTO Plants (
     displayName,
     isInside,
@@ -205,7 +205,7 @@ VALUES (
 
 
 
--- import data for table `WateringEvents`
+-- import data for table WateringEvents
 INSERT INTO WateringEvents (
     wateringDate,
     plantID
@@ -231,7 +231,7 @@ VALUES (
     (SELECT plantID FROM Plants WHERE displayName = 'Orange Cherry Tomatoes')
 );
     
--- import data for table `FertilizingEvents`
+-- import data for table FertilizingEvents
 INSERT INTO FertilizingEvents (
     fertilizingDate,
     plantID
@@ -261,7 +261,7 @@ VALUES (
     (SELECT plantID FROM Plants WHERE displayName = 'Orange Cherry Tomatoes')
 );
 
--- Data for table `PlantSoils`
+-- Data for table PlantSoils
 
 INSERT INTO PlantSoils (
     plantID,
