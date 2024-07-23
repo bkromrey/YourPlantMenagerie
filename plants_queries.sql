@@ -1,14 +1,65 @@
--- Select Statements for all tables
 
-SELECT * FROM Plants;
+-- Citation for this html file
+-- Date: 7/23/24
+-- Copied from AND Adapted from:
+-- Source URL: https://canvas.oregonstate.edu/courses/1967354/assignments/9690212#:~:text=For%20example%2Cthe-,bsg_sample_data_manipulation_queries.sql,-Download%20bsg_sample_data_manipulation_queries.sql
 
-SELECT * FROM PlantTypes;
 
-SELECT * FROM SoilTypes;
 
-SELECT * FROM WateringEvents;
+-- Select Statements for relevant information
 
-SELECT * FROM FertilizingEvents;
+-- get relevant plant info and replace plantTypeID w/ common name
+SELECT plantID, displayName, isInside, currentLight, PlantTypes.commonName AS "Plant Type"
+FROM Plant
+   INNER JOIN PlantTypes ON Plants.plantTypeID = PlantTypes.plantTypeID
+
+-- get all info from PlantTypes table
+SELECT * FROM PlantTypes
+
+-- get all info from SoilTypes
+SELECT * FROM SoilTypes
+
+-- get relevant watering info and replace plantID w/ display name
+SELECT wateringDate, Plants.displayName AS plant 
+FROM WateringEvents
+    INNER JOIN Plants ON WateringEvents.plantID = Plants.plantID
+
+-- get relevant fertilizing info and replace plantID w/ display name
+SELECT fertilizingDate, Plants.displayName AS plant
+FROM FertilizingEvents
+    INNER JOIN Plants ON FertilizingEvents.plantID = Plants.plantID
+
+-- get plant and soil relationship info and replace plantID w/ display name and soilID w/ soilType
+SELECT Plants.displayName AS plant, SoilTypes.soilType 
+FROM PlantSoils
+    INNER JOIN Plants ON PlantSoils.plantID = Plants.plantID
+    INNER JOIN SoilTypes ON PlantSoils.soilID = SoilTypes.soilID
+ORDER BY plant
+
+-- get last watered date 
+SELECT WateringEvents.plantID, Plants.displayName, MAX(WateringEvents.wateringDate) AS 'Last Watered Date' 
+FROM WateringEvents 
+JOIN Plants ON WateringEvents.plantID = Plants.plantID  
+WHERE Plants.displayName = :displayName_Input 
+
+-- get last fertilized date 
+SELECT FertilizingEvents.plantID, Plants.displayName, MAX(FertilizingEvents.wateringDate) AS 'Last Fertilized Date' 
+FROM FertilizingEvents 
+JOIN Plants ON FertilizingEvents.plantID = Plants.plantID  
+WHERE Plants.displayName = :displayName_Input 
+
+-- get next watering date
+SELECT WateringEvents.plantID, Plants.displayName, MAX(WateringEvents.wateringDate) AS 'Last Watered Date', DATE(CURRENT_DATE() + Plants.waterInterval) AS 'Next Watering Date' 
+FROM WateringEvents 
+JOIN Plants ON WateringEvents.plantID = Plants.plantID  
+WHERE Plants.displayName = :displayName_Input
+
+-- get next fertilizing date
+SELECT FertilizingEvents.plantID, Plants.displayName, MAX(FertilizingEvents.wateringDate) AS 'Last Fertilzied Date', 
+DATE(CURRENT_DATE() + Plants.waterInterval) AS 'Next Watering Date' 
+FROM FertilizingEvents 
+JOIN Plants ON FertilizingEvents.plantID = Plants.plantID  
+WHERE Plants.displayName = :displayName_Input
 
 
 -- Insert Statements for all tables
