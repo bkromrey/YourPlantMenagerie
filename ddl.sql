@@ -64,9 +64,11 @@ CREATE OR REPLACE TABLE SoilTypes (
 
 -- create table for PlantSoils
 CREATE OR REPLACE TABLE PlantSoils (
+  plantSoilID int(11) NOT NULL AUTO_INCREMENT, 
   plantId int(11) NOT NULL,
   soilID int(11) NOT NULL,
-  PRIMARY KEY (soilID,plantId),
+  PRIMARY KEY (plantSoilID),
+  UNIQUE KEY plantSoilID_unique (plantSoilID),
   FOREIGN KEY (plantId) REFERENCES Plants (plantID) ON DELETE CASCADE,
   FOREIGN KEY (soilID) REFERENCES SoilTypes (soilID) ON DELETE CASCADE
 );
