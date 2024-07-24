@@ -48,7 +48,7 @@ CREATE OR REPLACE TABLE Plants (
   UNIQUE (plantTypeID, displayName),
   PRIMARY KEY (plantID,plantTypeID),
   UNIQUE KEY plantID_UNIQUE (plantID),
-  FOREIGN KEY (plantTypeID) REFERENCES PlantTypes (plantTypeID) ON DELETE CASCADE
+  FOREIGN KEY (plantTypeID) REFERENCES PlantTypes (plantTypeID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -69,8 +69,8 @@ CREATE OR REPLACE TABLE PlantSoils (
   soilID int(11) NOT NULL,
   PRIMARY KEY (plantSoilID),
   UNIQUE KEY plantSoilID_unique (plantSoilID),
-  FOREIGN KEY (plantId) REFERENCES Plants (plantID) ON DELETE CASCADE,
-  FOREIGN KEY (soilID) REFERENCES SoilTypes (soilID) ON DELETE CASCADE
+  FOREIGN KEY (plantId) REFERENCES Plants (plantID) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (soilID) REFERENCES SoilTypes (soilID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -81,7 +81,7 @@ CREATE OR REPLACE TABLE WateringEvents (
   plantID int(11) NOT NULL,
   PRIMARY KEY (eventID,plantID),
   UNIQUE KEY wateringID_UNIQUE (eventID),
-  FOREIGN KEY (plantID) REFERENCES Plants (plantID) ON DELETE CASCADE
+  FOREIGN KEY (plantID) REFERENCES Plants (plantID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- create table for FertilizingEvents
@@ -91,8 +91,7 @@ CREATE OR REPLACE TABLE FertilizingEvents (
   plantID int(11) NOT NULL,
   PRIMARY KEY (eventID,plantID),
   UNIQUE KEY eventID_UNIQUE (eventID),
-  FOREIGN KEY (plantID) REFERENCES Plants (plantID) 
-  ON DELETE CASCADE
+  FOREIGN KEY (plantID) REFERENCES Plants (plantID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
