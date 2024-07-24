@@ -65,7 +65,7 @@ CREATE OR REPLACE TABLE SoilTypes (
 -- create table for PlantSoils
 CREATE OR REPLACE TABLE PlantSoils (
   plantSoilID int(11) NOT NULL AUTO_INCREMENT, 
-  plantId int(11) NOT NULL,
+  plantID int(11) NOT NULL,
   soilID int(11) NOT NULL,
   PRIMARY KEY (plantSoilID),
   UNIQUE KEY plantSoilID_unique (plantSoilID),
