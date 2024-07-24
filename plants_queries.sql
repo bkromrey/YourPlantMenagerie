@@ -77,14 +77,14 @@ INSERT INTO SoilTypes (soilType, soilDescription) VALUES (:soilType, :soilDescri
 
 -- Query to add a new wateringevent functionality with colon : character being used to 
 -- denote the variables that will have data from the backend programming language
-INSERT INTO WateringEvents (wateringDate, plantID) VALUES (:wateringDate_from_calendar, :plantId_from_dropdown_Input);
+INSERT INTO WateringEvents (wateringDate, plantID) VALUES (:wateringDate_from_calendar, :plantID_from_dropdown_Input);
 
 -- Query to add a new fertilizingevent functionality with colon : character being used to 
 -- denote the variables that will have data from the backend programming language
 INSERT INTO FertilizingEvents (fertilizingDate, plantID) VALUES (:fertilizingDate_from_calendar, :plantID_from_dropdown_Input)
 
 -- associate a plant with a soilType (M-to-M relationship addition)
-INSERT INTO PlantSoils (plantID, soilID) VALUES (:plantId_from_dropdown_Input, :soil_id_from_dropdown_Input);
+INSERT INTO PlantSoils (plantID, soilID) VALUES (:plantID_from_dropdown_Input, :soil_id_from_dropdown_Input);
 
 
 -- Delete Functions
@@ -102,7 +102,7 @@ DELETE FROM Plants WHERE plantID = :plantID_selected_from_browse_Plants_page;
 UPDATE Plants 
 SET displayName = :displayNameInput, isInside= :isInside_from_dropdown_Input, currentLight = :currentLight_from_dropdown_Input, 
 plantTypeID = :plantTypeId_from_dropdown_Input, waterInterval = :waterInterval_Input, fertilizerInterval = :fertilizerInterval_Input, plantedDate = :plantedDate_from_calendar_Input 
-WHERE plantId= :plantID_from_the_update_form;
+WHERE plantID= :plantID_from_the_update_form;
 
 -- update a soil for a plant (M-to-M relationship update)
 UPDATE PlantSoils SET plantTypeID = :plantTypeId_from_dropdown_Input, soilID = :soilID_from_dropdown_Input
