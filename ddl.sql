@@ -41,7 +41,7 @@ CREATE OR REPLACE TABLE Plants (
   displayName varchar(50) NOT NULL,
   isInside tinyint(1) NOT NULL DEFAULT 1,
   currentLight enum('Low','Medium','High') DEFAULT NULL,
-  plantTypeID int(11) NOT NULL,
+  plantTypeID int(11),
   waterInterval int(11) NOT NULL DEFAULT 7,
   fertilizerInterval int(11) DEFAULT 14,
   plantedDate date DEFAULT NULL,
