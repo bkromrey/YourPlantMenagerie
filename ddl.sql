@@ -21,10 +21,6 @@ SET AUTOCOMMIT = 0;
 -- -----------------------------------------------------
 
 
-
-
-
-
 -- create table for PlantTypes
 CREATE OR REPLACE TABLE PlantTypes (
   plantTypeID int(11) NOT NULL AUTO_INCREMENT,
@@ -49,6 +45,7 @@ CREATE OR REPLACE TABLE Plants (
   waterInterval int(11) NOT NULL DEFAULT 7,
   fertilizerInterval int(11) DEFAULT 14,
   plantedDate date DEFAULT NULL,
+  UNIQUE (plantTypeID, displayName),
   PRIMARY KEY (plantID,plantTypeID),
   UNIQUE KEY plantID_UNIQUE (plantID),
   FOREIGN KEY (plantTypeID) REFERENCES PlantTypes (plantTypeID) ON DELETE CASCADE
