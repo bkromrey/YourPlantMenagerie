@@ -77,6 +77,8 @@ function PlantsPage(){
 
         {/* call the function to make a new plant entry */}
         {/* <Button variant="success">New Plant</Button>{newPlant()} */}
+        <Button variant="success">New Plant</Button>{}
+
         <br /><br />
         </>
     );
