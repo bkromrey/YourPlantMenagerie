@@ -18,23 +18,25 @@ This is the dev version of the frontend. When we are ready to publish/upload thi
 
 # Citations 
 
-**React Bootstrap** 
-Styling modified from the sample code in the React Bootstrap documentation.
-Date Accessed: 25 July 2024
-URL: https://react-bootstrap.github.io/docs/components
+**TODO: Add something citing the sample code provided by CS340**
+
+**React Bootstrap** \
+Styling modified from the sample code in the React Bootstrap documentation.\
+Date Accessed: 25 July 2024\
+URL: https://react-bootstrap.github.io/docs/components\
 URL: https://react-bootstrap.github.io/docs/components/navbar
 
-**App Scaffolding Provided by Vite**
-Used Vite to build the React scaffolding for this project.
-Date Accessed: 27 July 2024
-Version Used: create-vite@5.4.0
+**App Scaffolding Provided by Vite**\
+Used Vite to build the React scaffolding for this project.\
+Date Accessed: 27 July 2024\
+Version Used: create-vite@5.4.0\
 URL: https://vitejs.dev/
 
-**Icons from Font Awesome**
-Date Accessed: 27 July 2024
+**Icons from Font Awesome**\
+Date Accessed: 27 July 2024\
 URL: https://fontawesome.com/icons/leaf?f=classic&s=solid
 
-**LinkContainer in react-router-bootstrap**
-Used the following resource as a model for our LinkContainer Router configuration
-Date: 27 July 2024
+**LinkContainer in react-router-bootstrap**\
+Used the following resource as a model for our LinkContainer Router configuration\
+Date: 27 July 2024\
 URL: https://medium.com/how-to-react/use-react-router-link-with-bootstrap-315a8b88e129
