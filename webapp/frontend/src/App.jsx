@@ -1,0 +1,53 @@
+import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+
+// import styling (custom & bootstrap)
+import './App.scss'
+
+// import components
+import NavBar from './components/navigation.jsx';
+import Footer from './components/footer.jsx';
+
+// import individual pages
+import Home from './pages/Home.jsx';
+import PlantsPage from './pages/Plants.jsx';
+import PlantTypesPage from './pages/PlantTypes.jsx';
+import SoilTypesPage from './pages/SoilTypes.jsx'
+import WateringEventsPage from './pages/wateringEvents.jsx'
+import FertilizingEventsPage from './pages/fertilizingEvents.jsx'
+import PlantSoilsPage from './pages/PlantSoils.jsx'
+
+
+function App() {
+ 
+  return (
+    <>
+    <BrowserRouter>
+  
+    <NavBar />
+
+    <main>
+      <section>
+
+        <Routes> 
+          <Route path="/" element={<Home />} />
+          <Route path="/plants" element={<PlantsPage />} />
+          <Route path="/plantTypes" element={<PlantTypesPage />} />
+          <Route path="/soilTypes" element={<SoilTypesPage />} />
+          <Route path="/wateringEvents" element={<WateringEventsPage />} />
+          <Route path="/fertilizingEvents" element={<FertilizingEventsPage />} />
+          <Route path="/plantSoils" element={<PlantSoilsPage />} />
+        </Routes>   
+
+      </section>
+    </main>
+    
+    <Footer />
+
+    </BrowserRouter>
+    </>
+  );
+}
+
+export default App
