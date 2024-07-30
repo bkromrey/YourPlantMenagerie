@@ -22,10 +22,11 @@
 
 
 
+
 function PlantsRow(){
     return (
         <>
-
+        <tbody>
             <tr>
                 <td><a href="#" onClick="updatePlant('this.plantID')">Edit</a></td>
                 <td><a href="#" onclick="deletePlant('this.plantID')">Delete</a></td>
@@ -74,6 +75,7 @@ function PlantsRow(){
                 <td>28</td>
                 <td>2024-06-01</td>
             </tr>
+            </tbody>
         </>
     );
 }
