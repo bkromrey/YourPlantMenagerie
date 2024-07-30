@@ -23,8 +23,7 @@ This is the dev version of the frontend. When we are ready to publish/upload thi
 **React Bootstrap** \
 Styling modified from the sample code in the React Bootstrap documentation.\
 Date Accessed: 25 July 2024\
-URL: https://react-bootstrap.github.io/docs/components\
-URL: https://react-bootstrap.github.io/docs/components/navbar
+URL: https://react-bootstrap.github.io/docs/components
 
 **App Scaffolding Provided by Vite**\
 Used Vite to build the React scaffolding for this project.\
