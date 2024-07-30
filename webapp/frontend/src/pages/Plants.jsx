@@ -1,10 +1,6 @@
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import { InsertPlant, UpdatePlant, DeletePlant } from '../components/FormsPlants.jsx'
-import { BrowsePlant } from '../components/FormsPlants.jsx';
-import React from 'react';
-import { useState } from 'react'
-
+import { BrowsePlant, InsertPlant, UpdatePlant, DeletePlant } from '../components/FormsPlants.jsx';
 
 
 // Citation for this html file
@@ -22,7 +18,7 @@ function showform(dowhat) {
         // document.getElementById('insert').style.display = 'block';
         // document.getElementById('update').style.display = 'none';
         // document.getElementById('delete').style.display = 'none';
-        alert('test');
+        alert('insert');
         // insertPlant();
         // <insertPlant />
     }
@@ -31,18 +27,24 @@ function showform(dowhat) {
         document.getElementById('insert').style.display = 'none';
         document.getElementById('update').style.display = 'block';
         document.getElementById('delete').style.display = 'none';
+        alert('update');
+
     }
     else if (dowhat == 'delete'){
         document.getElementById('browse').style.display = 'none';
         document.getElementById('insert').style.display = 'none';
         document.getElementById('update').style.display = 'none';
         document.getElementById('delete').style.display = 'block';
+        alert('delete');
+
     }
     else if (dowhat == 'all'){
         document.getElementById('browse').style.display = 'block';
         document.getElementById('insert').style.display = 'block';
         document.getElementById('update').style.display = 'block';
         document.getElementById('delete').style.display = 'block';
+        alert('none');
+
     }
     // by default, display browse
     else {
@@ -50,6 +52,8 @@ function showform(dowhat) {
         document.getElementById('insert').style.display = 'none';
         document.getElementById('update').style.display = 'none';
         document.getElementById('delete').style.display = 'none';
+        alert('browse');
+
     }
 }
 function newPlant() { showform('insert'); }
@@ -63,27 +67,16 @@ function newPlant() { showform('insert'); }
 
 
 function PlantsPage(){
-    const [addModalShow, setModalShow] = React.useState(false);
 
     return (
         <>
 
         <BrowsePlant />
 
-        {/* call the function to make a new plant entry */}
         <br/><br/>
-        <Button variant="success" onClick={() => setModalShow(true)}>New Plant</Button>
 
-        {/* <Button variant="success">New Plant</Button>{ showform('insert') } */}
-        {/* <Button variant="success">New Plant</Button>{d} */}
-
-
-        <InsertPlant
-        show={addModalShow}
-        onHide={() => setModalShow(false)}
-        />
-
-
+        {/* call the function to make a new plant entry */}
+        <InsertPlant />
 
 
         <br /><br />

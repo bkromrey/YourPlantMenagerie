@@ -18,8 +18,6 @@ import WateringEventsPage from './pages/wateringEvents.jsx'
 import FertilizingEventsPage from './pages/fertilizingEvents.jsx'
 import PlantSoilsPage from './pages/PlantSoils.jsx'
 
-
-
 function App() {
  
   return (
