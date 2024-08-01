@@ -92,8 +92,20 @@ INSERT INTO PlantSoils (plantID, soilID) VALUES (:plantID_from_dropdown_Input, :
 -- dis-associate a soil from a plant (M-to-M relationship deletion)
 DELETE FROM PlantSoils WHERE plantID = :plant_ID_selected_from_plant_and_soil_list AND soilID = :soil_ID_selected_from_plant_and_soil_list;
 
--- delete a Plant
+-- delete a Plant 
 DELETE FROM Plants WHERE plantID = :plantID_selected_from_browse_Plants_page;
+
+-- delete a Soil Type
+DELETE FROM SoilTypes WHERE soilID = :soilID_selected_from_browse_SoilTypes_page;
+
+-- delete a Plant Type
+DELETE FROM PlantTypes WHERE plantTypeID = :plantTypeID_selected_from_browse_PlantTypes_page;
+
+-- delete a Watering Event
+DELETE FROM WateringEvents WHERE eventID  = :eventID_selected_from_browse_WateringEvents_page;
+
+-- delete a Fertilizing Event
+DELETE FROM FertilizingEvents WHERE eventID = :eventID_selected_from_browse_FertilizingEvents_page;
 
 
 -- Update Functions
