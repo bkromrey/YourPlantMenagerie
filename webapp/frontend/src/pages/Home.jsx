@@ -1,13 +1,16 @@
 import Container from "react-bootstrap/esm/Container";
+import {Link} from 'react-router-dom';
+
 
 function Home(){
     return (
+        <>
         <div>
             <h2>Your Plant Menagerie</h2>
             <p>A database driven web app to help you care for your house plants.</p>
+            <p> For more information about this project click <Link to="/about">here</Link>.
+            </p>
             
-            <p> For more information about this project click <strong>here</strong>. <br/>(we can have a link to a page that basically contains the written outline of this project and ER diagram and schema sort of thing).</p>
-
             <Container>
                 <br/>
                 <h2>These Plants Need Attention!</h2>
@@ -24,6 +27,7 @@ function Home(){
                 
             </Container>
         </div>
+    </>
     );
 }
 

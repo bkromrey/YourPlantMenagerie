@@ -56,6 +56,10 @@ function NavBar() {
                     <Nav.Link>Plant Soils</Nav.Link>
                 </LinkContainer>
 
+                <LinkContainer to="/about">
+                    <Nav.Link>About</Nav.Link>
+                </LinkContainer>
+
             </Nav>
             </Navbar.Collapse>
 

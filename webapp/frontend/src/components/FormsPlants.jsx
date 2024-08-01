@@ -26,7 +26,7 @@ function PlantsRow(){
 
                 <td>1</td>
                 <td>Pothos in Living Room</td>
-                <td>1</td>
+                <td>1 (Yes)</td>
                 <td>Medium</td>
                 <td>Pothos</td>
                 <td>6</td>
@@ -48,7 +48,7 @@ function PlantsRow(){
 
                 <td>2</td>
                 <td >Pothos in Dining Room</td>
-                <td>1</td>
+                <td>1 (Yes)</td>
                 <td>Low</td>
                 <td>Pothos</td>
                 <td>7</td>
@@ -68,7 +68,7 @@ function PlantsRow(){
 
                 <td>3</td>
                 <td>String of Pearls</td>
-                <td>1</td>
+                <td>1 (Yes)</td>
                 <td>High</td>
                 <td>String of Pearls</td>
                 <td>7</td>
@@ -87,7 +87,7 @@ function PlantsRow(){
             <tr>
                 <td>4</td>
                 <td>Orange Cherry Tomatoes</td>
-                <td>0</td>
+                <td>0 (No)</td>
                 <td>High</td>
                 <td>Sungold Tomatoes</td>
                 <td>1</td>
@@ -114,7 +114,7 @@ export function BrowsePlant(){
         <tr>
 
             <th>id</th>
-            <th>displayName</th>
+            <th>Plant Name</th>
             <th>isInside</th>
             <th>currentLight</th>
             <th>Plant Type</th>
@@ -177,7 +177,7 @@ export function InsertPlant(){
                 
                 <Row>
                     <Col>
-                        <Form.Label>Plant Type</Form.Label>
+                        <Form.Label>Plant Type (Optional)</Form.Label>
                         <Form.Select name="plantType">
                         <option value="0">&nbsp;</option>
                         <option value="1">Pothos</option>

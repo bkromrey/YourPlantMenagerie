@@ -17,6 +17,7 @@ import SoilTypesPage from './pages/SoilTypes.jsx'
 import WateringEventsPage from './pages/wateringEvents.jsx'
 import FertilizingEventsPage from './pages/fertilizingEvents.jsx'
 import PlantSoilsPage from './pages/PlantSoils.jsx'
+import AboutPage from './pages/About.jsx';
 
 function App() {
  
@@ -37,6 +38,7 @@ function App() {
           <Route path="/wateringEvents" element={<WateringEventsPage />} />
           <Route path="/fertilizingEvents" element={<FertilizingEventsPage />} />
           <Route path="/plantSoils" element={<PlantSoilsPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>   
 
       </section>
