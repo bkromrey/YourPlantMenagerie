@@ -1,13 +1,9 @@
-// This module adapted from the CS340 starter code.
-// Date Accessed: 1 August 2024
-// URL: https://github.com/osu-cs340-ecampus/react-starter-app
-
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 8500;
+const PORT = process.env.PORT || 8511;
 
 // Middleware:
 
@@ -19,7 +15,6 @@ app.use(express.json());
 
 // API Routes for backend CRUD:
 app.use("/api/people", require("./routes/peopleRoutes"));
-app.use("/api/plants", require("./routes/PlantsRoutes"));
 
 
 // Add your Connect DB Activitiy Code Below:
@@ -30,7 +25,7 @@ app.use("/api/plants", require("./routes/PlantsRoutes"));
 // End Connect DB Activity Code.
 
 
-app.listen(PORT, () => {
+app.listen(8511, () => {
   // Change this text to whatever FLIP server you're on
-  console.log(`Server running:  http://flip3.engr.oregonstate.edu:${PORT}...`);
+  console.log(`Server running:  http://flip3.engr.oregonstate.edu:${8511}...`);
 });
