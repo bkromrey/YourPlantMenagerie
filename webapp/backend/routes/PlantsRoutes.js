@@ -5,17 +5,17 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getPeople,
-  getPersonByID,
-  createPerson,
-  updatePerson,
-  deletePerson,
-} = require("../controllers/peopleController");
+  getPlants,
+  getPlantByID,
+  createPlant,
+  updatePlant,
+  deletePlant,
+} = require("../controllers/PlantsController");
 
-router.get("/", getPeople);
-router.get("/:id", getPersonByID);
-router.post("/", createPerson);
-router.put("/:id", updatePerson);
-router.delete("/:id", deletePerson);
+router.get("/", getPlants);
+router.get("/:id", getPlantByID);
+router.post("/", createPlant);
+router.put("/:id", updatePlant);
+router.delete("/:id", deletePlant);
 
 module.exports = router;

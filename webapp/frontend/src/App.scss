@@ -1,6 +1,15 @@
+// prevent navbar & footer from overlapping with content on the page
+.main-content {
+  padding-top: 55px;
+  padding-bottom: 65px;
+}
 
-.footer{
+// TODO - this isn't the best way to theme with color, need to figure that out with bootstrap. 
+//making the footer a solid color allows content to scroll under it without displaying funny
+.fixed-bottom{
   font-size: 0.7em;
+  background-color: rgb(190, 236, 200);
+  margin: 0;
 }
 
 #root {

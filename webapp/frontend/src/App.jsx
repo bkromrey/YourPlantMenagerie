@@ -27,9 +27,8 @@ function App() {
   
     <NavBar />
 
-    <main>
+    <main className="main-content">
       <section>
-
         <Routes> 
           <Route path="/" element={<Home />} />
           <Route path="/plants" element={<PlantsPage />} />
@@ -40,12 +39,11 @@ function App() {
           <Route path="/plantSoils" element={<PlantSoilsPage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>   
-
       </section>
     </main>
     
     <Footer />
-    
+
     </BrowserRouter>
     </>
   );
