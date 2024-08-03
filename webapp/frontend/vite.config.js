@@ -15,7 +15,7 @@ export default defineConfig({
     loader: "jsx"
   },
   server: {
-    port: parseInt(process.env.VITE_PORT, 10) || 5173     // Use VITE_PORT from your .env, or default to a port if not specified
+    port: parseInt(process.env.VITE_PORT, 10) || 8521     // Use VITE_PORT from your .env, or default to a port if not specified
   }
 })
 
