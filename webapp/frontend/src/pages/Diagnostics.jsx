@@ -44,10 +44,13 @@ function DiagnosticsPage(){
   // display the content and anything else
   return (
     <>
+
+    <p>This page is here merely to confirm communcation with the backend.</p>
+
      <h2>Diagnostic Data</h2>
       {content}
 
-     <p>This page is here merely to confirm communcation with the backend. Using axios. </p>
+     
     </>
   );
 
