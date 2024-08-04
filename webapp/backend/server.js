@@ -7,7 +7,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 8511;
+const PORT = process.env.PORT || 8500; // will use PORT declared in .env but if nothing declared, defaults to 8500
 
 // Middleware:
 
@@ -24,6 +24,7 @@ app.use("/api/people", require("./routes/peopleRoutes"));
 // Add your Connect DB Activitiy Code Below:
 // ...
 
+// app.use("/api/diagnostic");
 
 // Match to your database config route
 const db = require('./database/config.js');
@@ -32,6 +33,7 @@ const db = require('./database/config.js');
 app.get('/api/diagnostic', async (req, res) => {
   try {
     // Await your database queries here
+    console.log('making an attempt');
     await db.pool.query('DROP TABLE IF EXISTS diagnostic;');
     await db.pool.query('CREATE TABLE diagnostic(id INT PRIMARY KEY AUTO_INCREMENT, text VARCHAR(255) NOT NULL);');
     await db.pool.query('INSERT INTO diagnostic (text) VALUES ("MySQL is working!")');
@@ -53,7 +55,13 @@ app.get('/api/diagnostic', async (req, res) => {
 // End Connect DB Activity Code.
 
 
-app.listen(8511, () => {
-  // Change this text to whatever FLIP server you're on
-  console.log(`Server running:  http://flip3.engr.oregonstate.edu:${8511}...`);
+// Citation for how to dynamically change the hostname in the log output
+// DATE ACCESSED: 3 August 2024
+// URL: https://stackoverflow.com/questions/20553554/node-js-return-hostname
+const os = require("os");
+const hostname = os.hostname();
+
+// changed this back to PORT, this shouldn't be hardcoded because it'll automatically use whatever we set in the .env
+app.listen(PORT, () => {
+  console.log(`Server running on http://${hostname}:${PORT}...`);
 });
