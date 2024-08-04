@@ -14,6 +14,8 @@ const PORT = process.env.PORT || 8500; // will use PORT declared in .env but if 
 // If on FLIP, use cors() middleware to allow cross-origin requests from the frontend with your port number:
 // EX (local): http://localhost:5173 
 // EX (FLIP/classwork) http://flip3.engr.oregonstate.edu:5173
+// http://${hostname}:${PORT}
+
 app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json());
 
@@ -24,7 +26,6 @@ app.use("/api/people", require("./routes/peopleRoutes"));
 // Add your Connect DB Activitiy Code Below:
 // ...
 
-// app.use("/api/diagnostic");
 
 // Match to your database config route
 const db = require('./database/config.js');

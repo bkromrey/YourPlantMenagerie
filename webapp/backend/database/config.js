@@ -3,7 +3,8 @@
 // URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
 // Get an instance of mysql we can use in the app
-const mysql = require("mysql2");
+// const mysql = require("mysql2-promise"); // TODO; remove from package.json if we dont need this
+const mysql = require("mysql2");  
 require("dotenv").config();
 
 // Create a 'connection pool' using the provided credentials
