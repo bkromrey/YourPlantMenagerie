@@ -11,13 +11,11 @@ const UpdateSoilType = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const prevSoilType = location.state.person;
+  const prevSoilType = location.state.soilType;
 
   const [formData, setFormData] = useState({
-    fname: prevSoilType.fname || '',
-    lname: prevSoilType.lname || '',
-    homeworld: prevSoilType.homeworld || '',
-    age: prevSoilType.age || '',
+    soilType: prevSoilType.soilType || '',
+    soilDescription: prevSoilType.soilDescription || ''
   });
 
   const handleInputChange = (event) => {
@@ -31,10 +29,8 @@ const UpdateSoilType = () => {
   function isUpdate(){
     // Check if formData is equal to prevSoilType
     if (JSON.stringify(formData) === JSON.stringify({
-      fname: prevSoilType.fname || '',
-      lname: prevSoilType.lname || '',
-      homeworld: prevSoilType.homeworld || '',
-      age: prevSoilType.age || '',
+      soilType: prevSoilType.soilType || '',
+      soilDescription: prevSoilType.soilDescription || ''
     })) {
       alert("No changes made.");
       return false;
@@ -48,65 +44,47 @@ const UpdateSoilType = () => {
     // Check if formData is equal to prevSoilType
     if (isUpdate()){
       try {
-        const URL = import.meta.env.VITE_API_URL + "people/" + id;
+        const URL = import.meta.env.VITE_API_URL + "soilTypes/" + id;
         const response = await axios.put(URL, formData);
         if (response.status !== 200) {
-          alert("Error updating person");
+          alert("Error updating soil type!");
         } else {
           alert(response.data.message);
-          // Redirect to people page
-          navigate("/people");
+          // Redirect to SoilTypes page
+          navigate("/soilTypes");
         }
       } catch (err) {
-        console.log("Error updating person:", err);
+        console.log("Error updating soil type:", err);
       }
     }
   };
 
   return (
     <div>
-      <h2>Update Person</h2>
+      <h2>Update Soil</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>First Name:</label>
+          <label>Soil Name:</label>
           <input
             type="text"
-            name="fname"
+            name="soilType"
             onChange={handleInputChange}
             required
-            defaultValue={prevSoilType.fname}
+            defaultValue={prevSoilType.soilType}
           />
         </div>
         <div>
-          <label>Last Name:</label>
+          <label>Soil Description</label>
           <input
-            type="text"
-            name="lname"
+            type="text" // TODO update this to a text box for longer text entry
+            name="soilDescription" 
             onChange={handleInputChange}
             required
-            defaultValue={prevSoilType.lname}
+            defaultValue={prevSoilType.soilDescription}
           />
         </div>
-        <div>
-          <label>Homeworld:</label>
-          <input
-            type="number"
-            name="homeworld"
-            onChange={handleInputChange}
-            defaultValue={prevSoilType.homeworld}
-          />
-        </div>
-        <div>
-          <label>Age:</label>
-          <input
-            type="number"
-            name="age"
-            onChange={handleInputChange}
-            required
-            defaultValue={prevSoilType.age}
-          />
-        </div>
-        <button type="button" onClick={() => navigate("/people")}>
+
+        <button type="button" onClick={() => navigate("/soilTypes")}>
           Cancel
         </button>
         <button type="submit">Update</button>

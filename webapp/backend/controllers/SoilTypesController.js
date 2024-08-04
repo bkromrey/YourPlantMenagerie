@@ -82,7 +82,7 @@ const updateSoilType = async (req, res) => {
         "UPDATE SoilTypes SET soilType=?, soilDescription=? WHERE soilID=?";
 
       const values = [
-        newSoilType.soilDescription,
+        newSoilType.soilType,
         newSoilType.soilDescription,
         soilID,
       ];
