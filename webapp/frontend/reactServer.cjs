@@ -24,7 +24,13 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
 });
 
+// Citation for how to dynamically change the hostname in the log output
+// DATE ACCESSED: 3 August 2024
+// URL: https://stackoverflow.com/questions/20553554/node-js-return-hostname
+const os = require("os");
+const hostname = os.hostname();
+
 app.listen(PORT, () => {
   // Change this text to whatever FLIP server you're on
-  console.log(`Server running:  http://flip3.engr.oregonstate.edu:${PORT}...`);
+  console.log(`Server running:  http://${hostname}:${PORT}...`);
 });

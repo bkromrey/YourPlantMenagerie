@@ -1,5 +1,6 @@
 {
-  "name": "cs340-react-starter-app-backend",
+  "name": "your-plant-menagerie-backend",
+  "author": "Brenna Wilson & Brianna Kromrey",
   "version": "1.0.0",
   "description": "This is the backend express API that connects the frontend to the mariadb database",
   "main": "server.js",
@@ -20,7 +21,6 @@
     "lodash": "^4.17.21",
     "mysql": "^2.18.1",
     "mysql2": "^3.5.2",
-    "mysql2-promise": "^0.1.4",
     "nodemon": "^3.0.1"
   }
 }

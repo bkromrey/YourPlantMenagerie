@@ -14,7 +14,6 @@ const PORT = process.env.PORT || 8500; // will use PORT declared in .env but if 
 // If on FLIP, use cors() middleware to allow cross-origin requests from the frontend with your port number:
 // EX (local): http://localhost:5173 
 // EX (FLIP/classwork) http://flip3.engr.oregonstate.edu:5173
-// http://${hostname}:${PORT}
 
 app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json());
@@ -23,37 +22,33 @@ app.use(express.json());
 app.use("/api/people", require("./routes/peopleRoutes"));
 
 
-// Add your Connect DB Activitiy Code Below:
-// ...
-
 
 // Match to your database config route
 const db = require('./database/config.js');
 
+
+
+// DIAGNOSTIC CODE --- SEEMS TO HAVE A CORS ISSUE, TODO take this out?
+
 // define a new GET request with express:
-app.get('/api/diagnostic', async (req, res) => {
-  try {
-    // Await your database queries here
-    console.log('making an attempt');
-    await db.pool.query('DROP TABLE IF EXISTS diagnostic;');
-    await db.pool.query('CREATE TABLE diagnostic(id INT PRIMARY KEY AUTO_INCREMENT, text VARCHAR(255) NOT NULL);');
-    await db.pool.query('INSERT INTO diagnostic (text) VALUES ("MySQL is working!")');
-    const results = await db.pool.query('SELECT * FROM diagnostic;');
+// app.get('/api/diagnostic', async (req, res) => {
+//   try {
+//     // Await your database queries here
+//     console.log('making an attempt');
+//     await db.pool.query('DROP TABLE IF EXISTS diagnostic;');
+//     await db.pool.query('CREATE TABLE diagnostic(id INT PRIMARY KEY AUTO_INCREMENT, text VARCHAR(255) NOT NULL);');
+//     await db.pool.query('INSERT INTO diagnostic (text) VALUES ("MySQL is working!")');
+//     const results = await db.pool.query('SELECT * FROM diagnostic;');
 
-    // res.json() automatically stringifies the JavaScript object to JSON
-    res.json(results);
+//     // res.json() automatically stringifies the JavaScript object to JSON
+//     res.json(results);
 
-  } catch (error) {
-    // Handle Errors
-    console.error('Database operation failed:', error);
-    res.status(500).send('Server error');
-  }
-});
-
-
-
-// ...
-// End Connect DB Activity Code.
+//   } catch (error) {
+//     // Handle Errors
+//     console.error('Database operation failed:', error);
+//     res.status(500).send('Server error');
+//   }
+// });
 
 
 // Citation for how to dynamically change the hostname in the log output

@@ -10,11 +10,18 @@ To launch the frontend, do the following.
 ```
 cd webapp/frontend
 npm install
-npm run dev
+npm run dev -- --host
 ```
 
 This is the dev version of the frontend. When we are ready to publish/upload this, we can use the publish option within Vite to do so. Need to do more research, as `npm run build` isn't working, perhaps due to the Routes.
 
+# Backend
+To launch the backend, do the following.
+```
+cd webapp/backend
+npm install
+npm start -- --host
+```
 
 # REMINDER
 

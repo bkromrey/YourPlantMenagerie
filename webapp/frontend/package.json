@@ -1,5 +1,5 @@
 {
-  "name": "your-plant-menagerie",
+  "name": "your-plant-menagerie-frontend",
   "author": "Brenna Wilson & Brianna Kromrey",
   "private": true,
   "version": "0.0.0",
@@ -8,8 +8,13 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "serve": "npx forever start reactServer.cjs"
   },
+  "contributors": [
+    "Devin Daniels <github.com/devingdaniels>",
+    "Zac Maes <github.com/zacmaes>"
+  ],
   "dependencies": {
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",

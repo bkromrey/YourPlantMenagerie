@@ -2,6 +2,9 @@
 // Date Accessed: 1 August 2024
 // URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
+
+// TODO do we want to just remove this whole file since it doesn't work?
+
 import { useState, useEffect } from 'react';  // import the hooks you are going to use
 import axios from 'axios';
 
