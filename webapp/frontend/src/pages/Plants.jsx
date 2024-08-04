@@ -71,6 +71,8 @@ function PlantsPage(){
     return (
         <>
 
+        <h1>disclaimer: this is still hardcoded data</h1>
+
         <BrowsePlant />
 
         <br/><br/>

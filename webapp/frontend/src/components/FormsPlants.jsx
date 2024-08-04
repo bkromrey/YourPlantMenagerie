@@ -16,6 +16,7 @@ import Col from 'react-bootstrap/Col';
 function PlantsRow(){
     return (
         <>
+        
         <tbody>
 
             {/* TODO: use the map function to dynamically build these rows once we connect to database */}
@@ -110,7 +111,11 @@ function PlantsRow(){
 
 export function BrowsePlant(){
     return (
+        <>
+
         <Table striped bordered hover>
+
+        <thead>
         <tr>
 
             <th>id</th>
@@ -124,11 +129,14 @@ export function BrowsePlant(){
             <th></th>
             <th></th>
         </tr>
+        </thead>
         
         {/* call PlantsRow to populate rows in table */}
+        
         <PlantsRow />
 
         </Table>
+        </>
     );
 }
 

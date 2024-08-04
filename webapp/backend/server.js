@@ -19,7 +19,7 @@ app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json());
 
 // API Routes for backend CRUD:
-app.use("/api/people", require("./routes/peopleRoutes"));
+app.use("/api/soilTypes", require("./routes/SoilTypesRoutes.js"));
 
 
 
