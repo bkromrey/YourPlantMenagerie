@@ -4,6 +4,7 @@ import CreateSoilType from "../components/SoilTypes/CreateSoilTypes";
 import SoilTypesTable from "../components/SoilTypes/SoilTypesTable";
 import UpdateSoilType from "../components/SoilTypes/UpdateSoilTypes";
 
+
 // bootstrap components
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';

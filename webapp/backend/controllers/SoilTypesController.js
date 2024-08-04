@@ -119,16 +119,16 @@ const deleteSoilType = async (req, res) => {
       return res.status(404).send("SoilType not found");
     }
 
-    // Delete related records from the intersection table (see FK contraints bsg_cert_SoilTypes)
+    // Delete related records from the intersection table (see FK contraints DeleteSoilTypes)
     const [response] = await db.query(
-      "DELETE FROM bsg_cert_SoilTypes WHERE pid = ?",
+      "DELETE FROM SoilTypes WHERE pid = ?",
       [soilID]
     );
 
     console.log(
       "Deleted",
       response.affectedRows,
-      "rows from bsg_cert_SoilTypes intersection table"
+      "rows from DeleteSoilTypes intersection table"
     );
 
     // Delete the SoilType from SoilTypes
