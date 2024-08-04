@@ -4,7 +4,14 @@ import CreateSoilType from "../components/SoilTypes/CreateSoilTypes";
 import SoilTypesTable from "../components/SoilTypes/SoilTypesTable";
 import UpdateSoilType from "../components/SoilTypes/UpdateSoilTypes";
 
-
+// bootstrap components
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 // // original SoilTypesPage
 
@@ -49,6 +56,10 @@ function SoilTypesPage(){
         <Route path="/add" element={<CreateSoilType />} />
         <Route path="/edit/:id" element={<UpdateSoilType />} />
       </Routes>
+
+      {/* TODO; implement the modal  */}
+      <br/><br />
+      <Button variant="success" onClick={() => InsertPopup(true)}>New Soil Type(this button not implemented yet)</Button>
 
 
         </>

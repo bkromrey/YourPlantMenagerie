@@ -49,14 +49,14 @@ const SoilTypesTable = () => {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Soil Type ID</th>
-              <th>Soil Type Name</th>
-              <th>Soil Type Description</th>
+              <th>Soil ID</th>
+              <th>Soil Name</th>
+              <th>Soil Description</th>
               <th></th>
               <th></th>
             </tr>
           </thead>
-          
+
           <tbody>
             {/* use the map function to generate each row within the table */}
             {SoilTypes.map((SoilType) => (

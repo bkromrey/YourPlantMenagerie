@@ -45,8 +45,8 @@ function SoilTypesRow(){
         <>
         {SoilTypes.map((SoilType) => (
             <tr key={SoilType.soilID}>
-            <td>{SoilType.id}</td>
-            <td>${SoilType.SoilTypeName}</td>
+            <td>{SoilType.soilID}</td>
+            <td>{SoilType.SoilTypeName}</td>
             <td>{SoilTypeDescription}</td>
             <td><Button variant="warning">Edit</Button></td>
             <td><Button variant="danger">Delete</Button></td>

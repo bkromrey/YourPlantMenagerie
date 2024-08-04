@@ -26,14 +26,14 @@ function App() {
     <BrowserRouter>
   
     <NavBar />
-
+{/* TODO update routes that aren't child react components */}
     <main className="main-content">
       <section>
         <Routes> 
           <Route path="/" element={<Home />} />
           <Route path="/plants" element={<PlantsPage />} />
           <Route path="/plantTypes" element={<PlantTypesPage />} />
-          <Route path="/soilTypes" element={<SoilTypesPage />} />
+          <Route path="/soilTypes/*" element={<SoilTypesPage />} />  
           <Route path="/wateringEvents" element={<WateringEventsPage />} />
           <Route path="/fertilizingEvents" element={<FertilizingEventsPage />} />
           <Route path="/plantSoils" element={<PlantSoilsPage />} />

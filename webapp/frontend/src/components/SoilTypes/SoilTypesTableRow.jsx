@@ -3,8 +3,6 @@
 // URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
 import axios from "axios";
-import { BsTrash } from "react-icons/bs";
-import { BiEditAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
 
@@ -50,12 +48,10 @@ const TableRow = ({ SoilType, fetchSoilTypes }) => {
       <td>{SoilType.soilType}</td>
       <td>{SoilType.soilDescription}</td>
       <td>
-        <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
-        <Button variant="warning">Edit</Button>
+        <Button onClick={handleEdit} variant="warning">Edit</Button>
       </td>
       <td>
-        <BsTrash onClick={deleteRow} size={25} style={{ cursor: "pointer" }} />
-        <Button variant="danger">Delete</Button>
+        <Button onClick={deleteRow} variant="danger">Delete</Button>
       </td>
     </tr>
   );

@@ -27,9 +27,9 @@ const getSoilTypes = async (req, res) => {
 // Returns a single SoilType by their unique ID from SoilTypes
 const getSoilTypeByID = async (req, res) => {
   try {
-    const SoilTypeID = req.params.soilID;
+    const soilID = req.params.soilID;
     const query = "SELECT * FROM SoilTypes WHERE soilID = ?";
-    const [result] = await db.query(query, [SoilTypeID]);
+    const [result] = await db.query(query, [soilID]);
     // Check if SoilType was found
     if (result.length === 0) {
       return res.status(404).json({ error: "SoilType not found" });
@@ -45,9 +45,9 @@ const getSoilTypeByID = async (req, res) => {
 // Returns status of creation of new SoilType in SoilTypes
 const createSoilType = async (req, res) => {
   try {
-    const { fname, lname, homeworld, age } = req.body;
+    const { soilType, soilDescription } = req.body;
     const query =
-      "INSERT INTO SoilTypes (fname, lname, homeworld, age) VALUES (?, ?, ?, ?)";
+      "INSERT INTO SoilTypes (soilType, soilDescription) VALUES (?, ?)";
 
     const response = await db.query(query, [
       soilType,
@@ -63,16 +63,15 @@ const createSoilType = async (req, res) => {
 };
 
 
-//TODO
 const updateSoilType = async (req, res) => {
   // Get the SoilType ID
-  const SoilTypeID = req.params.soilID;
+  const soilID = req.params.soilID;
   // Get the SoilType object
   const newSoilType = req.body;
 
   try {
     const [data] = await db.query("SELECT * FROM SoilTypes WHERE soilID = ?", [
-      SoilTypeID,
+      soilID,
     ]);
 
     const oldSoilType = data[0];
@@ -80,17 +79,12 @@ const updateSoilType = async (req, res) => {
     // If any attributes are not equal, perform update
     if (!lodash.isEqual(newSoilType, oldSoilType)) {
       const query =
-        "UPDATE SoilTypes SET fname=?, lname=?, homeworld=?, age=? WHERE soilID=?";
-
-      // Homeoworld is NULL-able FK in SoilTypes, has to be valid INT FK ID or NULL
-      const hw = newSoilType.homeworld === "" ? null : newSoilType.homeworld;
+        "UPDATE SoilTypes SET soilType=?, soilDescription=? WHERE soilID=?";
 
       const values = [
-        newSoilType.fname,
-        newSoilType.lname,
-        hw,
-        newSoilType.age,
-        SoilTypeID,
+        newSoilType.soilDescription,
+        newSoilType.soilDescription,
+        soilID,
       ];
 
       // Perform the update
@@ -104,20 +98,20 @@ const updateSoilType = async (req, res) => {
     console.log("Error updating SoilType", error);
     res
       .status(500)
-      .json({ error: `Error updating the SoilType with id ${SoilTypeID}` });
+      .json({ error: `Error updating the SoilType with id ${soilID}` });
   }
 };
 
 // Endpoint to delete a type of soil from the database
 const deleteSoilType = async (req, res) => {
   console.log("Deleting SoilType with id:", req.params.soilID);
-  const SoilTypeID = req.params.soilID;
+  const soilID = req.params.soilID;
 
   try {
     // Ensure the SoilType exists
     const [isExisting] = await db.query(
       "SELECT 1 FROM SoilTypes WHERE soilID = ?",
-      [SoilTypeID]
+      [soilID]
     );
 
     // If the SoilType doesn't exist, return an error
@@ -128,7 +122,7 @@ const deleteSoilType = async (req, res) => {
     // Delete related records from the intersection table (see FK contraints bsg_cert_SoilTypes)
     const [response] = await db.query(
       "DELETE FROM bsg_cert_SoilTypes WHERE pid = ?",
-      [SoilTypeID]
+      [soilID]
     );
 
     console.log(
@@ -138,7 +132,7 @@ const deleteSoilType = async (req, res) => {
     );
 
     // Delete the SoilType from SoilTypes
-    await db.query("DELETE FROM SoilTypes WHERE soilID = ?", [SoilTypeID]);
+    await db.query("DELETE FROM SoilTypes WHERE soilID = ?", [soilID]);
 
     // Return the appropriate status code
     res.status(204).json({ message: "SoilType deleted successfully" })

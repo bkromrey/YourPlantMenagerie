@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import Button from 'react-bootstrap/Button';
+
 function CreateSoilType() {
   const navigate = useNavigate();
 
@@ -19,10 +21,8 @@ function CreateSoilType() {
     e.preventDefault();
     // Create a new SoilType object from the formData
     const newSoilType = {
-      fname: formData.fname,
-      lname: formData.lname,
-      homeworld: formData.homeworld,
-      age: formData.age,
+      soilType: formData.soilType,
+      soilDescription: formData.soilDescription,
     };
 
     try {
@@ -43,10 +43,8 @@ function CreateSoilType() {
 
   const resetFormFields = () => {
     setFormData({
-      fname: "",
-      lname: "",
-      homeworld: "",
-      age: "",
+      soilType: "",
+      soilDescription: "",
     });
   };
 
@@ -60,32 +58,24 @@ function CreateSoilType() {
 
   return (
     <>
-      <h2>Create BSG SoilType</h2>
+      <h2>Create Soil Type</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="fname">First Name</label>
+        <label htmlFor="soilType">Soil Name</label>
         <input
           type="text"
-          name="fname"
-          defaultValue={formData.fname}
+          name="soilType"
+          defaultValue={formData.soilType}
           onChange={handleInputChange}
         />
-        <label htmlFor="lname">Last Name</label>
+        <label htmlFor="soilDescription">Soil Description</label>
         <input
-          type="text"
-          name="lname"
-          defaultValue={formData.lname}
+          type="text" // TODO make this a text box for a longer description
+          name="soilDescription"
+          defaultValue={formData.soilDescription}
           onChange={handleInputChange}
         />
-        <label htmlFor="homeworld">Homeworld</label>
-        <input
-          type="number"
-          name="homeworld"
-          value={formData.homeworld}
-          onChange={handleInputChange}
-        />
-        <label htmlFor="age">Age</label>
-        <input type="number" name="age" value={formData.age} onChange={handleInputChange} />
-        <button type="submit">Create SoilType</button>
+        <br /><br />
+        <Button type="submit">Submit</Button>
       </form>
     </>
   );
