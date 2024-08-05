@@ -3,9 +3,8 @@
 // URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 
 const UpdateSoilType = () => {
   const { soilID } = useParams();

@@ -27,11 +27,13 @@ const getSoilTypes = async (req, res) => {
 // Returns a single SoilType by their unique ID from SoilTypes
 const getSoilTypeByID = async (req, res) => {
   try {
-    const soilID = req.params.soilID;
+    const soilID = req.params.id;
     const query = "SELECT * FROM SoilTypes WHERE soilID = ?";
     const [result] = await db.query(query, [soilID]);
     // Check if SoilType was found
     if (result.length === 0) {
+      // console.log("soildID=" + soilID);  // TODO
+      // console.log(query);
       return res.status(404).json({ error: "SoilType not found" });
     }
     const SoilType = result[0];
@@ -65,7 +67,7 @@ const createSoilType = async (req, res) => {
 
 const updateSoilType = async (req, res) => {
   // Get the SoilType ID
-  const soilID = req.params.soilID;
+  const soilID = req.params.id;
   // Get the SoilType object
   const newSoilType = req.body;
 
@@ -104,8 +106,8 @@ const updateSoilType = async (req, res) => {
 
 // Endpoint to delete a type of soil from the database
 const deleteSoilType = async (req, res) => {
-  console.log("Deleting SoilType with id:", req.params.soilID);
-  const soilID = req.params.soilID;
+  console.log("Deleting SoilType with id:", req.params.id);
+  const soilID = req.params.id;
 
   try {
     // Ensure the SoilType exists
@@ -121,7 +123,7 @@ const deleteSoilType = async (req, res) => {
 
     // Delete related records from the intersection table (see FK contraints DeleteSoilTypes)
     const [response] = await db.query(
-      "DELETE FROM SoilTypes WHERE pid = ?",
+      "DELETE FROM SoilTypes WHERE soilID = ?",
       [soilID]
     );
 
