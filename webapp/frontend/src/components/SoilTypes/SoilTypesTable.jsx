@@ -60,7 +60,7 @@ const SoilTypesTable = () => {
           <tbody>
             {/* use the map function to generate each row within the table */}
             {SoilTypes.map((SoilType) => (
-              <TableRow key={SoilType.id} SoilType={SoilType} fetchSoilTypes={fetchSoilTypes} />
+              <TableRow key={SoilType.soilID} SoilType={SoilType} fetchSoilTypes={fetchSoilTypes} />
             ))}
           </tbody>
         </Table>
