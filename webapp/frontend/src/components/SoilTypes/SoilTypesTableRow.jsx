@@ -29,7 +29,7 @@ const TableRow = ({ SoilType, fetchSoilTypes }) => {
 
   const deleteRow = async () => {
     try {
-      const URL = import.meta.env.VITE_API_URL + "people/" + SoilType.soilID;
+      const URL = import.meta.env.VITE_API_URL + "soiltypes/" + SoilType.soilID;
       const response = await axios.delete(URL);
       // Ensure that the SoilType was deleted successfully
       if (response.status === 204) {
@@ -43,7 +43,7 @@ const TableRow = ({ SoilType, fetchSoilTypes }) => {
   };
 
   return (
-    <tr key={SoilType.soilID}>
+    <tr key={SoilTypes.soilID}>
       <td>{SoilType.soilID}</td>
       <td>{SoilType.soilType}</td>
       <td>{SoilType.soilDescription}</td>
