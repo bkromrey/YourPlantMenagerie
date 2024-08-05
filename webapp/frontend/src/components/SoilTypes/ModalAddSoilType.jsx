@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 // import CreateSoilType from "../components/SoilTypes/CreateSoilTypes";
 // import SoilTypesTable from "../components/SoilTypes/SoilTypesTable";
 // import UpdateSoilType from "../components/SoilTypes/UpdateSoilTypes";
@@ -34,13 +36,19 @@ function AddSoilType(){
         // close the popup window
         InsertPopup(false);
 
+        // TODO remove completely, this doesn't play nice with bootstrap stuff 
         // Prevent page reload
-        e.preventDefault();
+        // e.preventDefault();  
+
         // Create a new SoilType object from the formData
         const newSoilType = {
         soilType: formData.soilType,
         soilDescription: formData.soilDescription,
-    };
+        };
+
+        // TESTING - use this to ensure data is saved by form
+        // alert(newSoilType.soilType + ', ' + newSoilType.soilDescription); 
+
         try {
         const URL = import.meta.env.VITE_API_URL + "soilTypes";
         const response = await axios.post(URL, newSoilType);
@@ -51,10 +59,19 @@ function AddSoilType(){
         }
         } catch (error) {
         alert("Error creating SoilType");
+        // alert(error); 
         console.error("Error creating SoilType:", error);
         }
         // Reset the form fields
         resetFormFields();
+
+        // TODO - i don't like how it forces the entire page to reload, i just want to reload the component
+
+        // Citation for this line of code
+        // Forces the page to reload to display the new data
+        // URL: https://stackoverflow.com/questions/56649094/how-to-reload-a-component-part-of-page-in-reactjs
+        // Date Accessed: 5 August 2024
+        window.location.reload();
     };
       
     const resetFormFields = () => {
@@ -69,7 +86,10 @@ function AddSoilType(){
         setFormData((prevData) => ({
         ...prevData,
         [name]: value,
+
         }));
+        console.log(name);
+        console.log(value);
     };
       
 
@@ -118,13 +138,14 @@ function AddSoilType(){
           </Modal.Header>
   
         <Modal.Body>
-            <Form id="addPlant">
+            <Form id="addPlant" onSubmit={handleSubmit}>
 
             <Container >
                 <Row>
                     <Col>
                         <Form.Label htmlFor="soilType" >Name</Form.Label>
                         <Form.Control
+                            required
                             type="text"
                             name="soilType"
                             // defaultValue={formData.soilType}
