@@ -1,6 +1,22 @@
+import { Routes, Route, Link } from "react-router-dom";
+import CreateSoilType from "../components/SoilTypes/CreateSoilTypes";
+import SoilTypesTable from "../components/SoilTypes/SoilTypesTable";
+import UpdateSoilType from "../components/SoilTypes/UpdateSoilTypes";
+import { AddSoilType } from "../components/SoilTypes/ModalAddSoilType";
+
+
+// bootstrap components
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 //TODO
 
-export function InsertPlant(){
+default function AddSoilType(){
     const [showInsertPopup, InsertPopup] = useState(false);
 
     const CloseButton = () => InsertPopup(false);
@@ -10,7 +26,7 @@ export function InsertPlant(){
     return (
 
         <>
-        <Button variant="success" onClick={() => InsertPopup(true)}>New Plant</Button>
+        <Button variant="success" onClick={() => InsertPopup(true)}>New Soil Type</Button>
 
         <Modal
         size="lg"
@@ -116,3 +132,5 @@ export function InsertPlant(){
         </>
     );
 }
+
+export default AddSoilType;

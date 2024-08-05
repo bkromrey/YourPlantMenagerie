@@ -3,6 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import CreateSoilType from "../components/SoilTypes/CreateSoilTypes";
 import SoilTypesTable from "../components/SoilTypes/SoilTypesTable";
 import UpdateSoilType from "../components/SoilTypes/UpdateSoilTypes";
+// import AddSoilType from "../components/SoilTypes/ModalAddSoilType";
 
 
 // bootstrap components
@@ -62,7 +63,7 @@ function SoilTypesPage(){
       <br/><br />
       <Button variant="success" onClick={() => InsertPopup(true)}>New Soil Type (this button not implemented yet)</Button>
 
-
+      {/* <AddSoilType /> */}
         </>
     );
 }
