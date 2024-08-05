@@ -43,7 +43,7 @@ const TableRow = ({ SoilType, fetchSoilTypes }) => {
   };
 
   return (
-    <tr key={SoilTypes.soilID}>
+    <tr key={SoilType.soilID}>
       <td>{SoilType.soilID}</td>
       <td>{SoilType.soilType}</td>
       <td>{SoilType.soilDescription}</td>
