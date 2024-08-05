@@ -7,10 +7,10 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const UpdateSoilType = () => {
-  const { soilID } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const prevSoilType = location.state.soilType;
+  const prevSoilType = location.state.SoilType;
 
   const [formData, setFormData] = useState({
     soilType:           prevSoilType.soilType || '' ,
@@ -43,7 +43,7 @@ const UpdateSoilType = () => {
     // Check if formData is equal to prevSoilType
     if (isUpdate()){
       try {
-        const URL = import.meta.env.VITE_API_URL + "soilTypes/" + soilID;
+        const URL = import.meta.env.VITE_API_URL + "soilTypes/" + id;
         const response = await axios.put(URL, formData);
         if (response.status !== 200) {
           alert("Error updating soil type!");

@@ -60,7 +60,7 @@ function SoilTypesPage(){
 
       {/* TODO; implement the modal  */}
       <br/><br />
-      <Button variant="success" onClick={() => InsertPopup(true)}>New Soil Type(this button not implemented yet)</Button>
+      <Button variant="success" onClick={() => InsertPopup(true)}>New Soil Type (this button not implemented yet)</Button>
 
 
         </>
