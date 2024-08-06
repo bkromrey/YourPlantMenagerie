@@ -16,23 +16,20 @@ function SoilTypesPage(){
     return (
         <>
 
-
-
-
-        {/* header & description */}
-        <h2>Soil Types</h2>
-        <p>Describes the different types of soil that a plant can grow in.</p>
-
         {/* display either the route is needed for the edit function */}
         <Routes>
             <Route path="/edit/:id" element={<UpdateSoilType />} />
             {/* <Route path="/add" element={<CreateSoilType />} /> */}
 
-            {/* render the table */}
-
-            {/* <SoilTypesTable />  */}
+            
             <Route path="/" element={
                 <>
+                
+                {/* header & description */}
+                <h2>Soil Types</h2>
+                <p>Describes the different types of soil that a plant can grow in.</p>
+
+                {/* render the table */}
                 <SoilTypesTable />
                 <br/>
 

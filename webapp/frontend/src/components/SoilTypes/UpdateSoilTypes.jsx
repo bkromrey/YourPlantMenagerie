@@ -75,12 +75,13 @@ const UpdateSoilType = () => {
   return (
     <div>
       <h2>Update Soil</h2>
+      <br />
 
 
 
       <Form onSubmit={handleSubmit}>
 
-      <Container >
+      
           <Row>
               <Col>
                   <Form.Label >Name</Form.Label>
@@ -97,7 +98,7 @@ const UpdateSoilType = () => {
 
           <br /> 
           <Row>
-              <Col>
+              {/* <Col> */}
                   <Form.Label >Description (Optional)</Form.Label>
                   <Form.Control
                       type="text"
@@ -107,9 +108,10 @@ const UpdateSoilType = () => {
                       defaultValue={prevSoilType.soilDescription}
                       onChange={handleInputChange}
                   />
-              </Col>
+              {/* </Col> */}
           </Row>
           <br />
+          <Container >
           <Row>
             <Col> 
               <Button variant="secondary" type="button" onClick={() => navigate("/soilTypes")} >Cancel</Button>{' '}
