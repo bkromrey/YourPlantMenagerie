@@ -11,7 +11,7 @@ function Home(){
             <p> For more information about this project click <Link to="/about">here</Link>.
             </p>
             
-            <Container>
+            {/* <Container>
                 <br/>
                 <h2>These Plants Need Attention!</h2>
                 <ul>
@@ -25,7 +25,7 @@ function Home(){
                     More text here. I'm thinking we have a "quick view" dashboard of plants needing fertilizer or water, and we also present the user with a button that says "Record Watering Event" and likewise with fertilizer.
                 </p>
                 
-            </Container>
+            </Container> */}
         </div>
     </>
     );

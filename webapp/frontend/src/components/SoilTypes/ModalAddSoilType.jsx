@@ -1,12 +1,8 @@
-import { Routes, Route, Link } from "react-router-dom";
-import CreateSoilType from "../components/SoilTypes/CreateSoilTypes";
-import SoilTypesTable from "../components/SoilTypes/SoilTypesTable";
-import UpdateSoilType from "../components/SoilTypes/UpdateSoilTypes";
+
 import { AddSoilType } from "../components/SoilTypes/ModalAddSoilType";
 
 
 // bootstrap components
-import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -114,10 +110,6 @@ default function AddSoilType(){
             />
           </Container>
 
-                {/* TODO: fix the functions with onClick, below are our original HTML */}
-                {/* <input class="btn" type="submit" id="addPlant" value="Add Plant"/>
-                    <input class="btn" type="button" value="cancel" onClick="browsePlant()"/> */}
-
             </Form>
         </Modal.Body>
   
@@ -125,7 +117,6 @@ default function AddSoilType(){
             <Button variant="secondary" onClick={CloseButton}>Close</Button>
             <Button variant="primary" onClick={SaveButton}>Save changes</Button>
           </Modal.Footer>
-
 
         </Modal>
 

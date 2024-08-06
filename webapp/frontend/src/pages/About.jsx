@@ -30,8 +30,6 @@ function AboutPage(){
             For Security, as the assumption that this is a single user platform, we could implement an optional pin code to prevent unauthorized users from accessing or editing a person's personal plant database.
         </p>
         
-        <h2>Database Outline / Entities</h2>
-
         
         </>
     );
