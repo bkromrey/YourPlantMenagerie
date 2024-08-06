@@ -53,7 +53,10 @@ function AddSoilType(){
         const URL = import.meta.env.VITE_API_URL + "soilTypes";
         const response = await axios.post(URL, newSoilType);
         if (response.status === 201) {
+
+            //TODO put something here to re-render the component?
             navigate("/soilTypes");
+
         } else {
             alert("Error creating SoilType");
         }
