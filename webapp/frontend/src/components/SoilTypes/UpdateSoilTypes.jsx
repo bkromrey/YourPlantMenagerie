@@ -51,6 +51,11 @@ const UpdateSoilType = () => {
           alert(response.data.message);
           // Redirect to SoilTypes page
           navigate("/soilTypes");
+        // Citation for this line of code
+        // Forces the page to reload to display the new data
+        // URL: https://stackoverflow.com/questions/56649094/how-to-reload-a-component-part-of-page-in-reactjs
+        // Date Accessed: 5 August 2024
+        window.location.reload();
         }
       } catch (err) {
         console.log("Error updating soil type:", err);

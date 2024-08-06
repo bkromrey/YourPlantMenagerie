@@ -1,9 +1,11 @@
 // bootstrap components
 import Button from 'react-bootstrap/Button';
+import { Routes, Route, Link } from "react-router-dom";
 
 // custom components
 import SoilTypesTable from "../components/SoilTypes/SoilTypesTable";
 import AddSoilType from "../components/SoilTypes/ModalAddSoilType";
+import UpdateSoilType from '../components/SoilTypes/UpdateSoilTypes';
 
 
 // Code in this function adapted from the CS340 starter code.
@@ -12,6 +14,12 @@ import AddSoilType from "../components/SoilTypes/ModalAddSoilType";
 function SoilTypesPage(){
     return (
         <>
+
+
+
+        <Routes>
+            <Route path="/edit/:id" element={<UpdateSoilType />} />
+        </Routes>
 
         {/* header & description */}
         <h2>Soil Types</h2>
