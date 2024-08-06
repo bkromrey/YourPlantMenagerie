@@ -16,7 +16,7 @@ function SoilTypesPage(){
         <>
 
 
-
+        {/* route is needed for the edit function */}
         <Routes>
             <Route path="/edit/:id" element={<UpdateSoilType />} />
         </Routes>

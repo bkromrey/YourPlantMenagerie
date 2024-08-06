@@ -12,6 +12,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Toast from 'react-bootstrap/Toast';
+// import ModalUpdateSoilType from "./ModalUpdateSoilTypes";
 
 function SuccessToast(){
   return(
@@ -57,6 +58,7 @@ const TableRow = ({ SoilType, fetchSoilTypes }) => {
       <td>{SoilType.soilDescription}</td>
       <td>
         <Button onClick={handleEdit} variant="warning">Edit</Button>
+        {/* <ModalUpdateSoilType /> */}
       </td>
       <td>
         <Button onClick={deleteRow} variant="danger">Delete</Button>
