@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 
 // custom components
 import SoilTypesTable from "../components/SoilTypes/SoilTypesTable";
+import AddSoilType from "../components/SoilTypes/ModalAddSoilType";
 
 
 // Code in this function adapted from the CS340 starter code.
@@ -21,7 +22,8 @@ function SoilTypesPage(){
         <br/>
 
         {/* display the add new soil button */}
-        <Button variant="success" onClick={() => InsertPopup(true)}>New Soil Type</Button>
+	{/*<Button variant="success" onClick={() => InsertPopup(true)}>New Soil Type</Button> */}
+	    <AddSoilType />
         </>
     );
 }
