@@ -1,13 +1,9 @@
-// bootstrap components
-import Button from 'react-bootstrap/Button';
 import { Routes, Route, Link } from "react-router-dom";
 
 // custom components
 import SoilTypesTable from "../components/SoilTypes/SoilTypesTable";
 import AddSoilType from "../components/SoilTypes/ModalAddSoilType";
 import UpdateSoilType from '../components/SoilTypes/UpdateSoilTypes';
-import CreateSoilType from '../components/SoilTypes/CreateSoilTypes';
-
 
 // Code in this function adapted from the CS340 starter code.
 // Date Accessed: 4 August 2024

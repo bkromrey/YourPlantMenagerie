@@ -17,44 +17,44 @@ function SuccessToast(){
   return(
     <Toast>
       <Toast.Header>Success</Toast.Header>
-      <Toast.Body>Soil was deleted successfully.</Toast.Body>
+      <Toast.Body>Event was deleted successfully.</Toast.Body>
     </Toast>
   );
 }
 
 
 /* eslint-disable react/prop-types */
-const TableRow = ({ SoilType, fetchSoilTypes }) => {
+const TableRow = ({ WateringEvent, fetchWateringEvents }) => {
   // Hook that allows us to navigate programmatically
   const navigate = useNavigate();
-  // Redirect to edit SoilType page
+  // Redirect to edit WateringEvent page
   const handleEdit = () => {
-    // We can access the id (and query the SoilType) with useParams() in the UpdateSoilType component
-    navigate("/soilTypes/edit/" + SoilType.soilID, { state: { SoilType } });
+    // We can access the id (and query the WateringEvent) with useParams() in the UpdateWateringEvent component
+    navigate("/WateringEvents/edit/" + WateringEvent.eventID, { state: { WateringEvent } });
   };
 
   const deleteRow = async () => {
     try {
-      const URL = import.meta.env.VITE_API_URL + "soilTypes/" + SoilType.soilID;
+      const URL = import.meta.env.VITE_API_URL + "WateringEvents/" + WateringEvent.eventID;
 
       const response = await axios.delete(URL);
-      // Ensure that the SoilType was deleted successfully
+      // Ensure that the WateringEvent was deleted successfully
       if (response.status === 204) {
         <SuccessToast />  // TODO
-        alert("SoilType deleted successfully");
+        alert("WateringEvent deleted successfully");
       }
     } catch (err) {
-      alert(err.response.data.error || "Error deleting SoilType");
+      alert(err.response.data.error || "Error deleting WateringEvent");
       console.log(err);
     }
-    fetchSoilTypes();
+    fetchWateringEvents();
   };
 
   return (
-    <tr key={SoilType.soilID}>
-      <td>{SoilType.soilID}</td>
-      <td>{SoilType.soilType}</td>
-      <td>{SoilType.soilDescription}</td>
+    <tr key={WateringEvent.eventID}>
+      <td>{WateringEvent.eventID}</td>
+      <td>{WateringEvent.wateringDate}</td>
+      <td>{WateringEvent.plantID}</td>
       <td>
         <Button onClick={handleEdit} variant="warning">Edit</Button>
       </td>

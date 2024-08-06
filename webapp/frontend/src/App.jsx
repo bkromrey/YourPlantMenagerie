@@ -14,7 +14,7 @@ import Home from './pages/Home.jsx';
 import PlantsPage from './pages/Plants.jsx';
 import PlantTypesPage from './pages/PlantTypes.jsx';
 import SoilTypesPage from './pages/SoilTypes.jsx'
-import WateringEventsPage from './pages/wateringEvents.jsx'
+import WateringEventsPage from './pages/WateringEvents.jsx'
 import FertilizingEventsPage from './pages/fertilizingEvents.jsx'
 import PlantSoilsPage from './pages/PlantSoils.jsx'
 import AboutPage from './pages/About.jsx';
