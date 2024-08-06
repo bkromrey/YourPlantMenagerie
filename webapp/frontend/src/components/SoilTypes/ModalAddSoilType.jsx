@@ -149,7 +149,6 @@ function AddSoilType(){
                             required
                             type="text"
                             name="soilType"
-                            // defaultValue={formData.soilType}
                             onChange={handleInputChange}
                             autoFocus
                         />
@@ -161,9 +160,10 @@ function AddSoilType(){
                     <Col>
                         <Form.Label htmlFor="soilDescription">Description (Optional)</Form.Label>
                         <Form.Control
-                            type="text" // TODO make this a text box for a longer description
+                            type="text"
+                            as="textarea" 
+                            rows={3}
                             name="soilDescription"
-                            // defaultValue={formData.soilDescription}
                             onChange={handleInputChange}
                         />
                     </Col>
