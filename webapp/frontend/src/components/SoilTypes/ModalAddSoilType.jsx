@@ -50,7 +50,7 @@ function AddSoilType(){
         const response = await axios.post(URL, newSoilType);
         if (response.status === 201) {
 
-            //TODO put something here to re-render the component?
+            //maybe TODO put something here to re-render the component?
             navigate("/soilTypes");
 
         } else {
@@ -58,19 +58,21 @@ function AddSoilType(){
         }
         } catch (error) {
         alert("Error creating SoilType");
-        // alert(error); 
         console.error("Error creating SoilType:", error);
         }
         // Reset the form fields
         resetFormFields();
 
         // TODO - i don't like how it forces the entire page to reload, i just want to reload the component
+        
 
         // Citation for this line of code
         // Forces the page to reload to display the new data
         // URL: https://stackoverflow.com/questions/56649094/how-to-reload-a-component-part-of-page-in-reactjs
         // Date Accessed: 5 August 2024
         window.location.reload();
+        
+
     };
       
     const resetFormFields = () => {

@@ -6,6 +6,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import SoilTypesTable from "../components/SoilTypes/SoilTypesTable";
 import AddSoilType from "../components/SoilTypes/ModalAddSoilType";
 import UpdateSoilType from '../components/SoilTypes/UpdateSoilTypes';
+import CreateSoilType from '../components/SoilTypes/CreateSoilTypes';
 
 
 // Code in this function adapted from the CS340 starter code.
@@ -16,21 +17,33 @@ function SoilTypesPage(){
         <>
 
 
-        {/* route is needed for the edit function */}
-        <Routes>
-            <Route path="/edit/:id" element={<UpdateSoilType />} />
-        </Routes>
+
 
         {/* header & description */}
         <h2>Soil Types</h2>
         <p>Describes the different types of soil that a plant can grow in.</p>
 
-        {/* render the table */}
-        <SoilTypesTable />
-        <br/>
+        {/* display either the route is needed for the edit function */}
+        <Routes>
+            <Route path="/edit/:id" element={<UpdateSoilType />} />
+            {/* <Route path="/add" element={<CreateSoilType />} /> */}
 
-        {/* display the add new soil button */}
-	    <AddSoilType />
+            {/* render the table */}
+
+            {/* <SoilTypesTable />  */}
+            <Route path="/" element={
+                <>
+                <SoilTypesTable />
+                <br/>
+
+                {/* display the add new soil button */}
+                <AddSoilType />
+                </> 
+            } />
+
+        </Routes>
+        
+
         </>
     );
 }
