@@ -22,7 +22,6 @@ function SoilTypesPage(){
         <br/>
 
         {/* display the add new soil button */}
-	{/*<Button variant="success" onClick={() => InsertPopup(true)}>New Soil Type</Button> */}
 	    <AddSoilType />
         </>
     );

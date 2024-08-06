@@ -2,6 +2,7 @@
 //import { AddSoilType } from "../components/SoilTypes/ModalAddSoilType";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // bootstrap components
 import Button from 'react-bootstrap/Button';
@@ -46,6 +47,7 @@ function AddSoilType(){
 
         try {
         const URL = import.meta.env.VITE_API_URL + "soilTypes";
+        alert(URL);
         const response = await axios.post(URL, newSoilType);
         if (response.status === 201) {
 
