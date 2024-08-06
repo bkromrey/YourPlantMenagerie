@@ -47,7 +47,6 @@ function AddSoilType(){
 
         try {
         const URL = import.meta.env.VITE_API_URL + "soilTypes";
-        alert(URL);
         const response = await axios.post(URL, newSoilType);
         if (response.status === 201) {
 
