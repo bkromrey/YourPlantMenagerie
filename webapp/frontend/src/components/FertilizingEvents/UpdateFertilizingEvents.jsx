@@ -89,8 +89,8 @@ const UpdateFertilizingEvent = () => {
                       required
                       type="date"
                       name="fertilizingDate"
-                      defaultValue={prevFertilizingEvent.fertilizingDate}
                       onChange={handleInputChange}
+                      defaultValue={prevFertilizingEvent.fertilizingDate}
                       autoFocus
                   />
               </Col>
@@ -103,8 +103,8 @@ const UpdateFertilizingEvent = () => {
                   <Form.Control
                       type="number"
                       name="plantID"
-                      defaultValue={prevFertilizingEvent.plantID}
                       onChange={handleInputChange}
+                      defaultValue={prevFertilizingEvent.plantID}
                       required
                   />
               {/* </Col> */}
