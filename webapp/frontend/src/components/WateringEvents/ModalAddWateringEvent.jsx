@@ -1,5 +1,3 @@
-
-//import { AddSoilType } from "../components/SoilTypes/ModalAddSoilType";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -14,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 
 //TODO
 
-function AddSoilType(){
+function AddWateringEvent(){
     const [showInsertPopup, InsertPopup] = useState(false);
 
     const CloseButton = () => InsertPopup(false);
@@ -36,29 +34,29 @@ function AddSoilType(){
         // Prevent page reload
         // e.preventDefault();  
 
-        // Create a new SoilType object from the formData
-        const newSoilType = {
+        // Create a new WateringEvent object from the formData
+        const newWateringEvent = {
         soilType: formData.soilType,
         soilDescription: formData.soilDescription,
         };
 
         // TESTING - use this to ensure data is saved by form
-        // alert(newSoilType.soilType + ', ' + newSoilType.soilDescription); 
+        // alert(newWateringEvent.soilType + ', ' + newWateringEvent.soilDescription); 
 
         try {
-        const URL = import.meta.env.VITE_API_URL + "soilTypes";
-        const response = await axios.post(URL, newSoilType);
+        const URL = import.meta.env.VITE_API_URL + "WateringEvents";
+        const response = await axios.post(URL, newWateringEvent);
         if (response.status === 201) {
 
             //maybe TODO put something here to re-render the component?
-            navigate("/soilTypes");
+            navigate("/WateringEvents");
 
         } else {
-            alert("Error creating SoilType");
+            alert("Error creating WateringEvent");
         }
         } catch (error) {
-        alert("Error creating SoilType");
-        console.error("Error creating SoilType:", error);
+        alert("Error creating WateringEvent");
+        console.error("Error creating WateringEvent:", error);
         }
         // Reset the form fields
         resetFormFields();
@@ -94,38 +92,11 @@ function AddSoilType(){
     };
       
 
-    ///////// ORIGINAL FORM 
-    // return (
-    //     <>
-    //     <h2>Create Soil Type</h2>
-    //     <form onSubmit={handleSubmit}>
-    //         <label htmlFor="soilType">Soil Name</label>
-    //         <input
-        //         type="text"
-        //         name="soilType"
-        //         defaultValue={formData.soilType}
-        //         onChange={handleInputChange}
-    //         />
-    //         <label htmlFor="soilDescription">Soil Description</label>
-    //         <input
-        //         type="text" // TODO make this a text box for a longer description
-        //         name="soilDescription"
-        //         defaultValue={formData.soilDescription}
-        //         onChange={handleInputChange}
-    //         />
-    //         <br /><br />
-    //         <Button type="submit">Submit</Button>
-    //     </form>
-    //     </>
-    // );
 
-
-
-      ////////////// MODAL STUFF
     return (
 
         <>
-        <Button variant="success" onClick={() => InsertPopup(true)}>New Soil Type</Button>
+        <Button variant="success" onClick={() => InsertPopup(true)}>Water A Plant</Button>
 
         <Modal
         size="lg"
@@ -135,7 +106,7 @@ function AddSoilType(){
         show={showInsertPopup} onHide={CloseButton}>
         
           <Modal.Header closeButton>
-            <Modal.Title>Add New Soil Type</Modal.Title>
+            <Modal.Title>Log Watering Event</Modal.Title>
           </Modal.Header>
   
         <Modal.Body>
@@ -144,11 +115,11 @@ function AddSoilType(){
             <Container >
                 <Row>
                     <Col>
-                        <Form.Label htmlFor="soilType" >Name</Form.Label>
+                        <Form.Label htmlFor="WateringEvent" >Date Watered</Form.Label>
                         <Form.Control
                             required
-                            type="text"
-                            name="soilType"
+                            type="date"
+                            name="wateringDate"
                             onChange={handleInputChange}
                             autoFocus
                         />
@@ -158,14 +129,16 @@ function AddSoilType(){
                 <br /> 
                 <Row>
                     <Col>
-                        <Form.Label htmlFor="soilDescription">Description (Optional)</Form.Label>
-                        <Form.Control
-                            type="text"
+                        <Form.Label htmlFor="plantID">Plant Watered</Form.Label>
+                        <Form.Select>
+                            type="select"
                             as="textarea" 
                             rows={3}
-                            name="soilDescription"
+                            name="plantID"
                             onChange={handleInputChange}
-                        />
+                            <option>test 1</option>
+                            <option>test 2</option>
+                        </Form.Select>
                     </Col>
                 </Row>
 
@@ -185,4 +158,4 @@ function AddSoilType(){
     );
 }
 
-export default AddSoilType;
+export default AddWateringEvent;
