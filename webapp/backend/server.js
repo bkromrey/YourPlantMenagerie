@@ -22,6 +22,7 @@ app.use(express.json());
 app.use("/api/soilTypes", require("./routes/SoilTypesRoutes.js"));
 app.use("/api/WateringEvents", require("./routes/WateringEventsRoutes.js"));
 app.use("/api/FertilizingEvents", require("./routes/FertilizingEventsRoutes.js"));
+app.use("/api/plantTypes", require("./routes/PlantTypesRoutes.js"));
 
 
 
