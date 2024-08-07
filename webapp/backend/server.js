@@ -21,6 +21,7 @@ app.use(express.json());
 // API Routes for backend CRUD:
 app.use("/api/soilTypes", require("./routes/SoilTypesRoutes.js"));
 app.use("/api/WateringEvents", require("./routes/WateringEventsRoutes.js"));
+app.use("/api/FertilizingEvents", require("./routes/FertilizingEventsRoutes.js"));
 
 
 
