@@ -23,7 +23,7 @@ const UpdateWateringEvent = () => {
 
   const [formData, setFormData] = useState({
     wateringDate:           prevWateringEvent.wateringDate || '' ,
-    soilDescription:    prevWateringEvent.soilDescription || '',
+    plantID:                prevWateringEvent.plantID || '',
   });
 
   const handleInputChange = (event) => {
@@ -38,7 +38,7 @@ const UpdateWateringEvent = () => {
     // Check if formData is equal to prevWateringEvent
     if (JSON.stringify(formData) === JSON.stringify({
       wateringDate:         prevWateringEvent.wateringDate || '',
-      soilDescription:  prevWateringEvent.soilDescription || '',
+      plantID:              prevWateringEvent.plantID || '',
     })) {
       alert("No changes made.");
       return false;
@@ -55,7 +55,7 @@ const UpdateWateringEvent = () => {
         const URL = import.meta.env.VITE_API_URL + "WateringEvents/" + id;
         const response = await axios.put(URL, formData);
         if (response.status !== 200) {
-          alert("Error updating soil type!");
+          alert("Error updating watering event!");
         } else {
           alert(response.data.message);
           // Redirect to WateringEvents page
@@ -67,14 +67,14 @@ const UpdateWateringEvent = () => {
         window.location.reload();
         }
       } catch (err) {
-        console.log("Error updating soil type:", err);
+        console.log("Error updating watering event:", err);
       }
     }
   };
 
   return (
     <div>
-      <h2>Update Soil</h2>
+      <h2>Update Watering Event</h2>
       <br />
 
 
@@ -87,8 +87,8 @@ const UpdateWateringEvent = () => {
                   <Form.Label >Date Watered</Form.Label>
                   <Form.Control
                       required
-                      type="text"
-                      name="WateringEvent"
+                      type="date"
+                      name="wateringDate"
                       defaultValue={prevWateringEvent.wateringDate}
                       onChange={handleInputChange}
                       autoFocus
@@ -99,13 +99,11 @@ const UpdateWateringEvent = () => {
           <br /> 
           <Row>
               {/* <Col> */}
-                  <Form.Label >Description (Optional)</Form.Label>
+                  <Form.Label >Plant ID</Form.Label>
                   <Form.Control
-                      type="text"
-                      as="textarea" 
-                      rows={3}
-                      name="soilDescription"
-                      defaultValue={prevWateringEvent.soilDescription}
+                      type="number"
+                      name="plantID"
+                      defaultValue={prevWateringEvent.plantID}
                       onChange={handleInputChange}
                   />
               {/* </Col> */}

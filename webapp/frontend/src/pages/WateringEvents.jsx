@@ -27,8 +27,6 @@ function WateringEventsPage(){
                 <h2>Watering Event Log</h2>
                 <p>Keep a record of every time that a plant gets watered.</p>
 
-                <h2>TODO: ADD, UPDATE, DELETE</h2>
-
                 {/* render the table */}
                 <WateringEventsTable />
                 <br/>

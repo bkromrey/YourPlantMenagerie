@@ -15,15 +15,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-const UpdateWateringEvent = () => {
+const UpdateFertilizingEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const prevWateringEvent = location.state.WateringEvent;
+  const prevFertilizingEvent = location.state.FertilizingEvent;
 
   const [formData, setFormData] = useState({
-    wateringDate:           prevWateringEvent.wateringDate || '' ,
-    soilDescription:    prevWateringEvent.soilDescription || '',
+    fertilizingDate:  prevFertilizingEvent.fertilizingDate || '' ,
+    plantID:          prevFertilizingEvent.plantID || '',
   });
 
   const handleInputChange = (event) => {
@@ -35,10 +35,10 @@ const UpdateWateringEvent = () => {
   };
 
   function isUpdate(){
-    // Check if formData is equal to prevWateringEvent
+    // Check if formData is equal to prevFertilizingEvent
     if (JSON.stringify(formData) === JSON.stringify({
-      wateringDate:         prevWateringEvent.wateringDate || '',
-      soilDescription:  prevWateringEvent.soilDescription || '',
+      fertilizingDate:         prevFertilizingEvent.fertilizingDate || '',
+      plantID:                 prevFertilizingEvent.plantID || '',
     })) {
       alert("No changes made.");
       return false;
@@ -49,17 +49,17 @@ const UpdateWateringEvent = () => {
   const handleSubmit = async (event) => {
     // Stop default form behavior which is to reload the page
     event.preventDefault();
-    // Check if formData is equal to prevWateringEvent
+    // Check if formData is equal to prevFertilizingEvent
     if (isUpdate()){
       try {
-        const URL = import.meta.env.VITE_API_URL + "WateringEvents/" + id;
+        const URL = import.meta.env.VITE_API_URL + "fertilizingEvents/" + id;
         const response = await axios.put(URL, formData);
         if (response.status !== 200) {
-          alert("Error updating soil type!");
+          alert("Error updating fertilizing event!");
         } else {
           alert(response.data.message);
-          // Redirect to WateringEvents page
-          navigate("/WateringEvents");
+          // Redirect to FertilizingEvents page
+          navigate("/FertilizingEvents");
         // Citation for this line of code
         // Forces the page to reload to display the new data
         // URL: https://stackoverflow.com/questions/56649094/how-to-reload-a-component-part-of-page-in-reactjs
@@ -67,14 +67,14 @@ const UpdateWateringEvent = () => {
         window.location.reload();
         }
       } catch (err) {
-        console.log("Error updating soil type:", err);
+        console.log("Error updating fertilizing event:", err);
       }
     }
   };
 
   return (
     <div>
-      <h2>Update Soil</h2>
+      <h2>Update Fertilizing Event</h2>
       <br />
 
 
@@ -84,12 +84,12 @@ const UpdateWateringEvent = () => {
       
           <Row>
               <Col>
-                  <Form.Label >Date Watered</Form.Label>
+                  <Form.Label >Date Fertilized</Form.Label>
                   <Form.Control
                       required
-                      type="text"
-                      name="WateringEvent"
-                      defaultValue={prevWateringEvent.wateringDate}
+                      type="date"
+                      name="fertilizingDate"
+                      defaultValue={prevFertilizingEvent.fertilizingDate}
                       onChange={handleInputChange}
                       autoFocus
                   />
@@ -99,14 +99,13 @@ const UpdateWateringEvent = () => {
           <br /> 
           <Row>
               {/* <Col> */}
-                  <Form.Label >Description (Optional)</Form.Label>
+                  <Form.Label >Plant ID</Form.Label>
                   <Form.Control
-                      type="text"
-                      as="textarea" 
-                      rows={3}
-                      name="soilDescription"
-                      defaultValue={prevWateringEvent.soilDescription}
+                      type="number"
+                      name="plantID"
+                      defaultValue={prevFertilizingEvent.plantID}
                       onChange={handleInputChange}
+                      required
                   />
               {/* </Col> */}
           </Row>
@@ -114,7 +113,7 @@ const UpdateWateringEvent = () => {
           <Container >
           <Row>
             <Col> 
-              <Button variant="secondary" type="button" onClick={() => navigate("/WateringEvents")} >Cancel</Button>{' '}
+              <Button variant="secondary" type="button" onClick={() => navigate("/FertilizingEvents")} >Cancel</Button>{' '}
             </Col>
             
             <Col> 
@@ -132,5 +131,5 @@ const UpdateWateringEvent = () => {
   );
 };
 
-export default UpdateWateringEvent;
+export default UpdateFertilizingEvent;
 

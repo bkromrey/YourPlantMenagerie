@@ -84,7 +84,7 @@ const UpdateSoilType = () => {
       
           <Row>
               <Col>
-                  <Form.Label >Name</Form.Label>
+                  <Form.Label >Soil Name</Form.Label>
                   <Form.Control
                       required
                       type="text"

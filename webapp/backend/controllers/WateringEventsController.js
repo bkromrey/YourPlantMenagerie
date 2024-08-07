@@ -46,13 +46,13 @@ const getWateringEventByID = async (req, res) => {
 // Returns status of creation of new event in WateringEvents
 const createWateringEvent = async (req, res) => {
   try {
-    const { WateringEvent, soilDescription } = req.body;
+    const { wateringDate, plantID } = req.body;
     const query =
-      "INSERT INTO WateringEvents (eventID, soilDescription) VALUES (?, ?)";
+      "INSERT INTO WateringEvents (wateringDate, plantID) VALUES (?, ?)";
 
     const response = await db.query(query, [
-      eventID,
-      soilDescription,
+      wateringDate,
+      plantID,
     ]);
     res.status(201).json(response);
   } catch (error) {
@@ -80,11 +80,11 @@ const updateWateringEvent = async (req, res) => {
     // If any attributes are not equal, perform update
     if (!lodash.isEqual(newWateringEvent, oldWateringEvent)) {
       const query =
-        "UPDATE WateringEvents SET soilType=?, wateringDate=? WHERE eventID=?";
+        "UPDATE WateringEvents SET wateringDate=?, plantID=? WHERE eventID=?";
 
       const values = [
         newWateringEvent.wateringDate,
-        newWateringEvent.soilDescription,
+        newWateringEvent.plantID,
         eventID,
       ];
 

@@ -27,8 +27,6 @@ function FertilizingEventsPage(){
                 <h2>Fertilizing Event Log</h2>
                 <p>Keep a record of every time that a plant gets fertilized.</p>
 
-                <h2>TODO: ADD, UPDATE, DELETE</h2>
-
                 {/* render the table */}
                 <FertilizingEventsTable />
                 <br/>

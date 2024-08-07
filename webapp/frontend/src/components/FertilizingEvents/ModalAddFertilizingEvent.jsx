@@ -93,35 +93,6 @@ function AddFertilizingEvent(){
         console.log(value);
     };
       
-
-    ///////// ORIGINAL FORM 
-    // return (
-    //     <>
-    //     <h2>Create Soil Type</h2>
-    //     <form onSubmit={handleSubmit}>
-    //         <label htmlFor="soilType">Soil Name</label>
-    //         <input
-        //         type="text"
-        //         name="soilType"
-        //         defaultValue={formData.soilType}
-        //         onChange={handleInputChange}
-    //         />
-    //         <label htmlFor="soilDescription">Soil Description</label>
-    //         <input
-        //         type="text" // TODO make this a text box for a longer description
-        //         name="soilDescription"
-        //         defaultValue={formData.soilDescription}
-        //         onChange={handleInputChange}
-    //         />
-    //         <br /><br />
-    //         <Button type="submit">Submit</Button>
-    //     </form>
-    //     </>
-    // );
-
-
-
-      ////////////// MODAL STUFF
     return (
 
         <>
@@ -139,7 +110,7 @@ function AddFertilizingEvent(){
           </Modal.Header>
   
         <Modal.Body>
-            <Form id="addPlant" onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
 
             <Container >
                 <Row>
@@ -151,6 +122,7 @@ function AddFertilizingEvent(){
                             name="fertilizingDate"
                             onChange={handleInputChange}
                             autoFocus
+
                         />
                     </Col>
                 </Row>
@@ -160,11 +132,11 @@ function AddFertilizingEvent(){
                     <Col>
                         <Form.Label htmlFor="plantID">Plant ID</Form.Label>
                         <Form.Control
-                            type="text"
-                            as="textarea" 
-                            rows={3}
+                            type="number"
                             name="plantID"
+                            value={formData.plantID}
                             onChange={handleInputChange}
+                            required
                         />
                     </Col>
                 </Row>
