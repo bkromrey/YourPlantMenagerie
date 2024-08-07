@@ -55,8 +55,8 @@ const PlantTypesTable = () => {
 
           <tbody>
             {/* use the map function to generate each row within the table */}
-            {PlantTypes.map((FertilizingEvent) => (
-              <TableRow key={FertilizingEvent.eventID} FertilizingEvent={FertilizingEvent} fetchPlantTypes={fetchPlantTypes} />
+            {PlantTypes.map((PlantType) => (
+              <TableRow key={PlantType.eventID} PlantType={PlantType} fetchPlantTypes={fetchPlantTypes} />
             ))}
           </tbody>
         </Table>

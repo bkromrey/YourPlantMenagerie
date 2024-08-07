@@ -45,13 +45,16 @@ const getPlantTypeByID = async (req, res) => {
 // Returns status of creation of new PlantType in PlantTypes
 const createPlantType = async (req, res) => {
   try {
-    const { commonName, latinName } = req.body;
+    const { commonName, latinName, toxicCat, toxicDog, preferredLight } = req.body;
     const query =
-      "INSERT INTO PlantTypes (commonName, latinName) VALUES (?, ?)";
+      "INSERT INTO PlantTypes (commonName, latinName, toxicCat, toxicDog, preferredLight) VALUES (?, ?)";
 
     const response = await db.query(query, [
       commonName,
       latinName,
+      toxicCat, 
+      toxicDog, 
+      preferredLight
     ]);
     res.status(201).json(response);
   } catch (error) {

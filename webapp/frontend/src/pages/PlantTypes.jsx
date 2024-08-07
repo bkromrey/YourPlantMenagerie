@@ -30,7 +30,7 @@ function PlantTypesPage(){
                 <h2>TODO: ADD, UPDATE, DELETE</h2>
 
                 {/* render the table */}
-                {/* <PlantTypesTable /> */}
+                <PlantTypesTable />
                 <br/>
 
                 {/* display the add new soil button */}
