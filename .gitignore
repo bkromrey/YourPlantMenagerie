@@ -26,3 +26,4 @@ dist-ssr
 *.sw?
 .env
 Schema.mwb.bak
+webapp/frontend/.env
