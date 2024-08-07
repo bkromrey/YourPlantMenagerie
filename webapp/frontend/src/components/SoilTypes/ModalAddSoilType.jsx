@@ -94,34 +94,6 @@ function AddSoilType(){
     };
       
 
-    ///////// ORIGINAL FORM 
-    // return (
-    //     <>
-    //     <h2>Create Soil Type</h2>
-    //     <form onSubmit={handleSubmit}>
-    //         <label htmlFor="soilType">Soil Name</label>
-    //         <input
-        //         type="text"
-        //         name="soilType"
-        //         defaultValue={formData.soilType}
-        //         onChange={handleInputChange}
-    //         />
-    //         <label htmlFor="soilDescription">Soil Description</label>
-    //         <input
-        //         type="text" // TODO make this a text box for a longer description
-        //         name="soilDescription"
-        //         defaultValue={formData.soilDescription}
-        //         onChange={handleInputChange}
-    //         />
-    //         <br /><br />
-    //         <Button type="submit">Submit</Button>
-    //     </form>
-    //     </>
-    // );
-
-
-
-      ////////////// MODAL STUFF
     return (
 
         <>

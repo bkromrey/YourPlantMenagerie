@@ -1,3 +1,5 @@
+
+//import { AddFertilizingEvent } from "../components/FertilizingEvents/ModalAddFertilizingEvent";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,7 +14,7 @@ import Col from 'react-bootstrap/Col';
 
 //TODO
 
-function AddWateringEvent(){
+function AddFertilizingEvent(){
     const [showInsertPopup, InsertPopup] = useState(false);
 
     const CloseButton = () => InsertPopup(false);
@@ -22,7 +24,7 @@ function AddWateringEvent(){
     const navigate = useNavigate();
       
     const [formData, setFormData] = useState({
-        wateringDate: "",
+        fertilizingDate: "",
         plantID: "",
     });
         
@@ -34,29 +36,29 @@ function AddWateringEvent(){
         // Prevent page reload
         // e.preventDefault();  
 
-        // Create a new SoilType object from the formData
-        const newWateringEvent = {
-        wateringDate: formData.wateringDate,
+        // Create a new FertilizingEvent object from the formData
+        const newFertilizingEvent = {
+        fertilizingDate: formData.fertilizingDate,
         plantID: formData.plantID,
         };
 
         // TESTING - use this to ensure data is saved by form
-        // alert(newWateringEvent.soilType + ', ' + newWateringEvent.soilDescription); 
+        // alert(newFertilizingEvent.FertilizingEvent + ', ' + newFertilizingEvent.soilDescription); 
 
         try {
-        const URL = import.meta.env.VITE_API_URL + "WateringEvents";
-        const response = await axios.post(URL, newWateringEvent);
+        const URL = import.meta.env.VITE_API_URL + "FertilizingEvents";
+        const response = await axios.post(URL, newFertilizingEvent);
         if (response.status === 201) {
 
             //maybe TODO put something here to re-render the component?
-            navigate("/WateringEvents");
+            navigate("/FertilizingEvents");
 
         } else {
-            alert("Error creating WateringEvent");
+            alert("Error creating FertilizingEvent");
         }
         } catch (error) {
-        alert("Error creating WateringEvent");
-        console.error("Error creating WateringEvent:", error);
+        alert("Error creating FertilizingEvents");
+        console.error("Error creating FertilizingEvents:", error);
         }
         // Reset the form fields
         resetFormFields();
@@ -75,7 +77,7 @@ function AddWateringEvent(){
       
     const resetFormFields = () => {
         setFormData({
-        wateringDate: "",
+        fertilizingDate: "",
         plantID: "",
         });
     };
@@ -92,10 +94,38 @@ function AddWateringEvent(){
     };
       
 
+    ///////// ORIGINAL FORM 
+    // return (
+    //     <>
+    //     <h2>Create Soil Type</h2>
+    //     <form onSubmit={handleSubmit}>
+    //         <label htmlFor="soilType">Soil Name</label>
+    //         <input
+        //         type="text"
+        //         name="soilType"
+        //         defaultValue={formData.soilType}
+        //         onChange={handleInputChange}
+    //         />
+    //         <label htmlFor="soilDescription">Soil Description</label>
+    //         <input
+        //         type="text" // TODO make this a text box for a longer description
+        //         name="soilDescription"
+        //         defaultValue={formData.soilDescription}
+        //         onChange={handleInputChange}
+    //         />
+    //         <br /><br />
+    //         <Button type="submit">Submit</Button>
+    //     </form>
+    //     </>
+    // );
+
+
+
+      ////////////// MODAL STUFF
     return (
 
         <>
-        <Button variant="success" onClick={() => InsertPopup(true)}>New Watering Event</Button>
+        <Button variant="success" onClick={() => InsertPopup(true)}>New Fertilizing Event</Button>
 
         <Modal
         size="lg"
@@ -105,7 +135,7 @@ function AddWateringEvent(){
         show={showInsertPopup} onHide={CloseButton}>
         
           <Modal.Header closeButton>
-            <Modal.Title>Add New Watering Event</Modal.Title>
+            <Modal.Title>Add New Fertilizing Event</Modal.Title>
           </Modal.Header>
   
         <Modal.Body>
@@ -114,11 +144,11 @@ function AddWateringEvent(){
             <Container >
                 <Row>
                     <Col>
-                        <Form.Label htmlFor="wateringDate" >Name</Form.Label>
+                        <Form.Label htmlFor="fertilizingDate" >Name</Form.Label>
                         <Form.Control
                             required
                             type="date"
-                            name="wateringDate"
+                            name="fertilizingDate"
                             onChange={handleInputChange}
                             autoFocus
                         />
@@ -130,10 +160,11 @@ function AddWateringEvent(){
                     <Col>
                         <Form.Label htmlFor="plantID">Plant ID</Form.Label>
                         <Form.Control
-                            type="number"
+                            type="text"
+                            as="textarea" 
+                            rows={3}
                             name="plantID"
                             onChange={handleInputChange}
-                            required
                         />
                     </Col>
                 </Row>
@@ -154,4 +185,4 @@ function AddWateringEvent(){
     );
 }
 
-export default AddWateringEvent;
+export default AddFertilizingEvent;
