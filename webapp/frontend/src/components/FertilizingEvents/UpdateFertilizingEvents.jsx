@@ -77,10 +77,7 @@ const UpdateFertilizingEvent = () => {
       <h2>Update Fertilizing Event</h2>
       <br />
 
-
-
       <Form onSubmit={handleSubmit}>
-
       
           <Row>
               <Col>
@@ -89,8 +86,8 @@ const UpdateFertilizingEvent = () => {
                       required
                       type="date"
                       name="fertilizingDate"
-                      onChange={handleInputChange}
                       defaultValue={prevFertilizingEvent.fertilizingDate}
+                      onChange={handleInputChange}
                       autoFocus
                   />
               </Col>
@@ -101,11 +98,13 @@ const UpdateFertilizingEvent = () => {
               {/* <Col> */}
                   <Form.Label >Plant ID</Form.Label>
                   <Form.Control
-                      type="number"
-                      name="plantID"
-                      onChange={handleInputChange}
-                      defaultValue={prevFertilizingEvent.plantID}
                       required
+                      type="number"
+                      // as="select"
+                      name="plantID"
+                      placeholder={prevFertilizingEvent.plantID}
+                      onChange={handleInputChange}
+                      
                   />
               {/* </Col> */}
           </Row>
