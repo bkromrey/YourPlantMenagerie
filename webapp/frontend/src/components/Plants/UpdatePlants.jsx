@@ -62,7 +62,7 @@ const UpdatePlant = () => {
     // Check if formData is equal to prevPlant
     if (isUpdate()){
       try {
-        const URL = import.meta.env.VITE_API_URL + "plants/" + id;
+        const URL = import.meta.env.VITE_API_URL + "Plants/" + id;
         const response = await axios.put(URL, formData);
         if (response.status !== 200) {
           alert("Error updating plant!");
@@ -87,19 +87,18 @@ const UpdatePlant = () => {
       <h2>Update Plant</h2>
       <br />
 
-      <Form onSubmit={handleSubmit}>
+      <Form id="updatePlants" onSubmit={handleSubmit}>
       
           <Row>
               <Col>
-                  <Form.Label >Display Name</Form.Label>
+                  <Form.Label htmlFor="displayName">Display Name</Form.Label>
                   <Form.Control
                       required
                       type="text"
-                      as="textarea"
                       name="displayName"
-                      value={prevPlant.displayName}
                       // value={ moment(prevPlant.fertilizingDate).subtract(10, 'days').calendar() }
                       onChange={handleInputChange}
+                      defaultValue={prevPlant.displayName}
                       autoFocus
                   />
               </Col>
@@ -108,15 +107,14 @@ const UpdatePlant = () => {
           <br /> 
           <Row>
               {/* <Col> */}
-                  <Form.Label >Inside/Outside</Form.Label>
+                  <Form.Label htmlFor="isInside" >Inside/Outside</Form.Label>
                   <Form.Select
                       required
                       name="isInside"
-                      value={prevPlant.isInside}
                       onChange={handleInputChange}
+                      defaultValue={prevPlant.isInside}
                       
                   >
-                      <option value="">Is your plant inside?</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                   </Form.Select>
@@ -126,15 +124,13 @@ const UpdatePlant = () => {
 
           <Row>
               {/* <Col> */}
-                  <Form.Label >Current Light</Form.Label>
+                  <Form.Label htmlFor="currentLight" >Current Light</Form.Label>
                   <Form.Select
                       name="currentLight"
-                      value={prevPlant.currentLight}
-                      placeholder="Select Light Level"
                       onChange={handleInputChange}
+                      defaultValue={prevPlant.currentLight}
                       
                   >
-                    <option value="">Select Light Level</option>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
@@ -145,11 +141,11 @@ const UpdatePlant = () => {
           <br /> 
           <Row>
               {/* <Col> */}
-                  <Form.Label >Plant Type</Form.Label>
+                  <Form.Label htmlFor="plantTypeID">Plant Type</Form.Label>
                   <Form.Control
                       type="text"
                       name="plantTypeID"
-                      placeholder="Enter PlantType ID number"
+                      // placeholder="Enter PlantType ID number"
                       onChange={handleInputChange}
                       
                   />
@@ -159,7 +155,7 @@ const UpdatePlant = () => {
           <br /> 
           <Row>
               {/* <Col> */}
-                  <Form.Label >Water Interval (Days)</Form.Label>
+                  <Form.Label htmlFor="waterInterval">Water Interval (Days)</Form.Label>
                   <Form.Control
                       type="number"
                       name="waterInterval"
@@ -172,7 +168,7 @@ const UpdatePlant = () => {
           <br /> 
           <Row>
               {/* <Col> */}
-                  <Form.Label >Fertilizer Interval (Days)</Form.Label>
+                  <Form.Label htmlFor="fertilizerInterval">Fertilizer Interval (Days)</Form.Label>
                   <Form.Control
                       type="number"
                       name="fertilizerInterval"
@@ -185,7 +181,7 @@ const UpdatePlant = () => {
           <br /> 
           <Row>
               {/* <Col> */}
-                  <Form.Label >Planted Date</Form.Label>
+                  <Form.Label htmlFor="plantedDate">Planted Date</Form.Label>
                   <Form.Control
                       type="date"
                       name="plantedDate"

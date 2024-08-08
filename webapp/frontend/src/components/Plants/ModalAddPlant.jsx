@@ -1,4 +1,4 @@
-
+``
 //import { AddPlant } from "../components/Plants/ModalAddPlant";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -119,12 +119,12 @@ function AddPlant(){
           </Modal.Header>
   
         <Modal.Body>
-            <Form onSubmit={handleSubmit}>
+            <Form id="addPlant" onSubmit={handleSubmit}>
 
             <Container >
             <Row>
               <Col>
-                  <Form.Label >Display Name</Form.Label>
+                  <Form.Label htmlFor="displayName" >Display Name</Form.Label>
                   <Form.Control
                       required
                       type="text"
@@ -149,7 +149,6 @@ function AddPlant(){
                       onChange={handleInputChange}
                       
                   >
-                      <option value="">Is your plant inside?</option> 
                       <option value="1">Inside</option>
                       <option value="0">Outside</option>
                   </Form.Select>
@@ -166,7 +165,6 @@ function AddPlant(){
                       onChange={handleInputChange}
                       
                   >
-                    <option value="">Select Light Level</option>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
