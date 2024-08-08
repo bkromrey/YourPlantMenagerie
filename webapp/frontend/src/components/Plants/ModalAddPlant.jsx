@@ -45,7 +45,7 @@ function AddPlant(){
         plantTypeID: formData.plantTypeID ,
         waterInterval: formData.waterInterval,
         fertilizerInterval: formData.fertilizerInterval,
-        plantedDate: formData.plantedDate
+        plantedDate: formData.plantedDate,
         };
 
 
@@ -148,8 +148,8 @@ function AddPlant(){
                       onChange={handleInputChange}
                       
                   >
-                      <option value="1">Inside</option>
-                      <option value="0">Outside</option>
+                      <option value="1" >Inside</option>
+                      <option value="0" selected>Outside</option>
                   </Form.Select>
               {/* </Col> */}
           </Row>
@@ -163,6 +163,7 @@ function AddPlant(){
                       onChange={handleInputChange}
                       
                   >
+                    <option value="NULL" selected>Select Current Light</option>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
