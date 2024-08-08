@@ -1,89 +1,48 @@
-import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
-import { BrowsePlant, InsertPlant, UpdatePlant, DeletePlant } from '../components/FormsPlants.jsx';
+import { Routes, Route, Link } from "react-router-dom";
 
+// custom components
+import PlantsTable from "../components/Plants/PlantsTable";
+import AddPlant from "../components/Plants/ModalAddPlant";
+import UpdatePlants from '../components/Plants/UpdatePlants';
 
-// Citation for this html file
-// Date: 7/22/24
-// Copied from AND Adapted from:
-// Source URL: https://canvas.oregonstate.edu/courses/1967354/assignments/9690212#:~:text=page.%20Here%20is-,an%20example%20of%20what%20those%20files%20would%20look%20like,-Download%20an%20example
-
-function showform(dowhat) {
-    /*
-    * four DIVS: browse, insert, update, delete
-    * this function sets one visible the others not
-    */
-    if (dowhat == 'insert'){
-        // document.getElementById('browse').style.display = 'none';
-        // document.getElementById('insert').style.display = 'block';
-        // document.getElementById('update').style.display = 'none';
-        // document.getElementById('delete').style.display = 'none';
-        alert('insert');
-        // insertPlant();
-        // <insertPlant />
-    }
-    else if (dowhat == 'update'){
-        document.getElementById('browse').style.display = 'none';
-        document.getElementById('insert').style.display = 'none';
-        document.getElementById('update').style.display = 'block';
-        document.getElementById('delete').style.display = 'none';
-        alert('update');
-
-    }
-    else if (dowhat == 'delete'){
-        document.getElementById('browse').style.display = 'none';
-        document.getElementById('insert').style.display = 'none';
-        document.getElementById('update').style.display = 'none';
-        document.getElementById('delete').style.display = 'block';
-        alert('delete');
-
-    }
-    else if (dowhat == 'all'){
-        document.getElementById('browse').style.display = 'block';
-        document.getElementById('insert').style.display = 'block';
-        document.getElementById('update').style.display = 'block';
-        document.getElementById('delete').style.display = 'block';
-        alert('none');
-
-    }
-    // by default, display browse
-    else {
-        document.getElementById('browse').style.display = 'block';
-        document.getElementById('insert').style.display = 'none';
-        document.getElementById('update').style.display = 'none';
-        document.getElementById('delete').style.display = 'none';
-        alert('browse');
-
-    }
-}
-function newPlant() { showform('insert'); }
-// function updatePlant(pid) { showform('update'); }
-// function deletePlant(pid) { showform ('delete'); }
-// function browsePlant() { showform ('browse'); }
-// function showAll() { showform ('all'); }
-
-// forms
-
+// Code in this function adapted from the CS340 starter code.
+// Date Accessed: 4 August 2024
+// URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
 
 function PlantsPage(){
-
     return (
         <>
 
-        <h1>disclaimer: this is still hardcoded data</h1>
+        {/* display either the route is needed for the edit function */}
+        <Routes>
+            <Route path="/edit/:id" element={<UpdatePlants />} />
+            {/* <Route path="/add" element={<CreatePlant />} /> */}
 
-        <BrowsePlant />
+            
+            <Route path="/" element={
+                <>
+                
+                {/* header & description */}
+                <h2>Your Plants</h2>
+                <p>Keep a record of every plant you have.</p>
 
-        <br/><br/>
+                {/* render the table */}
+                <PlantsTable />
+                <br/>
 
-        {/* call the function to make a new plant entry */}
-        <InsertPlant />
+                {/* display the add new soil button */}
+                <AddPlant />
+                </> 
+            } />
 
+        </Routes>
+        
 
-        <br /><br />
         </>
     );
 }
+
+
 
 export default PlantsPage;

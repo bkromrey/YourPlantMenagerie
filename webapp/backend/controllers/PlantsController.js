@@ -9,71 +9,73 @@ require("dotenv").config();
 // Util to deep-compare two objects
 const lodash = require("lodash");
 
-// Returns all rows of people in Plants
+// Returns all rows of events in Plants
 const getPlants = async (req, res) => {
   try {
     // Select all rows from the "Plants" table
-    const query = "SELECT * FROM Plants";
-    // Execute the query using the "db" object from the configuration file
+    const query = 
+    "SELECT plantID, displayName, IF(isInside = 1,'Yes', 'No') AS 'isInside', currentLight, commonName AS 'plantTypeID', waterInterval, fertilizerInterval, plantedDate FROM Plants JOIN PlantTypes ON Plants.plantTypeID = PlantTypes.plantTypeID";
     const [rows] = await db.query(query);
     // Send back the rows to the client
     res.status(200).json(rows);
   } catch (error) {
-    console.error("Error fetching plants from the database:", error);
+    console.error("Error fetching Plants from the database:", error);
     res.status(500).json({ error: "Error fetching Plants" });
   }
 };
 
-// Returns a single plant by their unique ID from Plants
+// Returns a single event by its unique ID from Plants
 const getPlantByID = async (req, res) => {
   try {
     const plantID = req.params.id;
     const query = "SELECT * FROM Plants WHERE plantID = ?";
     const [result] = await db.query(query, [plantID]);
-    // Check if plant was found
+    // Check if Plant was found
     if (result.length === 0) {
       return res.status(404).json({ error: "Plant not found" });
     }
-    const plant = result[0];
-    res.json(plant);
+    const Plant = result[0];
+    res.json(Plant);
   } catch (error) {
-    console.error("Error fetching plant from the database:", error);
-    res.status(500).json({ error: "Error fetching plant" });
+    console.error("Error fetching Plant from the database:", error);
+    res.status(500).json({ error: "Error fetching Plant" });
   }
 };
 
-// Returns status of creation of new plant in Plants
+// Returns status of creation of new event in Plants
 const createPlant = async (req, res) => {
   try {
-    const { fname, lname, homeworld, age } = req.body;
+    const { displayName, isInside, currentLight, plantTypeID, waterInterval, fertilizerInterval, plantedDate } = req.body;
     const query =
-    // TODO UPDATE LINES 51-57
-      "INSERT INTO Plants (fname, lname, homeworld, age) VALUES (?, ?, ?, ?)";
+      "INSERT INTO Plants (displayName, isInside, currentLight, plantTypeID, waterInterval, fertilizerInterval, plantedDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     const response = await db.query(query, [
-      fname,
-      lname,
-      homeworld === "" ? null : parseInt(homeworld),
-      age,
+        displayName,
+        isInside,
+        currentLight,
+        plantTypeID, 
+        waterInterval, 
+        fertilizerInterval,
+        plantedDate, 
     ]);
     res.status(201).json(response);
   } catch (error) {
     // Print the error for the dev
-    console.error("Error creating plant:", error);
+    console.error("Error creating Plant:", error);
     // Inform the client of the error
-    res.status(500).json({ error: "Error creating plant" });
+    res.status(500).json({ error: "Error creating Plant" });
   }
 };
 
 
 const updatePlant = async (req, res) => {
-  // Get the plant ID
+  // Get the Plant ID
   const plantID = req.params.id;
-  // Get the plant object
+  // Get the Plant object
   const newPlant = req.body;
 
   try {
-    const [data] = await db.query("SELECT * FROM Plants WHERE PlantID = ?", [
+    const [data] = await db.query("SELECT * FROM Plants WHERE plantID = ?", [
       plantID,
     ]);
 
@@ -82,70 +84,70 @@ const updatePlant = async (req, res) => {
     // If any attributes are not equal, perform update
     if (!lodash.isEqual(newPlant, oldPlant)) {
       const query =
-        "UPDATE Plants SET fname=?, lname=?, homeworld=?, age=? WHERE PlantID=?";
-
-      // Homeoworld is NULL-able FK in Plants, has to be valid INT FK ID or NULL
-      const hw = newPlant.homeworld === "" ? null : newPlant.homeworld;
+        "UPDATE Plants SET displayName=?, isInside=?, currentLight=?, plantTypeID=?, waterInterval=?, fertilizerInterval=?, plantedDate=? WHERE plantID=?";
 
       const values = [
-        newPlant.fname,
-        newPlant.lname,
-        hw,
-        newPlant.age,
+        newPlant.displayName,
+        newPlant.isInside,
+        newPlant.currentLight,
+        newPlant.plantTypeID,
+        newPlant.waterInterval,
+        newPlant.fertilizerInterval, 
+        newPlant.plantedDate,
         plantID,
       ];
 
       // Perform the update
       await db.query(query, values);
       // Inform client of success and return 
-      return res.json({ message: "plant updated successfully." });
+      return res.json({ message: "Plant updated successfully." });
     }
 
-    res.json({ message: "plant details are the same, no update" });
+    res.json({ message: "Plant details are the same, no update" });
   } catch (error) {
-    console.log("Error updating plant", error);
+    console.log("Error updating Plant", error);
     res
       .status(500)
-      .json({ error: `Error updating the plant with id ${plantID}` });
+      .json({ error: `Error updating the Plant with id ${plantID}` });
   }
 };
 
-// Endpoint to delete a customer from the database
+// Endpoint to delete a Plant from the database
 const deletePlant = async (req, res) => {
-  console.log("Deleting plant with id:", req.params.id);
+  console.log("Deleting Plant with id:", req.params.id);
   const plantID = req.params.id;
 
   try {
-    // Ensure the plant exitst
+    // Ensure the Plant exists
     const [isExisting] = await db.query(
-      "SELECT 1 FROM Plants WHERE PlantID = ?",
+      "SELECT 1 FROM Plants WHERE plantID = ?",
       [plantID]
     );
 
-    // If the plant doesn't exist, return an error
+    // If the Plant doesn't exist, return an error
     if (isExisting.length === 0) {
       return res.status(404).send("Plant not found");
     }
 
-    // Delete related records from the intersection table (see FK contraints bsg_cert_people)
+    // Delete related records from the intersection table (see FK contraints DeletePlants)
     const [response] = await db.query(
-      "DELETE FROM bsg_cert_people WHERE pid = ?",
+      "DELETE FROM Plants WHERE plantID = ?",
       [plantID]
     );
 
     console.log(
       "Deleted",
       response.affectedRows,
-      "rows from bsg_cert_people intersection table"
+      "rows from DeletePlants intersection table"
     );
 
-    // Delete the plant from Plants
-    await db.query("DELETE FROM Plants WHERE PlantID = ?", [plantID]);
+    // Delete the event from Plants
+    await db.query("DELETE FROM Plants WHERE plantID = ?", [plantID]);
 
     // Return the appropriate status code
-    res.status(204).json({ message: "plant deleted successfully" })
+    res.status(204).json({ message: "Plant deleted successfully" })
   } catch (error) {
-    console.error("Error deleting plant from the database:", error);
+    console.error("Error deleting Plant from the database:", error);
     res.status(500).json({ error: error.message });
   }
 };

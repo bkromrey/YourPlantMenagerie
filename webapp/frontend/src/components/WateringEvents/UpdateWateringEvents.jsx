@@ -103,7 +103,8 @@ const UpdateWateringEvent = () => {
                   <Form.Control
                       type="number"
                       name="plantID"
-                      defaultValue={prevWateringEvent.plantID}
+                      placeholder="Enter Plant ID"
+                      // defaultValue={prevWateringEvent.plantID}
                       onChange={handleInputChange}
                   />
               {/* </Col> */}

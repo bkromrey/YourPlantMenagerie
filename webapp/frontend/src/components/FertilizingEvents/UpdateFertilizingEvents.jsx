@@ -85,8 +85,9 @@ const UpdateFertilizingEvent = () => {
                   <Form.Control
                       required
                       type="date"
+                      // as="textarea"
                       name="fertilizingDate"
-                      defaultValue={prevFertilizingEvent.fertilizingDate}
+                      // value={ moment(prevFertilizingEvent.fertilizingDate).subtract(10, 'days').calendar() }
                       onChange={handleInputChange}
                       autoFocus
                   />
@@ -100,9 +101,8 @@ const UpdateFertilizingEvent = () => {
                   <Form.Control
                       required
                       type="number"
-                      // as="select"
                       name="plantID"
-                      placeholder={prevFertilizingEvent.plantID}
+                      placeholder="Enter Plant ID number"
                       onChange={handleInputChange}
                       
                   />

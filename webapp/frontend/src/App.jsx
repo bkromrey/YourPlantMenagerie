@@ -31,7 +31,7 @@ function App() {
       <section>
         <Routes> 
           <Route path="/" element={<Home />} />
-          <Route path="/plants" element={<PlantsPage />} />
+          <Route path="/plants/*" element={<PlantsPage />} />
           <Route path="/plantTypes" element={<PlantTypesPage />} />
           <Route path="/soilTypes/*" element={<SoilTypesPage />} />  
           <Route path="/wateringEvents/*" element={<WateringEventsPage />} />
