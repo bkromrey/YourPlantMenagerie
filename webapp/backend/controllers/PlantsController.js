@@ -53,7 +53,7 @@ const createPlant = async (req, res) => {
         displayName,
         Number(isInside),
         currentLight,
-        plantTypeID, 
+        plantTypeID === "" ? null : formData.plantTypeID, 
         waterInterval, 
         fertilizerInterval,
         plantedDate, 
@@ -86,11 +86,14 @@ const updatePlant = async (req, res) => {
       const query =
         "UPDATE Plants SET displayName=?, isInside=?, currentLight=?, plantTypeID=?, waterInterval=?, fertilizerInterval=?, plantedDate=? WHERE plantID=?";
 
+      // Homeoworld is NULL-able FK in bsg_people, has to be valid INT FK ID or NULL
+      const plantn = newPlant.plantTypeID === "" ? null : newPlant.plantTypeID;
+
       const values = [
         newPlant.displayName,
         Number(newPlant.isInside),
         newPlant.currentLight,
-        newPlant.plantTypeID,
+        plantn,
         newPlant.waterInterval,
         newPlant.fertilizerInterval, 
         newPlant.plantedDate,

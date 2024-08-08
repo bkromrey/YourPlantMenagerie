@@ -161,10 +161,10 @@ function AddPlant(){
                   <Form.Label >Current Light</Form.Label>
                   <Form.Select
                       name="currentLight"
-                      placeholder="Select Light Level"
                       onChange={handleInputChange}
                       
                   >
+                    <option value="">Select Light Level</option>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>

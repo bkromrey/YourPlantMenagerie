@@ -115,8 +115,8 @@ const UpdatePlant = () => {
                       defaultValue={prevPlant.isInside}
                       
                   >
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
+                      <option value="1">Yes</option>
+                      <option value="0">No</option>
                   </Form.Select>
               {/* </Col> */}
           </Row>

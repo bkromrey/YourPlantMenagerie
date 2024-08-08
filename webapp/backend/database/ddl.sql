@@ -41,16 +41,14 @@ CREATE OR REPLACE TABLE Plants (
   displayName varchar(50) NOT NULL,
   isInside tinyint(1) NOT NULL DEFAULT 1,
   currentLight enum('Low','Medium','High') DEFAULT NULL,
-  plantTypeID int(11),
+  plantTypeID int(11) DEFAULT NULL,
   waterInterval int(11) NOT NULL DEFAULT 7,
   fertilizerInterval int(11) DEFAULT 14,
   plantedDate date DEFAULT NULL,
-  UNIQUE (plantTypeID, displayName),
-  PRIMARY KEY (plantID,plantTypeID),
-  UNIQUE KEY plantID_UNIQUE (plantID),
-  FOREIGN KEY (plantTypeID) REFERENCES PlantTypes (plantTypeID) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (plantID),
+  UNIQUE KEY unique_plant (plantTypeID, displayName),
+  FOREIGN KEY (plantTypeID) REFERENCES PlantTypes (plantTypeID) ON DELETE SET NULL ON UPDATE CASCADE
 );
-
 
 
 -- create table for SoilTypes
