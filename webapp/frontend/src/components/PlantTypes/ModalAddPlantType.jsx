@@ -138,7 +138,6 @@ function AddPlantType(){
                     <Col>
                         <Form.Label htmlFor="latinName" >Latin Name</Form.Label>
                         <Form.Control
-                            required
                             type="text"
                             name="latinName"
                             onChange={handleInputChange}
