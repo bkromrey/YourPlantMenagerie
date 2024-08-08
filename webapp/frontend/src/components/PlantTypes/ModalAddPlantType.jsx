@@ -149,27 +149,21 @@ function AddPlantType(){
                     <Col>
                         <Form.Label htmlFor="toxicCat">Toxic to Cats?</Form.Label>
                         <Form.Select
-                            // type="text"
-                            // as="textarea" 
-                            // rows={3}
                             name="toxicCat"
                             onChange={handleInputChange}
-                            >
-                            <option value="1">Yes</option>
+                        >                 
                             <option value="0">No</option>
+                            <option value="1">Yes</option>
                        </Form.Select>
                     </Col>
                     <Col>
                         <Form.Label htmlFor="toxicCat">Toxic to Dogs?</Form.Label>
                         <Form.Select
-                            // type="text"
-                            // as="textarea" 
-                            // rows={3}
                             name="toxicDog"
                             onChange={handleInputChange}
-                            >
-                            <option value="1">Yes</option>
+                        >
                             <option value="0">No</option>
+                            <option value="1">Yes</option>
                        </Form.Select>
                     </Col>
                 </Row>
@@ -181,8 +175,8 @@ function AddPlantType(){
                         <Form.Select
                             name="preferredLight"
                             onChange={handleInputChange}
-                            >
-                            <option value="">Select Light Level</option>
+                        >
+                            {/* <option value="">Select Light Level</option> */}
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
                             <option value="High">High</option>
