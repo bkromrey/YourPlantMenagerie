@@ -11,14 +11,12 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Toast from 'react-bootstrap/Toast';
 
 /* eslint-disable react/prop-types */
 const TableRow = ({ PlantType, fetchPlantTypes }) => {
 
   // Hook that allows us to navigate programmatically
   const navigate = useNavigate();
-
 
   // code to handle the edit of a plant type - uses a redirect to have Router render the update component
   const handleEdit = () => {

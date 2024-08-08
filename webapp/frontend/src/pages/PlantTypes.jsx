@@ -24,8 +24,6 @@ function PlantTypesPage(){
                 <h2>Plant Types</h2>
                 <p>Describes a type of plant in detail, including its common name, toxicity to common household pets, light preferences.</p>
 
-                <h2>TODO: ADD, UPDATE</h2>
-
                 {/* render the table */}
                 <PlantTypesTable />
                 <br/>
