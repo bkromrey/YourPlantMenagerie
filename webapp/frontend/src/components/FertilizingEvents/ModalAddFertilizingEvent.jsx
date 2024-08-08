@@ -115,7 +115,7 @@ function AddFertilizingEvent(){
             <Container >
                 <Row>
                     <Col>
-                        <Form.Label htmlFor="fertilizingDate" >Name</Form.Label>
+                        <Form.Label htmlFor="fertilizingDate" >Fertilizing Date</Form.Label>
                         <Form.Control
                             required
                             type="date"

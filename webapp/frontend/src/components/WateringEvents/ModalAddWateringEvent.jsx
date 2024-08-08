@@ -114,7 +114,7 @@ function AddWateringEvent(){
             <Container >
                 <Row>
                     <Col>
-                        <Form.Label htmlFor="wateringDate" >Name</Form.Label>
+                        <Form.Label htmlFor="wateringDate" >Watering Date</Form.Label>
                         <Form.Control
                             required
                             type="date"
