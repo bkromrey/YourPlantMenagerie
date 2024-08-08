@@ -14,7 +14,7 @@ const getPlants = async (req, res) => {
   try {
     // Select all rows from the "Plants" table
     const query = 
-    "SELECT plantID, displayName, IF(isInside = 1,'Yes', 'No') AS 'isInside', currentLight, commonName AS 'plantTypeID', waterInterval, fertilizerInterval, plantedDate FROM Plants JOIN PlantTypes ON Plants.plantTypeID = PlantTypes.plantTypeID";
+    "SELECT plantID, displayName, isInside, currentLight, commonName AS 'plantTypeID', waterInterval, fertilizerInterval, plantedDate FROM Plants JOIN PlantTypes ON Plants.plantTypeID = PlantTypes.plantTypeID";
     const [rows] = await db.query(query);
     // Send back the rows to the client
     res.status(200).json(rows);
@@ -53,7 +53,7 @@ const createPlant = async (req, res) => {
         displayName,
         Number(isInside),
         currentLight,
-        plantTypeID === "" ? null : formData.plantTypeID, 
+        plantTypeID === "" ? null : parseInt(plantTypeID), 
         waterInterval, 
         fertilizerInterval,
         plantedDate, 
@@ -87,13 +87,13 @@ const updatePlant = async (req, res) => {
         "UPDATE Plants SET displayName=?, isInside=?, currentLight=?, plantTypeID=?, waterInterval=?, fertilizerInterval=?, plantedDate=? WHERE plantID=?";
 
       // Homeoworld is NULL-able FK in bsg_people, has to be valid INT FK ID or NULL
-      const plantn = newPlant.plantTypeID === "" ? null : newPlant.plantTypeID;
+      // const plantn = newPlant.plantTypeID === "" ? null : newPlant.plantTypeID;
 
       const values = [
         newPlant.displayName,
         Number(newPlant.isInside),
         newPlant.currentLight,
-        plantn,
+        newPlant.plantTypeID,
         newPlant.waterInterval,
         newPlant.fertilizerInterval, 
         newPlant.plantedDate,

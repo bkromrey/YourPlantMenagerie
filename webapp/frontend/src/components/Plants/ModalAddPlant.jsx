@@ -42,7 +42,7 @@ function AddPlant(){
         displayName: formData.displayName,
         isInside: formData.isInside,
         currentLight: formData.currentLight,
-        plantTypeID: formData.plantTypeID,
+        plantTypeID: formData.plantTypeID ,
         waterInterval: formData.waterInterval,
         fertilizerInterval: formData.fertilizerInterval,
         plantedDate: formData.plantedDate
@@ -144,7 +144,6 @@ function AddPlant(){
                 {/* TODO: we might want to get rid of this first option or default it to a 0 or 1 instead of "" to mitigate sql issues */}
                   <Form.Label >Inside/Outside</Form.Label>
                   <Form.Select
-                      required
                       name="isInside"
                       onChange={handleInputChange}
                       
@@ -164,7 +163,6 @@ function AddPlant(){
                       onChange={handleInputChange}
                       
                   >
-                    <option value="">Select Light Level</option>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
@@ -194,6 +192,7 @@ function AddPlant(){
                       type="number"
                       name="waterInterval"
                       onChange={handleInputChange}
+                      defaultValue={7}
                       
                   />
               {/* </Col> */}
@@ -207,6 +206,7 @@ function AddPlant(){
                       type="number"
                       name="fertilizerInterval"
                       onChange={handleInputChange}
+                      defaultValue={14}
                       
                   />
               {/* </Col> */}

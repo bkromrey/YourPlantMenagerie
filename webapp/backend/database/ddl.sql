@@ -25,8 +25,8 @@ SET AUTOCOMMIT = 0;
 CREATE OR REPLACE TABLE PlantTypes (
   plantTypeID int(11) NOT NULL AUTO_INCREMENT,
   commonName varchar(150) NOT NULL,
-  toxicCat tinyint(4) NOT NULL DEFAULT 0,
-  toxicDog tinyint(4) NOT NULL DEFAULT 0,
+  toxicCat tinyint(4) NOT NULL DEFAULT 1,
+  toxicDog tinyint(4) NOT NULL DEFAULT 1,
   preferredLight enum('Low','Medium','High') DEFAULT NULL,
   latinName varchar(150) DEFAULT NULL,
   PRIMARY KEY (plantTypeID),
@@ -39,10 +39,10 @@ CREATE OR REPLACE TABLE PlantTypes (
 CREATE OR REPLACE TABLE Plants (
   plantID int(11) NOT NULL AUTO_INCREMENT,
   displayName varchar(50) NOT NULL,
-  isInside tinyint(1) NOT NULL DEFAULT 1,
+  isInside tinyint(4) NOT NULL DEFAULT 1,
   currentLight enum('Low','Medium','High') DEFAULT NULL,
   plantTypeID int(11) DEFAULT NULL,
-  waterInterval int(11) NOT NULL DEFAULT 7,
+  waterInterval int(11) DEFAULT 7,
   fertilizerInterval int(11) DEFAULT 14,
   plantedDate date DEFAULT NULL,
   PRIMARY KEY (plantID),

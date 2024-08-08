@@ -36,6 +36,7 @@ const UpdatePlant = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
+      
     }));
   };
 
@@ -115,8 +116,8 @@ const UpdatePlant = () => {
                       defaultValue={prevPlant.isInside}
                       
                   >
-                      <option value="1">Yes</option>
-                      <option value="0">No</option>
+                      <option value="1">Inside</option>
+                      <option value="0">Outside</option>
                   </Form.Select>
               {/* </Col> */}
           </Row>
@@ -143,9 +144,8 @@ const UpdatePlant = () => {
               {/* <Col> */}
                   <Form.Label htmlFor="plantTypeID">Plant Type</Form.Label>
                   <Form.Control
-                      type="text"
+                      type="number"
                       name="plantTypeID"
-                      // placeholder="Enter PlantType ID number"
                       onChange={handleInputChange}
                       
                   />
@@ -160,6 +160,7 @@ const UpdatePlant = () => {
                       type="number"
                       name="waterInterval"
                       onChange={handleInputChange}
+                      defaultValue={prevPlant.waterInterval}
                       
                   />
               {/* </Col> */}
@@ -173,6 +174,7 @@ const UpdatePlant = () => {
                       type="number"
                       name="fertilizerInterval"
                       onChange={handleInputChange}
+                      defaultValue={prevPlant.fertilizerInterval}
                       
                   />
               {/* </Col> */}
@@ -186,6 +188,7 @@ const UpdatePlant = () => {
                       type="date"
                       name="plantedDate"
                       onChange={handleInputChange}
+                      value = {prevPlant.plantedDate}
                       
                   />
               {/* </Col> */}
