@@ -48,6 +48,7 @@ const UpdatePlantType = () => {
       preferredLight:   prevPlantType.preferredLight || '',
     })) {
       alert("No changes made.");
+      navigate("/plantTypes"); //TODO - do we want to standardize this everywhere
       return false;
     }
     return true
@@ -96,6 +97,7 @@ const UpdatePlantType = () => {
                         name="commonName"
                         onChange={handleInputChange}
                         autoFocus
+                        defaultValue={prevPlantType.commonName}
                     />
                 </Col>
             </Row>
@@ -109,6 +111,7 @@ const UpdatePlantType = () => {
                         type="text"
                         name="latinName"
                         onChange={handleInputChange}
+                        defaultValue={prevPlantType.latinName}
                     />
                 </Col>
             </Row>
@@ -122,9 +125,10 @@ const UpdatePlantType = () => {
                         // rows={3}
                         name="toxicCat"
                         onChange={handleInputChange}
+                        defaultValue={prevPlantType.toxicCat}
                         >
-                        <option>Yes</option>
-                        <option>No</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
                   </Form.Select>
                 </Col>
                 <Col>
@@ -135,12 +139,14 @@ const UpdatePlantType = () => {
                         // rows={3}
                         name="toxicDog"
                         onChange={handleInputChange}
+                        defaultValue={prevPlantType.toxicDog}
                         >
-                        <option>Yes</option>
-                        <option>No</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
                   </Form.Select>
                 </Col>
             </Row>
+
             <br />
             <Row>
 
@@ -149,16 +155,20 @@ const UpdatePlantType = () => {
                     <Form.Select
                         name="preferredLight"
                         onChange={handleInputChange}
+                        defaultValue={prevPlantType.preferredLight}
                         >
-                        <option>High</option>
-                        <option>Medium</option>
-                        <option>Low</option>
+                        <option value="">Select Light Level</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
                     </Form.Select>
                 </Col>
             </Row>
+            <br />
             <Row>
+             
             <Col> 
-              <Button variant="secondary" type="button" onClick={() => navigate("/WateringEvents")} >Cancel</Button>{' '}
+              <Button variant="secondary" type="button" onClick={() => navigate("/plantTypes")} >Cancel</Button>{' '}
             </Col>
             
             <Col> 

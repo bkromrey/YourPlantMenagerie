@@ -47,13 +47,13 @@ const createPlantType = async (req, res) => {
   try {
     const { commonName, latinName, toxicCat, toxicDog, preferredLight } = req.body;
     const query =
-      "INSERT INTO PlantTypes (commonName, latinName, toxicCat, toxicDog, preferredLight) VALUES (?, ?)";
+      "INSERT INTO PlantTypes (commonName, latinName, toxicCat, toxicDog, preferredLight) VALUES (?, ?, ?, ?, ?)";
 
     const response = await db.query(query, [
       commonName,
       latinName,
-      toxicCat, 
-      toxicDog, 
+      Number(toxicCat), 
+      Number(toxicDog), 
       preferredLight
     ]);
     res.status(201).json(response);
@@ -86,8 +86,8 @@ const updatePlantType = async (req, res) => {
 
       const values = [
         newPlantType.commonName,
-        newPlantType.toxicCat,
-        newPlantType.toxicDog,
+        Number(newPlantType.toxicCat),
+        Number(newPlantType.toxicDog),
         newPlantType.preferredLight,
         newPlantType.latinName,
         plantTypeID,

@@ -156,8 +156,8 @@ function AddPlantType(){
                             name="toxicCat"
                             onChange={handleInputChange}
                             >
-                            <option>Yes</option>
-                            <option>No</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
                        </Form.Select>
                     </Col>
                     <Col>
@@ -169,8 +169,8 @@ function AddPlantType(){
                             name="toxicDog"
                             onChange={handleInputChange}
                             >
-                            <option>Yes</option>
-                            <option>No</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
                        </Form.Select>
                     </Col>
                 </Row>
@@ -183,9 +183,10 @@ function AddPlantType(){
                             name="preferredLight"
                             onChange={handleInputChange}
                             >
-                            <option>High</option>
-                            <option>Medium</option>
-                            <option>Low</option>
+                            <option value="">Select Light Level</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
                         </Form.Select>
                     </Col>
                 </Row>
