@@ -15,15 +15,19 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-const UpdateWateringEvent = () => {
+const UpdatePlantType = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const prevWateringEvent = location.state.WateringEvent;
+  const prevPlantType = location.state.PlantType;
 
   const [formData, setFormData] = useState({
-    wateringDate:           prevWateringEvent.wateringDate || '' ,
-    soilDescription:    prevWateringEvent.soilDescription || '',
+    commonName:       prevPlantType.commonName || '' ,
+    latinName:        prevPlantType.latinName || '',
+    toxicCat:         prevPlantType.toxicCat || '',
+    toxicDog:         prevPlantType.toxicDog || '',
+    preferredLight:   prevPlantType.preferredLight || '',
+
   });
 
   const handleInputChange = (event) => {
@@ -35,12 +39,16 @@ const UpdateWateringEvent = () => {
   };
 
   function isUpdate(){
-    // Check if formData is equal to prevWateringEvent
+    // Check if formData is equal to prevPlantType
     if (JSON.stringify(formData) === JSON.stringify({
-      wateringDate:         prevWateringEvent.wateringDate || '',
-      soilDescription:  prevWateringEvent.soilDescription || '',
+      commonName:       prevPlantType.commonName || '' ,
+      latinName:        prevPlantType.latinName || '',
+      toxicCat:         prevPlantType.toxicCat || '',
+      toxicDog:         prevPlantType.toxicDog || '',
+      preferredLight:   prevPlantType.preferredLight || '',
     })) {
       alert("No changes made.");
+      navigate("/plantTypes"); //TODO - do we want to standardize this everywhere
       return false;
     }
     return true
@@ -49,17 +57,17 @@ const UpdateWateringEvent = () => {
   const handleSubmit = async (event) => {
     // Stop default form behavior which is to reload the page
     event.preventDefault();
-    // Check if formData is equal to prevWateringEvent
+    // Check if formData is equal to prevPlantType
     if (isUpdate()){
       try {
-        const URL = import.meta.env.VITE_API_URL + "WateringEvents/" + id;
+        const URL = import.meta.env.VITE_API_URL + "PlantTypes/" + id;
         const response = await axios.put(URL, formData);
         if (response.status !== 200) {
-          alert("Error updating soil type!");
+          alert("Error updating plant type!");
         } else {
           alert(response.data.message);
-          // Redirect to WateringEvents page
-          navigate("/WateringEvents");
+          // Redirect to PlantTypes page
+          navigate("/PlantTypes");
         // Citation for this line of code
         // Forces the page to reload to display the new data
         // URL: https://stackoverflow.com/questions/56649094/how-to-reload-a-component-part-of-page-in-reactjs
@@ -67,19 +75,113 @@ const UpdateWateringEvent = () => {
         window.location.reload();
         }
       } catch (err) {
-        console.log("Error updating soil type:", err);
+        console.log("Error updating plant type:", err);
       }
     }
   };
 
   return (
     <div>
-      <h2>Update Soil</h2>
+      <h2>Update Plant Type</h2>
       <br />
 
 
+      <Form id="updatePlantTODO" onSubmit={handleSubmit}>
+        <Container >
+            <Row>
+                <Col>
+                    <Form.Label htmlFor="commonName" >Common Name</Form.Label>
+                    <Form.Control
+                        required
+                        type="text"
+                        name="commonName"
+                        onChange={handleInputChange}
+                        autoFocus
+                        defaultValue={prevPlantType.commonName}
+                    />
+                </Col>
+            </Row>
 
-      <Form onSubmit={handleSubmit}>
+            <br /> 
+            <Row>
+                <Col>
+                    <Form.Label htmlFor="latinName" >Latin Name</Form.Label>
+                    <Form.Control
+                        required
+                        type="text"
+                        name="latinName"
+                        onChange={handleInputChange}
+                        defaultValue={prevPlantType.latinName}
+                    />
+                </Col>
+            </Row>
+            <br />
+            <Row>
+                <Col>
+                    <Form.Label htmlFor="toxicCat">Toxic to Cats?</Form.Label>
+                    <Form.Select
+                        // type="text"
+                        // as="textarea" 
+                        // rows={3}
+                        name="toxicCat"
+                        onChange={handleInputChange}
+                        defaultValue={prevPlantType.toxicCat}
+                        >
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                  </Form.Select>
+                </Col>
+                <Col>
+                    <Form.Label htmlFor="toxicCat">Toxic to Dogs?</Form.Label>
+                    <Form.Select
+                        // type="text"
+                        // as="textarea" 
+                        // rows={3}
+                        name="toxicDog"
+                        onChange={handleInputChange}
+                        defaultValue={prevPlantType.toxicDog}
+                        >
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                  </Form.Select>
+                </Col>
+            </Row>
+
+            <br />
+            <Row>
+
+                <Col>
+                    <Form.Label htmlFor="preferredLight">Preferred Light</Form.Label>
+                    <Form.Select
+                        name="preferredLight"
+                        onChange={handleInputChange}
+                        defaultValue={prevPlantType.preferredLight}
+                        >
+                        <option value="">Select Light Level</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </Form.Select>
+                </Col>
+            </Row>
+            <br />
+            <Row>
+             
+            <Col> 
+              <Button variant="secondary" type="button" onClick={() => navigate("/plantTypes")} >Cancel</Button>{' '}
+            </Col>
+            
+            <Col> 
+              <Button variant="success" type="submit">Update</Button>{' '}
+            </Col>
+          
+          
+          </Row>
+        </Container>
+
+        </Form>
+
+      {/* <Form onSubmit={handleSubmit}>
 
       
           <Row>
@@ -89,7 +191,7 @@ const UpdateWateringEvent = () => {
                       required
                       type="text"
                       name="WateringEvent"
-                      defaultValue={prevWateringEvent.wateringDate}
+                      defaultValue={prevPlantType.commonName}
                       onChange={handleInputChange}
                       autoFocus
                   />
@@ -99,22 +201,22 @@ const UpdateWateringEvent = () => {
           <br /> 
           <Row>
               {/* <Col> */}
-                  <Form.Label >Description (Optional)</Form.Label>
+                  {/* <Form.Label >Description (Optional)</Form.Label>
                   <Form.Control
                       type="text"
                       as="textarea" 
                       rows={3}
-                      name="soilDescription"
-                      defaultValue={prevWateringEvent.soilDescription}
+                      name="latinName"
+                      defaultValue={prevPlantType.latinName}
                       onChange={handleInputChange}
-                  />
+                  /> */}
               {/* </Col> */}
-          </Row>
+          {/* </Row>
           <br />
           <Container >
           <Row>
             <Col> 
-              <Button variant="secondary" type="button" onClick={() => navigate("/WateringEvents")} >Cancel</Button>{' '}
+              <Button variant="secondary" type="button" onClick={() => navigate("/PlantTypes")} >Cancel</Button>{' '}
             </Col>
             
             <Col> 
@@ -126,11 +228,11 @@ const UpdateWateringEvent = () => {
 
       </Container>
 
-      </Form>
+      </Form> */} 
 
     </div>
   );
 };
 
-export default UpdateWateringEvent;
+export default UpdatePlantType;
 

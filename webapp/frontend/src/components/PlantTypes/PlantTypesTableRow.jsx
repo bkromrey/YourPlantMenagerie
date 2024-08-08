@@ -13,34 +13,28 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Toast from 'react-bootstrap/Toast';
 
-function SuccessToast(){
-  return(
-    <Toast>
-      <Toast.Header>Success</Toast.Header>
-      <Toast.Body>Event was deleted successfully.</Toast.Body>
-    </Toast>
-  );
-}
-
-
 /* eslint-disable react/prop-types */
 const TableRow = ({ PlantType, fetchPlantTypes }) => {
+
   // Hook that allows us to navigate programmatically
   const navigate = useNavigate();
-  // Redirect to edit PlantType page
+
+
+  // code to handle the edit of a plant type - uses a redirect to have Router render the update component
   const handleEdit = () => {
     // We can access the id (and query the PlantType) with useParams() in the UpdatePlantType component
     navigate("/PlantTypes/edit/" + PlantType.plantTypeID, { state: { PlantType } });
   };
 
+
+  // code to handle the deletion of a plant
   const deleteRow = async () => {
     try {
-      const URL = import.meta.env.VITE_API_URL + "PlantTypes/" + PlantType.plantTypeID;
+      const URL = import.meta.env.VITE_API_URL + "plantTypes/" + PlantType.plantTypeID;
 
       const response = await axios.delete(URL);
       // Ensure that the PlantType was deleted successfully
       if (response.status === 204) {
-        <SuccessToast />  // TODO
         alert("PlantType deleted successfully");
       }
     } catch (err) {
@@ -50,17 +44,21 @@ const TableRow = ({ PlantType, fetchPlantTypes }) => {
     fetchPlantTypes();
   };
 
+  // code to actually display table rows
   return (
     <tr key={PlantType.plantTypeID}>
       <td>{PlantType.plantTypeID}</td>
       <td>{PlantType.commonName}</td>
       <td>{PlantType.latinName}</td>
-      <td>{PlantType.toxicCat}</td>
+      {/* use ternary to display boolean in user friendly manner; 1=yes 0=no */}
+      <td>{((PlantType.toxicCat === 1) ? <p>Yes</p> : <p>No</p>)}</td> 
+      <td>{((PlantType.toxicDog === 1) ? <p>Yes</p> : <p>No</p>)}</td>
+      <td>{PlantType.preferredLight}</td>
       <td>
-        {/* <Button onClick={handleEdit} variant="warning">Edit</Button> */}
+        <Button onClick={handleEdit} variant="warning">Edit</Button>
       </td>
       <td>
-        {/* <Button onClick={deleteRow} variant="danger">Delete</Button> */}
+        <Button onClick={deleteRow} variant="danger">Delete</Button>
       </td>
     </tr>
   );

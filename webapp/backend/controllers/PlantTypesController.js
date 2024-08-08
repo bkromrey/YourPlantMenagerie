@@ -45,13 +45,16 @@ const getPlantTypeByID = async (req, res) => {
 // Returns status of creation of new PlantType in PlantTypes
 const createPlantType = async (req, res) => {
   try {
-    const { commonName, latinName } = req.body;
+    const { commonName, latinName, toxicCat, toxicDog, preferredLight } = req.body;
     const query =
-      "INSERT INTO PlantTypes (commonName, latinName) VALUES (?, ?)";
+      "INSERT INTO PlantTypes (commonName, latinName, toxicCat, toxicDog, preferredLight) VALUES (?, ?, ?, ?, ?)";
 
     const response = await db.query(query, [
       commonName,
       latinName,
+      Number(toxicCat), 
+      Number(toxicDog), 
+      preferredLight
     ]);
     res.status(201).json(response);
   } catch (error) {
@@ -79,12 +82,12 @@ const updatePlantType = async (req, res) => {
     // If any attributes are not equal, perform update
     if (!lodash.isEqual(newPlantType, oldPlantType)) {
       const query =
-        "UPDATE PlantTypes SET PlantType=?, latinName=? WHERE plantTypeID=?";
+        "UPDATE PlantTypes SET commonName=?, toxicCat=?, toxicDog=?, preferredLight=?, latinName=? WHERE plantTypeID=?";
 
       const values = [
         newPlantType.commonName,
-        newPlantType.toxicCat,
-        newPlantType.toxicDog,
+        Number(newPlantType.toxicCat),
+        Number(newPlantType.toxicDog),
         newPlantType.preferredLight,
         newPlantType.latinName,
         plantTypeID,
