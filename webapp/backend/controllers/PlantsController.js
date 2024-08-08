@@ -51,7 +51,7 @@ const createPlant = async (req, res) => {
 
     const response = await db.query(query, [
         displayName,
-        isInside,
+        Number(isInside),
         currentLight,
         plantTypeID, 
         waterInterval, 
@@ -88,7 +88,7 @@ const updatePlant = async (req, res) => {
 
       const values = [
         newPlant.displayName,
-        newPlant.isInside,
+        Number(newPlant.isInside),
         newPlant.currentLight,
         newPlant.plantTypeID,
         newPlant.waterInterval,

@@ -140,6 +140,8 @@ function AddPlant(){
           <br /> 
           <Row>
               {/* <Col> */}
+
+                {/* TODO: we might want to get rid of this first option or default it to a 0 or 1 instead of "" to mitigate sql issues */}
                   <Form.Label >Inside/Outside</Form.Label>
                   <Form.Select
                       required
@@ -147,9 +149,9 @@ function AddPlant(){
                       onChange={handleInputChange}
                       
                   >
-                      <option value="">Is your plant inside?</option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
+                      <option value="">Is your plant inside?</option> 
+                      <option value="1">Inside</option>
+                      <option value="0">Outside</option>
                   </Form.Select>
               {/* </Col> */}
           </Row>
