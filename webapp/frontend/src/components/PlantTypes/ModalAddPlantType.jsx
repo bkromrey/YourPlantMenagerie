@@ -1,5 +1,5 @@
 
-//import { AddFertilizingEvent } from "../components/FertilizingEvents/ModalAddFertilizingEvent";
+//import { AddPlantType } from "../components/PlantTypes/ModalAddPlantType";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -14,7 +14,7 @@ import Col from 'react-bootstrap/Col';
 
 //TODO
 
-function AddFertilizingEvent(){
+function AddPlantType(){
     const [showInsertPopup, InsertPopup] = useState(false);
 
     const CloseButton = () => InsertPopup(false);
@@ -24,8 +24,11 @@ function AddFertilizingEvent(){
     const navigate = useNavigate();
       
     const [formData, setFormData] = useState({
-        fertilizingDate: "",
-        plantID: "",
+        commonName: "",
+        latinName: "",
+        toxicCat: "",
+        toxicDog: "",
+        preferredLight: "",
     });
         
     const handleSubmit = async (e) => {
@@ -36,29 +39,29 @@ function AddFertilizingEvent(){
         // Prevent page reload
         // e.preventDefault();  
 
-        // Create a new FertilizingEvent object from the formData
-        const newFertilizingEvent = {
-        fertilizingDate: formData.fertilizingDate,
-        plantID: formData.plantID,
+        // Create a new PlantType object from the formData
+        const newPlantType = {
+            commonName: formData.commonName,
+            latinName: formData.latinName,
+            toxicCat: formData.toxicCat,
+            toxicDog: formData.toxicDog,
+            preferredLight: formData.preferredLight,
         };
 
-        // TESTING - use this to ensure data is saved by form
-        // alert(newFertilizingEvent.FertilizingEvent + ', ' + newFertilizingEvent.soilDescription); 
-
         try {
-        const URL = import.meta.env.VITE_API_URL + "FertilizingEvents";
-        const response = await axios.post(URL, newFertilizingEvent);
+        const URL = import.meta.env.VITE_API_URL + "PlantTypes";
+        const response = await axios.post(URL, newPlantType);
         if (response.status === 201) {
 
             //maybe TODO put something here to re-render the component?
-            navigate("/FertilizingEvents");
+            navigate("/plantTypes");
 
         } else {
-            alert("Error creating FertilizingEvent");
+            alert("Error creating PlantType");
         }
         } catch (error) {
-        alert("Error creating FertilizingEvents");
-        console.error("Error creating FertilizingEvents:", error);
+        alert("Error creating PlantTypes");
+        console.error("Error creating PlantTypes:", error);
         }
         // Reset the form fields
         resetFormFields();
@@ -77,8 +80,11 @@ function AddFertilizingEvent(){
       
     const resetFormFields = () => {
         setFormData({
-        fertilizingDate: "",
-        plantID: "",
+            commonName: "",
+            latinName: "",
+            toxicCat: "",
+            toxicDog: "",
+            preferredLight: "",
         });
     };
       
@@ -94,38 +100,10 @@ function AddFertilizingEvent(){
     };
       
 
-    ///////// ORIGINAL FORM 
-    // return (
-    //     <>
-    //     <h2>Create Soil Type</h2>
-    //     <form onSubmit={handleSubmit}>
-    //         <label htmlFor="soilType">Soil Name</label>
-    //         <input
-        //         type="text"
-        //         name="soilType"
-        //         defaultValue={formData.soilType}
-        //         onChange={handleInputChange}
-    //         />
-    //         <label htmlFor="soilDescription">Soil Description</label>
-    //         <input
-        //         type="text" // TODO make this a text box for a longer description
-        //         name="soilDescription"
-        //         defaultValue={formData.soilDescription}
-        //         onChange={handleInputChange}
-    //         />
-    //         <br /><br />
-    //         <Button type="submit">Submit</Button>
-    //     </form>
-    //     </>
-    // );
-
-
-
-      ////////////// MODAL STUFF
     return (
 
         <>
-        <Button variant="success" onClick={() => InsertPopup(true)}>New Fertilizing Event</Button>
+        <Button variant="success" onClick={() => InsertPopup(true)}>New Plant Type</Button>
 
         <Modal
         size="lg"
@@ -135,7 +113,7 @@ function AddFertilizingEvent(){
         show={showInsertPopup} onHide={CloseButton}>
         
           <Modal.Header closeButton>
-            <Modal.Title>Add New Fertilizing Event</Modal.Title>
+            <Modal.Title>Add New Plant Type</Modal.Title>
           </Modal.Header>
   
         <Modal.Body>
@@ -144,11 +122,11 @@ function AddFertilizingEvent(){
             <Container >
                 <Row>
                     <Col>
-                        <Form.Label htmlFor="fertilizingDate" >Name</Form.Label>
+                        <Form.Label htmlFor="commonName" >Common Name</Form.Label>
                         <Form.Control
                             required
-                            type="date"
-                            name="fertilizingDate"
+                            type="text"
+                            name="commonName"
                             onChange={handleInputChange}
                             autoFocus
                         />
@@ -158,24 +136,66 @@ function AddFertilizingEvent(){
                 <br /> 
                 <Row>
                     <Col>
-                        <Form.Label htmlFor="plantID">Plant ID</Form.Label>
+                        <Form.Label htmlFor="latinName" >Latin Name</Form.Label>
                         <Form.Control
+                            required
                             type="text"
-                            as="textarea" 
-                            rows={3}
-                            name="plantID"
+                            name="latinName"
                             onChange={handleInputChange}
                         />
                     </Col>
                 </Row>
+                <br />
+                <Row>
+                    <Col>
+                        <Form.Label htmlFor="toxicCat">Toxic to Cats?</Form.Label>
+                        <Form.Select
+                            // type="text"
+                            // as="textarea" 
+                            // rows={3}
+                            name="toxicCat"
+                            onChange={handleInputChange}
+                            >
+                            <option>Yes</option>
+                            <option>No</option>
+                       </Form.Select>
+                    </Col>
+                    <Col>
+                        <Form.Label htmlFor="toxicCat">Toxic to Dogs?</Form.Label>
+                        <Form.Select
+                            // type="text"
+                            // as="textarea" 
+                            // rows={3}
+                            name="toxicDog"
+                            onChange={handleInputChange}
+                            >
+                            <option>Yes</option>
+                            <option>No</option>
+                       </Form.Select>
+                    </Col>
+                </Row>
+                <br />
+                <Row>
 
+                    <Col>
+                        <Form.Label htmlFor="preferredLight">Preferred Light</Form.Label>
+                        <Form.Select
+                            name="preferredLight"
+                            onChange={handleInputChange}
+                            >
+                            <option>High</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                        </Form.Select>
+                    </Col>
+                </Row>
           </Container>
 
             </Form>
         </Modal.Body>
   
           <Modal.Footer>
-            {/* <Button variant="secondary" onClick={CloseButton}>Close</Button> */}
+            <Button variant="secondary" onClick={CloseButton}>Close</Button>
             <Button variant="primary" onClick={SaveButton}>Submit</Button>
           </Modal.Footer>
 
@@ -185,4 +205,4 @@ function AddFertilizingEvent(){
     );
 }
 
-export default AddFertilizingEvent;
+export default AddPlantType;

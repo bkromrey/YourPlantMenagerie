@@ -13,16 +13,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Toast from 'react-bootstrap/Toast';
 
-function SuccessToast(){
-  return(
-    <Toast>
-      <Toast.Header>Success</Toast.Header>
-      <Toast.Body>Event was deleted successfully.</Toast.Body>
-    </Toast>
-  );
-}
-
-
 /* eslint-disable react/prop-types */
 const TableRow = ({ PlantType, fetchPlantTypes }) => {
 
@@ -45,7 +35,6 @@ const TableRow = ({ PlantType, fetchPlantTypes }) => {
       const response = await axios.delete(URL);
       // Ensure that the PlantType was deleted successfully
       if (response.status === 204) {
-        <SuccessToast />  // TODO
         alert("PlantType deleted successfully");
       }
     } catch (err) {

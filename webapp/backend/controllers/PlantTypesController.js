@@ -82,7 +82,7 @@ const updatePlantType = async (req, res) => {
     // If any attributes are not equal, perform update
     if (!lodash.isEqual(newPlantType, oldPlantType)) {
       const query =
-        "UPDATE PlantTypes SET PlantType=?, latinName=? WHERE plantTypeID=?";
+        "UPDATE PlantTypes SET commonName=?, toxicCat=?, toxicDog=?, preferredLight=?, latinName=? WHERE plantTypeID=?";
 
       const values = [
         newPlantType.commonName,
