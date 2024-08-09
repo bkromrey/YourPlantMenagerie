@@ -157,7 +157,7 @@ const UpdatePlantType = () => {
                         onChange={handleInputChange}
                         defaultValue={prevPlantType.preferredLight}
                         >
-                        <option value="NULL">NULL</option>
+                        <option value=""> </option>
                         <option value="Low">Low</option>
                         <option value="Medium">Medium</option>
                         <option value="High">High</option>

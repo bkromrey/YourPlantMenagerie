@@ -45,13 +45,22 @@ const getPlantTypeByID = async (req, res) => {
 // Returns status of creation of new PlantType in PlantTypes
 const createPlantType = async (req, res) => {
   try {
-    const { commonName, latinName, toxicCat, toxicDog, preferredLight } = req.body;
+    let { commonName, latinName, toxicCat, toxicDog, preferredLight } = req.body;
     const query =
       "INSERT INTO PlantTypes (commonName, latinName, toxicCat, toxicDog, preferredLight) VALUES (?, ?, ?, ?, ?)";
 
     console.log(query);
-    // console.log('toxicCat=' + toxicCat + 'toxicDog=' + toxicDog);
-    // console.log('preferredLight =' + preferredLight);
+    console.log('commonName=' + commonName + ', latinName=' + latinName + ', toxicCat=' + toxicCat + ' toxicDog=' + toxicDog);
+
+    // let sanitizedpreferredLight ? preferredLight : NULL;
+    // if (preferredLight = ''){
+    //   const = NULL;
+    // }
+    console.log('preferredLight=' + preferredLight);
+    // if (preferredLight ===  ){
+    //   console.log('preferredLight is NULL')
+    // }
+
     const response = await db.query(query, [
       commonName,
       latinName,

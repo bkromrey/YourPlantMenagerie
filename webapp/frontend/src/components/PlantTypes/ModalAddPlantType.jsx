@@ -177,6 +177,7 @@ function AddPlantType(){
                             onChange={handleInputChange}
                         >
                             {/* <option value="">Select Light Level</option> */}
+                            <option value=''> </option>
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
                             <option value="High">High</option>
