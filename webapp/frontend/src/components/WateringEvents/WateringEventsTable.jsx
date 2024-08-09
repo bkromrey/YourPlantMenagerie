@@ -44,7 +44,7 @@ const WateringEventsTable = () => {
             <tr>
               <th>Event ID</th>
               <th>Watering Date</th>
-              <th>Plant ID</th>
+              <th>Plant</th>
               <th></th>
               <th></th>
             </tr>

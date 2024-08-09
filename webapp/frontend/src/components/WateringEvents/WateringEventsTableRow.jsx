@@ -42,7 +42,7 @@ const TableRow = ({ WateringEvent, fetchWateringEvents }) => {
     <tr key={WateringEvent.eventID}>
       <td>{WateringEvent.eventID}</td>
       <td>{WateringEvent.wateringDate.slice(0,10)}</td>
-      <td>{WateringEvent.plantID}</td>
+      <td>{WateringEvent.displayName}</td>
       <td>
         <Button onClick={handleEdit} variant="warning">Edit</Button>
       </td>

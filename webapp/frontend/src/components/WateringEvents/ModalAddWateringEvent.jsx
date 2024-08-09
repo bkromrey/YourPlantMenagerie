@@ -21,6 +21,8 @@ function AddWateringEvent(){
 
 
     // pull in the information we need to dynamically populate the dropdown menus
+    // pull directly from the Plants table, not on the WateringEvents table's 
+    // plantIDs because some plants might be absent from WateringEvents
     const [Plants, setPlants] = useState([]);
     
     const fetchPlants = async () => {
