@@ -27,3 +27,4 @@ dist-ssr
 .env
 Schema.mwb.bak
 webapp/frontend/.env
+webapp/frontend/dist-old/*
