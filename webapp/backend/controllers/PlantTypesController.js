@@ -49,6 +49,9 @@ const createPlantType = async (req, res) => {
     const query =
       "INSERT INTO PlantTypes (commonName, latinName, toxicCat, toxicDog, preferredLight) VALUES (?, ?, ?, ?, ?)";
 
+    console.log(query);
+    // console.log('toxicCat=' + toxicCat + 'toxicDog=' + toxicDog);
+    // console.log('preferredLight =' + preferredLight);
     const response = await db.query(query, [
       commonName,
       latinName,
