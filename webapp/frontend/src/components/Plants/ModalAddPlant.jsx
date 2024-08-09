@@ -1,6 +1,6 @@
 ``
 //import { AddPlant } from "../components/Plants/ModalAddPlant";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -12,9 +12,29 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-//TODO
+import PlantTypeSelectorOption from "./DropdownSelectorPlants";
 
 function AddPlant(){
+
+    // pull in the information we need to dynamically populate the dropdown menus
+    const [PlantTypes, setPlantTypes] = useState([]);
+
+    const fetchPlantTypes = async () => {
+        try {
+            const URL = import.meta.env.VITE_API_URL + "PlantTypes";
+            const response = await axios.get(URL);
+            setPlantTypes(response.data);
+        } catch (error) {
+            alert("Error fetching Plant Types from the server.");
+            console.error("Error fetching Plant Types:", error);
+        }
+        };
+    
+    useEffect(() => {
+        fetchPlantTypes();
+    }, []);
+    
+
     const [showInsertPopup, InsertPopup] = useState(false);
 
     const CloseButton = () => InsertPopup(false);
@@ -109,7 +129,6 @@ function AddPlant(){
 
         <Modal
         size="lg"
-        // aria-labelledby="contained-modal-title-vcenter"
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={showInsertPopup} onHide={CloseButton}>
@@ -173,16 +192,26 @@ function AddPlant(){
 
           <br /> 
           <Row>
-              {/* <Col> */}
-                  <Form.Label >Plant Type</Form.Label>
-                  <Form.Control
-                      type="text"
-                      name="plantTypeID"
-                      placeholder="Enter PlantType ID number"
-                      onChange={handleInputChange}
-                      
-                  />
-              {/* </Col> */}
+            <Col>
+
+            <Form.Label htmlFor="plantTypeID">Plant Type</Form.Label>
+            <Form.Select
+                name="plantTypeID"
+                onChange={handleInputChange}
+                required
+                >
+                
+                {/* use the map function to generate all of the options */}
+                {/* displays the plant's name but sets the value equal to the plant's primary key */}
+                {PlantTypes.map((PlantType) => (
+                    <PlantTypeSelectorOption key={PlantType.plantTypeID} PlantType={PlantType} fetchPlantTypes={fetchPlantTypes} />
+                ))}
+
+
+            </Form.Select>
+
+
+            </Col>
           </Row>
 
           <br /> 
