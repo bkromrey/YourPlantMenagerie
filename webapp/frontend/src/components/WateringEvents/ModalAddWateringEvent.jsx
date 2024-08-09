@@ -117,7 +117,15 @@ function AddWateringEvent(){
         console.log(value);
     };
       
-    const todayDate = new Date();
+
+    // CITATION FOR TODAY'S DATE STUFF
+    // URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+    // DATE ACCESSED: 8 AUG 2024
+    const todayDate = new Date().toLocaleDateString("en-US");;
+
+    // alert(todayDate); 
+    // 8-8-2024
+    // MMddyyyy
 
 
     return (
@@ -148,7 +156,7 @@ function AddWateringEvent(){
                             name="wateringDate"
                             onChange={handleInputChange}
                             autoFocus
-                            defaultValue={Date()} //TODO
+                            defaultValue={todayDate}
                         />
                     </Col>
                 </Row>
