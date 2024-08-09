@@ -14,7 +14,9 @@ const getWateringEvents = async (req, res) => {
   try {
     // Select all rows from the "WateringEvents" table
     // const query = "SELECT * FROM WateringEvents";
-    const query = "SELECT eventID, wateringDate, displayName AS 'plantID' FROM WateringEvents JOIN Plants ON WateringEvents.plantID = Plants.plantID;"
+    const query = "SELECT eventID, wateringDate, Plants.plantID FROM WateringEvents JOIN Plants ON WateringEvents.plantID = Plants.plantID;"
+    // const query = "SELECT eventID, wateringDate, displayName AS 'plantID' FROM WateringEvents JOIN Plants ON WateringEvents.plantID = Plants.plantID;"
+
     // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
     // Send back the rows to the client

@@ -49,6 +49,12 @@ const UpdateWateringEvent = () => {
     plantID:                prevWateringEvent.plantID || '',
   });
 
+  // alert(prevWateringEvent.wateringDate);
+  // 2022-09-09T07:00:00.000Z
+
+  // alert(prevWateringEvent.plantID);
+  // test plant 5
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
@@ -96,6 +102,7 @@ const UpdateWateringEvent = () => {
   };
 
   return (
+    
     <div>
       <h2>Update Watering Event</h2>
       <br />
