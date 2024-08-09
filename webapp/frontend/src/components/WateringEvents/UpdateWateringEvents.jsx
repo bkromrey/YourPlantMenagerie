@@ -109,14 +109,11 @@ const UpdateWateringEvent = () => {
       <h2>Update Watering Event</h2>
       <br />
 
-
-
       <Form onSubmit={handleSubmit}>
 
-      
-          <Row>
-              <Col>
-                  <Form.Label >Date Watered</Form.Label>
+          <Row >
+              <Col xs={5}>
+                  <Form.Label >Date</Form.Label>
                   <Form.Control
                       required
                       type="date"
@@ -126,20 +123,9 @@ const UpdateWateringEvent = () => {
                       autoFocus
                   />
               </Col>
-          </Row>
 
-          <br /> 
-          <Row>
-              {/* <Col> */}
+              <Col >
 
-                  {/* <Form.Label >Plant ID</Form.Label>
-                  <Form.Control
-                      type="number"
-                      name="plantID"
-                      placeholder="Enter Plant ID"
-                      // defaultValue={prevWateringEvent.plantID}
-                      onChange={handleInputChange}
-                  /> */}
 
                   <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
                     <Form.Select
@@ -159,7 +145,7 @@ const UpdateWateringEvent = () => {
 
 
 
-              {/* </Col> */}
+              </Col>
           </Row>
           <br />
           <Container >

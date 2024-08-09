@@ -164,6 +164,7 @@ function AddFertilizingEvent(){
                         
                         {/* use the map function to generate all of the options */}
                         {/* displays the plant's name but sets the value equal to the plant's primary key */}
+                        <option></option>
                         {Plants.map((Plant) => (
                             <PlantSelectorOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
                         ))}

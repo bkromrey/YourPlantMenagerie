@@ -150,7 +150,7 @@ function AddWateringEvent(){
 
             <Container >
                 <Row>
-                    <Col>
+                    <Col xs={3}>
                         <Form.Label htmlFor="wateringDate" >Watering Date</Form.Label>
                         <Form.Control
                             required
@@ -161,10 +161,7 @@ function AddWateringEvent(){
                             defaultValue={todayDate}
                         />
                     </Col>
-                </Row>
 
-                <br /> 
-                <Row>
                     <Col>
 
                     <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
@@ -173,7 +170,8 @@ function AddWateringEvent(){
                         onChange={handleInputChange}
                         required
                         >
-                        
+                        {/* set a blank option since we need something to be selected to handleInputChange */}
+                        <option></option>
                         {/* use the map function to generate all of the options */}
                         {/* displays the plant's name but sets the value equal to the plant's primary key */}
                         {Plants.map((Plant) => (
