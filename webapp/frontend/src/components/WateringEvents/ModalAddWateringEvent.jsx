@@ -1,4 +1,9 @@
-import { useState } from "react";
+// Code in this function heavily modified based on the CS340 starter code.
+// Date Accessed: 4 August 2024
+// URL: https://github.com/osu-cs340-ecampus/react-starter-app
+
+
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -10,14 +15,37 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-//TODO
+import PlantSelectorOption from "./DropdownSelectorWateringEvents";
 
 function AddWateringEvent(){
+
+
+    // pull in the information we need to dynamically populate the dropdown menus
+    const [Plants, setPlants] = useState([]);
+    
+    const fetchPlants = async () => {
+        try {
+          const URL = import.meta.env.VITE_API_URL + "Plants";
+          const response = await axios.get(URL);
+          setPlants(response.data);
+        } catch (error) {
+          alert("Error fetching Plants from the server.");
+          console.error("Error fetching Plants:", error);
+        }
+      };
+    
+    useEffect(() => {
+        fetchPlants();
+    }, []);
+
+
+
+
+    // stuff to hide/show the add modal popup
     const [showInsertPopup, InsertPopup] = useState(false);
 
     const CloseButton = () => InsertPopup(false);
     const SaveButton = () => handleSubmit();
-        // InsertPopup(false);
     
     const navigate = useNavigate();
       
@@ -26,8 +54,10 @@ function AddWateringEvent(){
         plantID: "",
     });
         
+
+    // code to handle what happens when you click "save" on the popup window
     const handleSubmit = async (e) => {
-        // close the popup window
+
         InsertPopup(false);
 
         // TODO remove completely, this doesn't play nice with bootstrap stuff 
@@ -39,9 +69,6 @@ function AddWateringEvent(){
         wateringDate: formData.wateringDate,
         plantID: formData.plantID,
         };
-
-        // TESTING - use this to ensure data is saved by form
-        // alert(newWateringEvent.soilType + ', ' + newWateringEvent.soilDescription); 
 
         try {
         const URL = import.meta.env.VITE_API_URL + "WateringEvents";
@@ -58,10 +85,9 @@ function AddWateringEvent(){
         alert("Error creating WateringEvent");
         console.error("Error creating WateringEvent:", error);
         }
-        // Reset the form fields
-        resetFormFields();
 
-        // TODO - i don't like how it forces the entire page to reload, i just want to reload the component
+        // after saving the data, reset the form fields for the next time its used
+        resetFormFields();
         
 
         // Citation for this line of code
@@ -91,6 +117,8 @@ function AddWateringEvent(){
         console.log(value);
     };
       
+    const todayDate = new Date();
+
 
     return (
 
@@ -99,7 +127,6 @@ function AddWateringEvent(){
 
         <Modal
         size="lg"
-        // aria-labelledby="contained-modal-title-vcenter"
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={showInsertPopup} onHide={CloseButton}>
@@ -121,6 +148,7 @@ function AddWateringEvent(){
                             name="wateringDate"
                             onChange={handleInputChange}
                             autoFocus
+                            defaultValue={Date()} //TODO
                         />
                     </Col>
                 </Row>
@@ -128,13 +156,24 @@ function AddWateringEvent(){
                 <br /> 
                 <Row>
                     <Col>
-                        <Form.Label htmlFor="plantID">Plant ID</Form.Label>
-                        <Form.Control
-                            type="number"
-                            name="plantID"
-                            onChange={handleInputChange}
-                            required
-                        />
+
+                    <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
+                    <Form.Select
+                        name="plantID"
+                        onChange={handleInputChange}
+                        required
+                        >
+                        
+                        {/* use the map function to generate all of the options */}
+                        {/* displays the plant's name but sets the value equal to the plant's primary key */}
+                        {Plants.map((Plant) => (
+                            <PlantSelectorOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
+                        ))}
+
+
+                  </Form.Select>
+
+
                     </Col>
                 </Row>
 
