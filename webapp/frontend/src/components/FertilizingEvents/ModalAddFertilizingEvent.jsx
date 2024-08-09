@@ -1,6 +1,6 @@
 
 //import { AddFertilizingEvent } from "../components/FertilizingEvents/ModalAddFertilizingEvent";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -12,14 +12,36 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-//TODO
+import PlantSelectorOption from "./DropdownSelectorFertilizingEvents.jsx";
 
 function AddFertilizingEvent(){
+
+
+    // pull in the information we need to dynamically populate the dropdown menus
+    const [Plants, setPlants] = useState([]);
+
+    const fetchPlants = async () => {
+        try {
+          const URL = import.meta.env.VITE_API_URL + "Plants";
+          const response = await axios.get(URL);
+          setPlants(response.data);
+        } catch (error) {
+          alert("Error fetching Plants from the server.");
+          console.error("Error fetching Plants:", error);
+        }
+      };
+    
+    useEffect(() => {
+        fetchPlants();
+    }, []);
+
+
+
+
     const [showInsertPopup, InsertPopup] = useState(false);
 
     const CloseButton = () => InsertPopup(false);
     const SaveButton = () => handleSubmit();
-        // InsertPopup(false);
     
     const navigate = useNavigate();
       
@@ -41,9 +63,6 @@ function AddFertilizingEvent(){
         fertilizingDate: formData.fertilizingDate,
         plantID: formData.plantID,
         };
-
-        // TESTING - use this to ensure data is saved by form
-        // alert(newFertilizingEvent.FertilizingEvent + ', ' + newFertilizingEvent.soilDescription); 
 
         try {
         const URL = import.meta.env.VITE_API_URL + "FertilizingEvents";
@@ -92,6 +111,12 @@ function AddFertilizingEvent(){
         console.log(name);
         console.log(value);
     };
+
+    // CITATION FOR TODAY'S DATE STUFF
+    // URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+    // DATE ACCESSED: 8 AUG 2024
+    const todayDate = new Date().toLocaleDateString("en-US");;
+
       
     return (
 
@@ -100,7 +125,6 @@ function AddFertilizingEvent(){
 
         <Modal
         size="lg"
-        // aria-labelledby="contained-modal-title-vcenter"
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={showInsertPopup} onHide={CloseButton}>
@@ -110,7 +134,7 @@ function AddFertilizingEvent(){
           </Modal.Header>
   
         <Modal.Body>
-            <Form onSubmit={handleSubmit}>
+            <Form id="addPlant" onSubmit={handleSubmit}>
 
             <Container >
                 <Row>
@@ -122,6 +146,7 @@ function AddFertilizingEvent(){
                             name="fertilizingDate"
                             onChange={handleInputChange}
                             autoFocus
+                            defaultValue={todayDate}
 
                         />
                     </Col>
@@ -131,13 +156,20 @@ function AddFertilizingEvent(){
                 <Row>
                     <Col>
                         <Form.Label htmlFor="plantID">Plant ID</Form.Label>
-                        <Form.Control
-                            type="number"
+                        <Form.Select
                             name="plantID"
-                            value={formData.plantID}
                             onChange={handleInputChange}
                             required
-                        />
+                        >
+                        
+                        {/* use the map function to generate all of the options */}
+                        {/* displays the plant's name but sets the value equal to the plant's primary key */}
+                        {Plants.map((Plant) => (
+                            <PlantSelectorOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
+                        ))}
+
+
+                  </Form.Select>
                     </Col>
                 </Row>
 

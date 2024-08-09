@@ -11,16 +11,16 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Toast from 'react-bootstrap/Toast';
+// import Toast from 'react-bootstrap/Toast';
 
-function SuccessToast(){
-  return(
-    <Toast>
-      <Toast.Header>Success</Toast.Header>
-      <Toast.Body>Event was deleted successfully.</Toast.Body>
-    </Toast>
-  );
-}
+// function SuccessToast(){
+//   return(
+//     <Toast>
+//       <Toast.Header>Success</Toast.Header>
+//       <Toast.Body>Event was deleted successfully.</Toast.Body>
+//     </Toast>
+//   );
+// }
 
 
 /* eslint-disable react/prop-types */
@@ -40,7 +40,7 @@ const TableRow = ({ FertilizingEvent, fetchFertilizingEvents }) => {
       const response = await axios.delete(URL);
       // Ensure that the FertilizingEvent was deleted successfully
       if (response.status === 204) {
-        <SuccessToast />  // TODO
+        // <SuccessToast />  // TODO
         alert("FertilizingEvent deleted successfully");
       }
     } catch (err) {

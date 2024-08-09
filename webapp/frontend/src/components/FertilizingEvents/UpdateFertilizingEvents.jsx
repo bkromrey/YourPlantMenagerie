@@ -2,9 +2,12 @@
 // Date Accessed: 4 August 2024
 // URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+
+import PlantSelectorOption from "./DropdownSelectorFertilizingEvents";
+
 
 // bootstrap components
 import Button from 'react-bootstrap/Button';
@@ -16,6 +19,26 @@ import Col from 'react-bootstrap/Col';
 
 
 const UpdateFertilizingEvent = () => {
+
+      // pull in the information we need to dynamically populate the dropdown menus
+      const [Plants, setPlants] = useState([]);
+    
+      const fetchPlants = async () => {
+          try {
+            const URL = import.meta.env.VITE_API_URL + "Plants";
+            const response = await axios.get(URL);
+            setPlants(response.data);
+          } catch (error) {
+            alert("Error fetching Plants from the server.");
+            console.error("Error fetching Plants:", error);
+          }
+        };
+      
+      useEffect(() => {
+          fetchPlants();
+      }, []);
+  
+
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -85,9 +108,8 @@ const UpdateFertilizingEvent = () => {
                   <Form.Control
                       required
                       type="date"
-                      // as="textarea"
                       name="fertilizingDate"
-                      // value={ moment(prevFertilizingEvent.fertilizingDate).subtract(10, 'days').calendar() }
+                      defaultValue={prevFertilizingEvent.fertilizingDate}
                       onChange={handleInputChange}
                       autoFocus
                   />
@@ -97,16 +119,19 @@ const UpdateFertilizingEvent = () => {
           <br /> 
           <Row>
               {/* <Col> */}
-                  <Form.Label >Plant ID</Form.Label>
-                  <Form.Control
-                      required
-                      type="number"
-                      name="plantID"
-                      placeholder="Enter Plant ID number"
-                      onChange={handleInputChange}
-                      
-                  />
-              {/* </Col> */}
+              <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
+                    <Form.Select
+                        name="plantID"
+                        onChange={handleInputChange}
+                        required
+                        >
+                        
+                        {/* use the map function to generate all of the options */}
+                        {/* displays the plant's name but sets the value equal to the plant's primary key */}
+                        {Plants.map((Plant) => (
+                            <PlantSelectorOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
+                        ))}
+                      </Form.Select>
           </Row>
           <br />
           <Container >
