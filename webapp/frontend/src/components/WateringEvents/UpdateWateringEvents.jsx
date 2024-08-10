@@ -50,12 +50,6 @@ const UpdateWateringEvent = () => {
     wateringDate:           prevWateringEvent.wateringDate || '' ,
     plantID:                prevWateringEvent.plantID || '',
   });
-
-  // alert(prevWateringEvent.wateringDate);
-  // 2022-09-09T07:00:00.000Z
-
-  // alert(prevWateringEvent.plantID);
-  // test plant 5
   
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -109,6 +103,14 @@ const UpdateWateringEvent = () => {
   // alert(prevWateringEvent.plantID);
   // test plant 5
 
+
+  // CITATION FOR DATE STUFF
+  // formats the already existing watering date in a way that the web UI can display nicely by slicing
+  // DATE ACCESSED: 10 AUG 2024
+  // URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today 
+  const prevDate = prevWateringEvent.wateringDate.slice(0,10);
+
+
   return (
     
     <div>
@@ -121,14 +123,12 @@ const UpdateWateringEvent = () => {
               <Col xs={5}>
                   <Form.Label >Date</Form.Label>
 
-                  {/* CITATION FOR DATE STUFF
-                      DATE ACCESSED: 10 AUG 2024
-                      URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today */}
+
                   <Form.Control
                       required
                       type="date"
                       name="wateringDate"
-                      defaultValue={prevWateringEvent.wateringDate}
+                      defaultValue={prevDate}
                       onChange={handleInputChange}
                   />
               </Col>
