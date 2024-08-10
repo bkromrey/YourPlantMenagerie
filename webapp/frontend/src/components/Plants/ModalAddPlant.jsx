@@ -142,7 +142,7 @@ function AddPlant(){
 
             <Container >
             <Row>
-              <Col>
+              <Col xs={3}>
                   <Form.Label htmlFor="displayName" >Display Name</Form.Label>
                   <Form.Control
                       required
@@ -158,7 +158,7 @@ function AddPlant(){
 
           <br /> 
           <Row>
-              {/* <Col> */}
+              <Col xs={3}>
 
                 {/* TODO: we might want to get rid of this first option or default it to a 0 or 1 instead of "" to mitigate sql issues */}
                   <Form.Label >Inside/Outside</Form.Label>
@@ -170,12 +170,12 @@ function AddPlant(){
                       <option value="1" >Inside</option>
                       <option value="0" selected>Outside</option>
                   </Form.Select>
-              {/* </Col> */}
+              </Col>
           </Row>
           <br /> 
 
           <Row>
-              {/* <Col> */}
+              <Col xs={3}>
                   <Form.Label >Current Light</Form.Label>
                   <Form.Select
                       name="currentLight"
@@ -187,7 +187,7 @@ function AddPlant(){
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
                 </Form.Select>
-              {/* </Col> */}
+              </Col>
           </Row>
 
           <br /> 
@@ -216,7 +216,7 @@ function AddPlant(){
 
           <br /> 
           <Row>
-              {/* <Col> */}
+              <Col xs={3}>
                   <Form.Label >Water Interval (Days)</Form.Label>
                   <Form.Control
                       type="number"
@@ -225,12 +225,12 @@ function AddPlant(){
                       defaultValue={7}
                       
                   />
-              {/* </Col> */}
+              </Col>
           </Row>
 
           <br /> 
           <Row>
-              {/* <Col> */}
+              <Col xs={3}>
                   <Form.Label >Fertilizer Interval (Days)</Form.Label>
                   <Form.Control
                       type="number"
@@ -239,12 +239,12 @@ function AddPlant(){
                       defaultValue={14}
                       
                   />
-              {/* </Col> */}
+              </Col>
           </Row>
 
           <br /> 
           <Row>
-              {/* <Col> */}
+              <Col xs={3}>
                   <Form.Label >Planted Date</Form.Label>
                   <Form.Control
                       type="date"
@@ -252,7 +252,7 @@ function AddPlant(){
                       onChange={handleInputChange}
                       
                   />
-              {/* </Col> */}
+              </Col>
           </Row>
 
 

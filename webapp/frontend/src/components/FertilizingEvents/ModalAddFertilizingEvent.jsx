@@ -138,7 +138,7 @@ function AddFertilizingEvent(){
 
             <Container >
                 <Row>
-                    <Col>
+                    <Col xs={3}>
                         <Form.Label htmlFor="fertilizingDate" >Fertilizing Date</Form.Label>
                         <Form.Control
                             required
@@ -150,10 +150,8 @@ function AddFertilizingEvent(){
 
                         />
                     </Col>
-                </Row>
 
                 <br /> 
-                <Row>
                     <Col>
                         <Form.Label htmlFor="plantID">Plant ID</Form.Label>
                         <Form.Select

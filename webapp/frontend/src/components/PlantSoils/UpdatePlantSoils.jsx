@@ -126,6 +126,8 @@ const UpdatePlantSoil = () => {
 
           <Row>
 
+            <Col>
+
             <Form.Label htmlFor="plantID">Plant</Form.Label>
             <Form.Select
                 name="plantID"
@@ -141,11 +143,9 @@ const UpdatePlantSoil = () => {
 
             </Form.Select>
 
-              {/* </Col> */}
-          </Row>
+              </Col>
 
           <br /> 
-          <Row>
             <Col>
 
             <Form.Label htmlFor="soilID">Soil Type</Form.Label>

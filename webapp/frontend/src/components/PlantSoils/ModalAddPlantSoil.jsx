@@ -183,10 +183,8 @@ function AddPlantSoil(){
 
                   </Form.Select>
                     </Col>
-                </Row>
 
                 <br /> 
-                <Row>
                     <Col>
                     <Form.Label htmlFor="soilID">Soil Type</Form.Label>
                     <Form.Select
