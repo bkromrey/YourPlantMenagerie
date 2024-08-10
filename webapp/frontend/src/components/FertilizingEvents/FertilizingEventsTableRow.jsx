@@ -54,7 +54,7 @@ const TableRow = ({ FertilizingEvent, fetchFertilizingEvents }) => {
     <tr key={FertilizingEvent.eventID}>
       <td>{FertilizingEvent.eventID}</td>
       <td>{FertilizingEvent.fertilizingDate.slice(0,10)}</td>
-      <td>{FertilizingEvent.plantID}</td>
+      <td>{FertilizingEvent.displayName}</td>
       <td>
         <Button onClick={handleEdit} variant="warning">Edit</Button>
       </td>

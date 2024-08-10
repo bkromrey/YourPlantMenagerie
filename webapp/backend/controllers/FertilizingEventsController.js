@@ -13,7 +13,7 @@ const lodash = require("lodash");
 const getFertilizingEvents = async (req, res) => {
   try {
     // Select all rows from the "FertilizingEvents" table
-    const query = "SELECT eventID, fertilizingDate, displayName AS 'plantID' FROM FertilizingEvents JOIN Plants ON FertilizingEvents.plantID = Plants.plantID;"
+    const query = "SELECT eventID, fertilizingDate, Plants.plantID, Plants.displayName FROM FertilizingEvents JOIN Plants ON FertilizingEvents.plantID = Plants.plantID;"
     // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
     // Send back the rows to the client

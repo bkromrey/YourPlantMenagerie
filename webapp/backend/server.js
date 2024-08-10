@@ -24,6 +24,7 @@ app.use("/api/WateringEvents", require("./routes/WateringEventsRoutes.js"));
 app.use("/api/FertilizingEvents", require("./routes/FertilizingEventsRoutes.js"));
 app.use("/api/plantTypes", require("./routes/PlantTypesRoutes.js"));
 app.use("/api/Plants", require("./routes/PlantsRoutes.js"));
+app.use("/api/PlantSoils", require("./routes/PlantSoilsRoutes.js"));
 
 
 

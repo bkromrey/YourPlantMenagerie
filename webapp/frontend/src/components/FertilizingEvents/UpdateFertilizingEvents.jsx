@@ -103,8 +103,8 @@ const UpdateFertilizingEvent = () => {
       <Form onSubmit={handleSubmit}>
       
           <Row>
-              <Col>
-                  <Form.Label >Date Fertilized</Form.Label>
+              <Col xs={5}>
+                  <Form.Label >Date </Form.Label>
                   <Form.Control
                       required
                       type="date"
@@ -113,12 +113,9 @@ const UpdateFertilizingEvent = () => {
                       onChange={handleInputChange}
                       autoFocus
                   />
-              </Col>
-          </Row>
+          </Col>
 
-          <br /> 
-          <Row>
-              {/* <Col> */}
+          <Col>
               <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
                     <Form.Select
                         name="plantID"
@@ -132,6 +129,7 @@ const UpdateFertilizingEvent = () => {
                             <PlantSelectorOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
                         ))}
                       </Form.Select>
+            </Col>
           </Row>
           <br />
           <Container >

@@ -36,7 +36,7 @@ function App() {
           <Route path="/soilTypes/*" element={<SoilTypesPage />} />  
           <Route path="/wateringEvents/*" element={<WateringEventsPage />} />
           <Route path="/fertilizingEvents/*" element={<FertilizingEventsPage />} />
-          <Route path="/plantSoils" element={<PlantSoilsPage />} />
+          <Route path="/plantSoils/*" element={<PlantSoilsPage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>   
       </section>
