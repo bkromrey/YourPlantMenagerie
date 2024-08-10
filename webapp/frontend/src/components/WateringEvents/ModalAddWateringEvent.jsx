@@ -59,6 +59,7 @@ function AddWateringEvent(){
     
     // CITATION FOR DATE STUFF
     // DATE ACCESSED: 10 AUG 2024
+    // used the following site to get some ideas on how to set the date correctly to today's date
     // URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today
     const todayDate = new Date().toISOString().slice(0,10);
     
