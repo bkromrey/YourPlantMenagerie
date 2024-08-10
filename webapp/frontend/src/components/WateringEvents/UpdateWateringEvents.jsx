@@ -105,7 +105,8 @@ const UpdateWateringEvent = () => {
 
 
   // CITATION FOR DATE STUFF
-  // formats the already existing watering date in a way that the web UI can display nicely by slicing
+  // used the following stackoverflow post to aid in figuring out how to format
+  // the already existing watering date in a way that the web UI can display nicely by slicing
   // DATE ACCESSED: 10 AUG 2024
   // URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today 
   const prevDate = prevWateringEvent.wateringDate.slice(0,10);
