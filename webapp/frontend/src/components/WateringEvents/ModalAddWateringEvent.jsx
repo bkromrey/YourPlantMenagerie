@@ -2,6 +2,10 @@
 // Date Accessed: 4 August 2024
 // URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
+// Code for the modal also modifies the example code on the react-bootstrap documentation.
+// Date Accessed: 4 August 2024
+// URL: https://react-bootstrap.netlify.app/docs/components/modal
+
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -123,11 +127,14 @@ function AddWateringEvent(){
     // CITATION FOR TODAY'S DATE STUFF
     // URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
     // DATE ACCESSED: 8 AUG 2024
-    const todayDate = new Date().toLocaleDateString("en-US");;
+    // const todayDate = new Date().toLocaleDateString("en-US");
+    // todayDate = 8-8-2024
 
-    // alert(todayDate); 
-    // 8-8-2024
-    // MMddyyyy
+    // CITATION FOR DATE STUFF
+    // DATE ACCESSED: 10 AUG 2024
+    // URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today
+    const todayDate = new Date().toISOString().slice(0,10);
+    // todayDate = 2024-08-10
 
 
     return (
@@ -157,7 +164,6 @@ function AddWateringEvent(){
                             type="date"
                             name="wateringDate"
                             onChange={handleInputChange}
-                            autoFocus
                             defaultValue={todayDate}
                         />
                     </Col>
@@ -169,6 +175,7 @@ function AddWateringEvent(){
                         name="plantID"
                         onChange={handleInputChange}
                         required
+                        autoFocus
                         >
                         {/* set a blank option since we need something to be selected to handleInputChange */}
                         <option></option>

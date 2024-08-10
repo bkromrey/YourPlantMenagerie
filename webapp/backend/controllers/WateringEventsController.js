@@ -12,13 +12,12 @@ const lodash = require("lodash");
 // Returns all rows of events in WateringEvents
 const getWateringEvents = async (req, res) => {
   try {
-    // Select all rows from the "WateringEvents" table
-    // const query = "SELECT * FROM WateringEvents";
+    // Select all rows from the "WateringEvents" table, and also pull in the displayName from Plants to improve readability on the webapp
     const query = "SELECT eventID, wateringDate, Plants.plantID, Plants.displayName FROM WateringEvents JOIN Plants ON WateringEvents.plantID = Plants.plantID;"
-    // const query = "SELECT eventID, wateringDate, displayName AS 'plantID' FROM WateringEvents JOIN Plants ON WateringEvents.plantID = Plants.plantID;"
 
     // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
+    
     // Send back the rows to the client
     res.status(200).json(rows);
   } catch (error) {

@@ -103,6 +103,12 @@ const UpdateWateringEvent = () => {
     }
   };
 
+  // alert(prevWateringEvent.wateringDate);
+  // 2022-09-09T07:00:00.000Z
+
+  // alert(prevWateringEvent.plantID);
+  // test plant 5
+
   return (
     
     <div>
@@ -114,26 +120,28 @@ const UpdateWateringEvent = () => {
           <Row >
               <Col xs={5}>
                   <Form.Label >Date</Form.Label>
+
+                  {/* CITATION FOR DATE STUFF
+                      DATE ACCESSED: 10 AUG 2024
+                      URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today */}
                   <Form.Control
                       required
                       type="date"
                       name="wateringDate"
                       defaultValue={prevWateringEvent.wateringDate}
                       onChange={handleInputChange}
-                      autoFocus
                   />
               </Col>
 
               <Col >
-
-
                   <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
                     <Form.Select
                         name="plantID"
                         onChange={handleInputChange}
                         required
+                        defaultValue={prevWateringEvent.displayName}
+                        autoFocus
                         >
-                        
                         {/* use the map function to generate all of the options */}
                         {/* displays the plant's name but sets the value equal to the plant's primary key */}
                         {Plants.map((Plant) => (
