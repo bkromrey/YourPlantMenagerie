@@ -5,12 +5,19 @@
 
 
 /* eslint-disable react/prop-types */
-const PlantSelectorOption = ({ Plant }) => {
+export const PlantSelectorOption = ({ Plant }) => {
 
   return (
     // displays the plant's name but sets the value equal to the plant's primary key
     <option value={Plant.plantID}>{Plant.displayName}</option>
+    
+  );
+},
+
+PlantSelectorDefaultOption = ({ Plant }) => {
+
+  return (
+    // displays the plant's name but sets the value equal to the plant's primary key
+    <option selected value={Plant.plantID}>{Plant.displayName}</option>
   );
 };
-
-export default PlantSelectorOption;

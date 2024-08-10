@@ -15,14 +15,17 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import PlantSelectorOption from "./PlantsDropdownSelectorPlantSoils";
-import SoilTypeSelectorOption from "./SoilDropdownSelectorPlantSoils"
+import {PlantSelectorOption, PlantSelectorDefaultOption} from "./PlantsDropdownSelectorPlantSoils";
+
+import {SoilSelectorOption, SoilSelectorDefaultOption} from "./SoilDropdownSelectorPlantSoils"
 
 
 function AddPlantSoil(){
 
 
     // pull in the information we need to dynamically populate the dropdown menus
+    // pull directly from the Plants table, not on the WateringEvents table's 
+    // plantIDs because some plants might be absent from WateringEvents
     const [Plants, setPlants] = useState([]);
     
     const fetchPlants = async () => {
@@ -136,16 +139,6 @@ function AddPlantSoil(){
     };
       
 
-    // CITATION FOR TODAY'S DATE STUFF
-    // URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
-    // DATE ACCESSED: 8 AUG 2024
-    const todayDate = new Date().toLocaleDateString("en-US");;
-
-    // alert(todayDate); 
-    // 8-8-2024
-    // MMddyyyy
-
-
     return (
 
         <>
@@ -167,13 +160,16 @@ function AddPlantSoil(){
             <Container >
                 <Row>
                     <Col>
-                    <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
+
+                    <Form.Label htmlFor="plantID">Plant</Form.Label>
                     <Form.Select
                         name="plantID"
                         onChange={handleInputChange}
                         required
+                        autoFocus
                         >
-                        
+                        {/* set a blank option since we need something to be selected to handleInputChange */}
+                        <option></option>
                         {/* use the map function to generate all of the options */}
                         {/* displays the plant's name but sets the value equal to the plant's primary key */}
                         {Plants.map((Plant) => (
@@ -181,24 +177,34 @@ function AddPlantSoil(){
                         ))}
 
 
-                  </Form.Select>
+                    </Form.Select>
+
+
                     </Col>
+
 
                 <br /> 
                     <Col>
-                    <Form.Label htmlFor="soilID">Soil Type</Form.Label>
+
+                    <Form.Label htmlFor="soilTypeID">Soil</Form.Label>
                     <Form.Select
-                        name="soilID"
+                        name="soilTypeID"
                         onChange={handleInputChange}
                         required
+                        autoFocus
                         >
-
+                        {/* set a blank optioxa since we need something to be selected to handleInputChange */}
+                        <option></option>
                         {/* use the map function to generate all of the options */}
                         {/* displays the plant's name but sets the value equal to the plant's primary key */}
                         {SoilTypes.map((SoilType) => (
-                            <SoilTypeSelectorOption key={SoilType.soilID} SoilType={SoilType} fetchSoilTypes={fetchSoilTypes} />
+                            <SoilSelectorOption key={SoilType.soilID} SoilType={SoilType} fetchSoilTypes={fetchSoilTypes} />
                         ))}
+
+
                     </Form.Select>
+
+
                     </Col>
                 </Row>
 

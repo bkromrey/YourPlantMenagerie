@@ -162,7 +162,7 @@ const UpdateWateringEvent = () => {
           <Row >
               <Col xs={5}>
                   <Form.Label >Date</Form.Label>
-
+fprev
                   <Form.Control
                       required
                       type="date"

@@ -12,11 +12,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import PlantTypeSelectorOption from "./DropdownSelectorPlants";
+import {PlantTypeSelectorOption} from "./DropdownSelectorPlants";
 
 function AddPlant(){
 
     // pull in the information we need to dynamically populate the dropdown menus
+    // pull directly from the Plants table, not on the WateringEvents table's 
+    // plantIDs because some plants might be absent from WateringEvents
     const [PlantTypes, setPlantTypes] = useState([]);
 
     const fetchPlantTypes = async () => {
@@ -42,7 +44,14 @@ function AddPlant(){
         // InsertPopup(false);
     
     const navigate = useNavigate();
-      
+    
+
+    // CITATION FOR DATE STUFF
+    // DATE ACCESSED: 10 AUG 2024
+    // used the following site to get some ideas on how to set the date correctly to today's date
+    // URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today
+    const todayDate = new Date().toISOString().slice(0,10);
+
     const [formData, setFormData] = useState({
         displayName: "",
         isInside:"",
@@ -50,8 +59,9 @@ function AddPlant(){
         plantTypeID:"",
         waterInterval:"",
         fertilizerInterval:"",
-        plantedDate:"",
+        plantedDate:todayDate,
     });
+
         
     const handleSubmit = async (e) => {
         // close the popup window
@@ -121,6 +131,15 @@ function AddPlant(){
         console.log(name);
         console.log(value);
     };
+
+    // CITATION FOR TODAY'S DATE STUFF
+    // URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+    // DATE ACCESSED: 8 AUG 2024
+    // const todayDate = new Date().toLocaleDateString("en-US");
+    // todayDate = 8-8-2024
+
+    // alert("todayDate:" +todayDate + "plantID:" + formData.plantID + " date:" + formData.wateringDate);
+
       
     return (
 
@@ -192,26 +211,29 @@ function AddPlant(){
 
           <br /> 
           <Row>
-            <Col>
+                <Col>
 
-            <Form.Label htmlFor="plantTypeID">Plant Type</Form.Label>
-            <Form.Select
-                name="plantTypeID"
-                onChange={handleInputChange}
-                required
-                >
-                
-                {/* use the map function to generate all of the options */}
-                {/* displays the plant's name but sets the value equal to the plant's primary key */}
-                {PlantTypes.map((PlantType) => (
-                    <PlantTypeSelectorOption key={PlantType.plantTypeID} PlantType={PlantType} fetchPlantTypes={fetchPlantTypes} />
-                ))}
+                <Form.Label htmlFor="plantTypeID">Plant Type</Form.Label>
+                <Form.Select
+                    name="plantTypeID"
+                    onChange={handleInputChange}
+                    required
+                    autoFocus
+                    >
+                    {/* set a blank option since we need something to be selected to handleInputChange */}
+                    <option></option>
+                    {/* use the map function to generate all of the options */}
+                    {/* displays the plant's name but sets the value equal to the plant's primary key */}
+                    {PlantTypes.map((PlantType) => (
+                        <PlantTypeSelectorOption key={PlantType.plantTypeID} PlantType={PlantType} fetchPlantTypes={fetchPlantTypes} />
+                    ))}
 
 
-            </Form.Select>
+                </Form.Select>
 
 
-            </Col>
+                </Col>
+
           </Row>
 
           <br /> 
@@ -250,6 +272,7 @@ function AddPlant(){
                       type="date"
                       name="plantedDate"
                       onChange={handleInputChange}
+                      defaultValue={formData.plantedDate}
                       
                   />
               </Col>

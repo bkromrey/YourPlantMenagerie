@@ -5,13 +5,21 @@
 
 
 /* eslint-disable react/prop-types */
-const SoilTypeSelectorOption = ({ SoilType }) => {
+export const SoilSelectorOption = ({ SoilType }) => {
 
-    return (
-      // displays the plant's name but sets the value equal to the plant's primary key
-      <option value={SoilType.soilID}>{SoilType.soilType}</option>
-    );
-  };
-  
-  export default SoilTypeSelectorOption;
-  
+  return (
+    // displays the Soil's name but sets the value equal to the Soil's primary key
+    <option value={SoilType.soilID}>{SoilType.soilType}</option>
+    
+  );
+},
+
+SoilSelectorDefaultOption = ({ SoilType }) => {
+
+  return (
+    // displays the Soil's name but sets the value equal to the Soil's primary key
+    <option selected value={SoilType.soilID}>{SoilType.soilType}</option>
+  );
+};
+
+

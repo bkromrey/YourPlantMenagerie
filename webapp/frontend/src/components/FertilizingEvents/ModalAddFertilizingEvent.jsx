@@ -1,5 +1,12 @@
+// Code in this function heavily modified based on the CS340 starter code.
+// Date Accessed: 4 August 2024
+// URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
-//import { AddFertilizingEvent } from "../components/FertilizingEvents/ModalAddFertilizingEvent";
+// Code for the modal also modifies the example code on the react-bootstrap documentation.
+// Date Accessed: 4 August 2024
+// URL: https://react-bootstrap.netlify.app/docs/components/modal
+
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,14 +19,18 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import PlantSelectorOption from "./DropdownSelectorFertilizingEvents.jsx";
+// import PlantSelectorOption from "./DropdownSelectorFertilizingEvents";
+import { PlantSelectorOption } from "./DropdownSelectorFertilizingEvents";
+import { PlantSelectorDefaultOption } from "./DropdownSelectorFertilizingEvents";
 
 function AddFertilizingEvent(){
 
 
     // pull in the information we need to dynamically populate the dropdown menus
+    // pull directly from the Plants table, not on the FertilizingEvents table's 
+    // plantIDs because some plants might be absent from FertilizingEvents
     const [Plants, setPlants] = useState([]);
-
+    
     const fetchPlants = async () => {
         try {
           const URL = import.meta.env.VITE_API_URL + "Plants";
@@ -38,6 +49,7 @@ function AddFertilizingEvent(){
 
 
 
+    // stuff to hide/show the add modal popup
     const [showInsertPopup, InsertPopup] = useState(false);
 
     const CloseButton = () => InsertPopup(false);
@@ -45,20 +57,30 @@ function AddFertilizingEvent(){
     
     const navigate = useNavigate();
       
+
+    
+    // CITATION FOR DATE STUFF
+    // DATE ACCESSED: 10 AUG 2024
+    // used the following site to get some ideas on how to set the date correctly to today's date
+    // URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today
+    const todayDate = new Date().toISOString().slice(0,10);
+    
     const [formData, setFormData] = useState({
-        fertilizingDate: "",
+        fertilizingDate: todayDate,
         plantID: "",
     });
         
+
+    // code to handle what happens when you click "save" on the popup window
     const handleSubmit = async (e) => {
-        // close the popup window
+
         InsertPopup(false);
 
         // TODO remove completely, this doesn't play nice with bootstrap stuff 
         // Prevent page reload
         // e.preventDefault();  
 
-        // Create a new FertilizingEvent object from the formData
+        // Create a new SoilType object from the formData
         const newFertilizingEvent = {
         fertilizingDate: formData.fertilizingDate,
         plantID: formData.plantID,
@@ -76,13 +98,12 @@ function AddFertilizingEvent(){
             alert("Error creating FertilizingEvent");
         }
         } catch (error) {
-        alert("Error creating FertilizingEvents");
-        console.error("Error creating FertilizingEvents:", error);
+        alert("Error creating FertilizingEvent");
+        console.error("Error creating FertilizingEvent:", error);
         }
-        // Reset the form fields
-        resetFormFields();
 
-        // TODO - i don't like how it forces the entire page to reload, i just want to reload the component
+        // after saving the data, reset the form fields for the next time its used
+        resetFormFields();
         
 
         // Citation for this line of code
@@ -93,7 +114,7 @@ function AddFertilizingEvent(){
         
 
     };
-      
+    
     const resetFormFields = () => {
         setFormData({
         fertilizingDate: "",
@@ -111,13 +132,17 @@ function AddFertilizingEvent(){
         console.log(name);
         console.log(value);
     };
+      
 
     // CITATION FOR TODAY'S DATE STUFF
     // URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
     // DATE ACCESSED: 8 AUG 2024
-    const todayDate = new Date().toLocaleDateString("en-US");;
+    // const todayDate = new Date().toLocaleDateString("en-US");
+    // todayDate = 8-8-2024
 
-      
+    // alert("todayDate:" +todayDate + "plantID:" + formData.plantID + " date:" + formData.fertilizingDate);
+
+
     return (
 
         <>
@@ -145,30 +170,31 @@ function AddFertilizingEvent(){
                             type="date"
                             name="fertilizingDate"
                             onChange={handleInputChange}
-                            autoFocus
-                            defaultValue={todayDate}
-
+                            defaultValue={formData.fertilizingDate}
                         />
                     </Col>
 
-                <br /> 
                     <Col>
-                        <Form.Label htmlFor="plantID">Plant ID</Form.Label>
-                        <Form.Select
-                            name="plantID"
-                            onChange={handleInputChange}
-                            required
+
+                    <Form.Label htmlFor="plantID">Plant Being Fertilized</Form.Label>
+                    <Form.Select
+                        name="plantID"
+                        onChange={handleInputChange}
+                        required
+                        autoFocus
                         >
-                        
+                        {/* set a blank option since we need something to be selected to handleInputChange */}
+                        <option></option>
                         {/* use the map function to generate all of the options */}
                         {/* displays the plant's name but sets the value equal to the plant's primary key */}
-                        <option></option>
                         {Plants.map((Plant) => (
                             <PlantSelectorOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
                         ))}
 
 
                   </Form.Select>
+
+
                     </Col>
                 </Row>
 

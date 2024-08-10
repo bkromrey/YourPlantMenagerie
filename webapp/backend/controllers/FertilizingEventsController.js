@@ -12,10 +12,12 @@ const lodash = require("lodash");
 // Returns all rows of events in FertilizingEvents
 const getFertilizingEvents = async (req, res) => {
   try {
-    // Select all rows from the "FertilizingEvents" table
+    // Select all rows from the "FertilizingEvents" table, and also pull in the displayName from Plants to improve readability on the webapp
     const query = "SELECT eventID, fertilizingDate, Plants.plantID, Plants.displayName FROM FertilizingEvents JOIN Plants ON FertilizingEvents.plantID = Plants.plantID;"
+
     // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
+    
     // Send back the rows to the client
     res.status(200).json(rows);
   } catch (error) {
@@ -50,8 +52,8 @@ const createFertilizingEvent = async (req, res) => {
       "INSERT INTO FertilizingEvents (fertilizingDate, plantID) VALUES (?, ?)";
 
     const response = await db.query(query, [
-        fertilizingDate,
-        plantID,
+      fertilizingDate,
+      plantID,
     ]);
     res.status(201).json(response);
   } catch (error) {

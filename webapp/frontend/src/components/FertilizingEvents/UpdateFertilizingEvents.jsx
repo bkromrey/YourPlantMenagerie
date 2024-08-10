@@ -6,12 +6,11 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-import PlantSelectorOption from "./DropdownSelectorFertilizingEvents";
+import { PlantSelectorOption, PlantSelectorDefaultOption } from "./DropdownSelectorFertilizingEvents";
 
 
 // bootstrap components
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -44,8 +43,14 @@ const UpdateFertilizingEvent = () => {
   const location = useLocation();
   const prevFertilizingEvent = location.state.FertilizingEvent;
 
+  // CITATION FOR DATE STUFF
+  // used the following stackoverflow post to aid in figuring out how to format
+  // the already existing watering date in a way that the web UI can display nicely by slicing
+  // DATE ACCESSED: 10 AUG 2024
+  // URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today 
+
   const [formData, setFormData] = useState({
-    fertilizingDate:  prevFertilizingEvent.fertilizingDate || '' ,
+    fertilizingDate:  prevFertilizingEvent.fertilizingDate.slice(0,10) || '' ,
     plantID:          prevFertilizingEvent.plantID || '',
   });
 
@@ -95,6 +100,51 @@ const UpdateFertilizingEvent = () => {
     }
   };
 
+    // CITATION FOR FOLLOWING FUNCTION
+    // adapted based on some code from the following stackoverflow. this allows the dropdown to always 
+    // default to match the entry of whatever corresponding edit button was clicked  
+    // DATE ACCESSED: 10 AUG 2024
+    // URL: https://stackoverflow.com/questions/9206914/how-to-filter-multidimensional-javascript-array
+
+    function nonDefaults(Plants, IDToMatch){
+      let dontSelectMe = [];
+      let SelectDefault = [];
+  
+      for (var i = 0; i < Plants.length ; i++){
+        let temp = Plants[i];
+
+        // test that the entire Plant object is present
+        // console.log('temp: ' + JSON.stringify(temp));
+
+        
+        // CITATION URL
+        // this post helped figure out how to pull the primary key out from the double array
+        // DATE ACCESSED: 10 AUG 2024
+        // URL: https://stackoverflow.com/questions/56844536/how-to-get-javascript-objects-value-with-key
+        let plantKey = temp["plantID"];
+
+        // current item matches that which edit was clicked on, so it should be made the default option on the form
+        if (plantKey === IDToMatch){
+          SelectDefault.push(temp);
+        } else {
+          dontSelectMe.push(temp);
+        }
+          
+      }
+      // console.log('match is: ' + JSON.stringify(SelectDefault));
+      // console.log('non-matches are: ' + JSON.stringify(dontSelectMe));
+      return [SelectDefault, dontSelectMe];
+    }
+
+    const processDropdowns = nonDefaults(Plants, prevFertilizingEvent.plantID);
+    const selectorDefault = processDropdowns[0];
+    const selectorNonDefaults = processDropdowns[1];
+
+
+
+
+
+
   return (
     <div>
       <h2>Update Fertilizing Event</h2>
@@ -109,26 +159,42 @@ const UpdateFertilizingEvent = () => {
                       required
                       type="date"
                       name="fertilizingDate"
-                      defaultValue={prevFertilizingEvent.fertilizingDate}
+                      defaultValue={formData.fertilizingDate}
                       onChange={handleInputChange}
-                      autoFocus
                   />
           </Col>
 
           <Col>
-              <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
-                    <Form.Select
-                        name="plantID"
-                        onChange={handleInputChange}
-                        required
-                        >
-                        
-                        {/* use the map function to generate all of the options */}
-                        {/* displays the plant's name but sets the value equal to the plant's primary key */}
-                        {Plants.map((Plant) => (
-                            <PlantSelectorOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
-                        ))}
-                      </Form.Select>
+                <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
+
+                <Form.Select
+                    name="plantID"
+                    onChange={handleInputChange}
+                    required
+                    // defaultValue={formData.plantID}
+                    autoFocus
+                    >
+                    {/* use the map function to generate all of the options */}
+                    {/* displays the plant's name but sets the value equal to the plant's primary key */}
+
+                    {/* default to displaying the plant that is involved in the edit */}
+                    {selectorDefault.map((Plant) => (
+                        <PlantSelectorDefaultOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
+                    ))}
+                    
+                    {/* then display all other options */}
+                    {selectorNonDefaults.map((Plant) => (
+                        <PlantSelectorOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
+                    ))}
+
+                    
+                    {/* {Plants.map((Plant) => (
+                        <PlantSelectorOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
+                    ))} */}
+
+
+                </Form.Select>
+
             </Col>
           </Row>
           <br />

@@ -5,13 +5,21 @@
 
 
 /* eslint-disable react/prop-types */
-const PlantTypeSelectorOption = ({ PlantType }) => {
+export const PlantTypeSelectorOption = ({ PlantType }) => {
 
-    return (
-      // displays the plant's name but sets the value equal to the plant's primary key
-      <option value={PlantType.plantTypeID}>{PlantType.commonName}</option>
-    );
-  };
-  
-  export default PlantTypeSelectorOption;
-  
+  return (
+    // displays the PlantType's name but sets the value equal to the PlantType's primary key
+    <option value={PlantType.plantTypeID}>{PlantType.commonName}</option>
+    
+  );
+},
+
+PlantTypeSelectorDefaultOption = ({ PlantType }) => {
+
+  return (
+    // displays the PlantType's name but sets the value equal to the PlantType's primary key
+    <option selected value={PlantType.plantTypeID}>{PlantType.commonName}</option>
+  );
+};
+
+

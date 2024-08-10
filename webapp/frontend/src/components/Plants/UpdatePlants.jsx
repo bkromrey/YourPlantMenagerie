@@ -6,20 +6,22 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
+import { PlantTypeSelectorOption, PlantTypeSelectorDefaultOption } from "./DropdownSelectorPlants";
+
 // bootstrap components
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import PlantTypeSelectorOption from "./DropdownSelectorPlants";
 
 const UpdatePlant = () => {
 
-      // pull in the information we need to dynamically populate the dropdown menus
-      const [PlantTypes, setPlantTypes] = useState([]);
+    // pull in the information we need to dynamically populate the dropdown menus.
+    // pull directly from the Plants table, not on the WateringEvents table's 
+    // plantTypeIDs because some plants might be absent from WateringEvents
+    const [PlantTypes, setPlantTypes] = useState([]);
 
       const fetchPlantTypes = async () => {
           try {
@@ -34,7 +36,8 @@ const UpdatePlant = () => {
       
       useEffect(() => {
           fetchPlantTypes();
-      }, []);
+      }, []
+    );
   
 
   const { id } = useParams();
@@ -49,7 +52,7 @@ const UpdatePlant = () => {
     plantTypeID:                prevPlant.plantTypeID || '',
     waterInterval:              prevPlant.waterInterval || '',
     fertilizerInterval:         prevPlant.fertilizerInterval || '',
-    plantedDate:                prevPlant.plantedDate || '',
+    plantedDate:                prevPlant.plantedDate.slice(0,10) || '',
   });
 
   const handleInputChange = (event) => {
@@ -104,7 +107,51 @@ const UpdatePlant = () => {
     }
   };
 
+      // CITATION FOR FOLLOWING FUNCTION
+    // adapted based on some code from the following stackoverflow. this allows the dropdown to always 
+    // default to match the entry of whatever corresponding edit button was clicked  
+    // DATE ACCESSED: 10 AUG 2024
+    // URL: https://stackoverflow.com/questions/9206914/how-to-filter-multidimensional-javascript-array
+
+    function nonDefaults(PlantTypes, IDToMatch){
+      let dontSelectMe = [];
+      let SelectDefault = [];
+  
+      for (var i = 0; i < PlantTypes.length ; i++){
+        let temp = PlantTypes[i];
+
+        // test that the entire Plant object is present
+        // console.log('temp: ' + JSON.stringify(temp));
+
+        
+        // CITATION URL
+        // this post helped figure out how to pull the primary key out from the double array
+        // DATE ACCESSED: 10 AUG 2024
+        // URL: https://stackoverflow.com/questions/56844536/how-to-get-javascript-objects-value-with-key
+        let plantTypeKey = temp["plantTypeID"];
+
+
+
+        // current item matches that which edit was clicked on, so it should be made the default option on the form
+        if (plantTypeKey === IDToMatch){
+          SelectDefault.push(temp);
+        } else {
+          dontSelectMe.push(temp);
+        }
+          
+      }
+      // console.log('match is: ' + JSON.stringify(SelectDefault));
+      // console.log('non-matches are: ' + JSON.stringify(dontSelectMe));
+      return [SelectDefault, dontSelectMe];
+    }
+
+    const processDropdowns = nonDefaults(PlantTypes, prevPlant.plantTypeID);
+    const selectorDefault = processDropdowns[0];
+    const selectorNonDefaults = processDropdowns[1];
+
+
   return (
+
     <div>
       <h2>Update Plant</h2>
       <br />
@@ -162,26 +209,36 @@ const UpdatePlant = () => {
 
           <br /> 
           <Row>
-            <Col>
+              <Col >
+                  <Form.Label htmlFor="plantTypeID">Plant Type</Form.Label>
 
-            <Form.Label htmlFor="plantTypeID">Plant Type</Form.Label>
-            <Form.Select
-                name="plantTypeID"
-                onChange={handleInputChange}
-                required
-                >
-    
-                {/* use the map function to generate all of the options */}
-                {/* displays the plant's name but sets the value equal to the plant's primary key */}
-                {PlantTypes.map((PlantType) => (
-                    <PlantTypeSelectorOption key={PlantType.plantTypeID} PlantType={PlantType} fetchPlantTypes={fetchPlantTypes} />
-                ))}
+                  <Form.Select
+                      name="plantTypeID"
+                      onChange={handleInputChange}
+                      required
+                      autoFocus
+                      >
+                      {/* use the map function to generate all of the options */}
+                      {/* displays the plant's name but sets the value equal to the plant's primary key */}
+
+                      {/* default to displaying the plant that is involved in the edit */}
+                      {selectorDefault.map((PlantType) => (
+                          <PlantTypeSelectorDefaultOption key={PlantType.plantTypeID} PlantType={PlantType} fetchPlantTypes={fetchPlantTypes} />
+                      ))}
+                      
+                      {/* then display all other options */}
+                      {selectorNonDefaults.map((PlantType) => (
+                          <PlantTypeSelectorOption key={PlantType.plantTypeID} PlantType={PlantType} fetchPlantTypes={fetchPlantTypes} />
+                      ))}
+
+                      
+                      {/* {Plants.map((Plant) => (
+                          <PlantSelectorOption key={Plant.plantTypeID} Plant={Plant} fetchPlants={fetchPlants} />
+                      ))} */}
 
 
-            </Form.Select>
-
-
-            </Col>
+                  </Form.Select>
+              </Col>
           </Row>
 
           <br /> 
@@ -214,16 +271,16 @@ const UpdatePlant = () => {
 
           <br /> 
           <Row>
-              {/* <Col> */}
-                  <Form.Label htmlFor="plantedDate">Planted Date</Form.Label>
+              <Col xs={5}>
+                  <Form.Label> Date</Form.Label>
                   <Form.Control
                       type="date"
                       name="plantedDate"
+                      defaultValue={formData.plantedDate}
                       onChange={handleInputChange}
-                      value = {prevPlant.plantedDate}
                       
                   />
-              {/* </Col> */}
+              </Col>
           </Row>
 
           <br />
