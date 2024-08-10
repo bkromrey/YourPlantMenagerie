@@ -46,10 +46,19 @@ const UpdateWateringEvent = () => {
   const location = useLocation();
   const prevWateringEvent = location.state.WateringEvent;
 
+
+  // CITATION FOR DATE STUFF
+  // used the following stackoverflow post to aid in figuring out how to format
+  // the already existing watering date in a way that the web UI can display nicely by slicing
+  // DATE ACCESSED: 10 AUG 2024
+  // URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today 
   const [formData, setFormData] = useState({
-    wateringDate:           prevWateringEvent.wateringDate || '' ,
+    wateringDate:           prevWateringEvent.wateringDate.slice(0,10) || '' ,
     plantID:                prevWateringEvent.plantID || '',
   });
+
+  // alert("wateringDate:" + formData.wateringDate + " and plantID:" + formData.plantID);
+
   
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -68,7 +77,7 @@ const UpdateWateringEvent = () => {
       alert("No changes made.");
       return false;
     }
-    return true
+    return true 
   }
 
   const handleSubmit = async (event) => {
@@ -97,12 +106,6 @@ const UpdateWateringEvent = () => {
     }
   };
 
-  // alert(prevWateringEvent.wateringDate);
-  // 2022-09-09T07:00:00.000Z
-
-  // alert(prevWateringEvent.plantID);
-  // test plant 5
-
 
   // CITATION FOR DATE STUFF
   // used the following stackoverflow post to aid in figuring out how to format
@@ -124,36 +127,31 @@ const UpdateWateringEvent = () => {
               <Col xs={5}>
                   <Form.Label >Date</Form.Label>
 
-
                   <Form.Control
                       required
                       type="date"
                       name="wateringDate"
-                      defaultValue={prevDate}
+                      defaultValue={formData.wateringDate}
                       onChange={handleInputChange}
                   />
               </Col>
 
               <Col >
                   <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
-                    <Form.Select
-                        name="plantID"
-                        onChange={handleInputChange}
-                        required
-                        defaultValue={prevWateringEvent.displayName}
-                        autoFocus
-                        >
-                        {/* use the map function to generate all of the options */}
-                        {/* displays the plant's name but sets the value equal to the plant's primary key */}
-                        {Plants.map((Plant) => (
-                            <PlantSelectorOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
-                        ))}
 
-
+                  <Form.Select
+                      name="plantID"
+                      onChange={handleInputChange}
+                      required
+                      defaultValue={formData.plantID}
+                      autoFocus
+                      >
+                      {/* use the map function to generate all of the options */}
+                      {/* displays the plant's name but sets the value equal to the plant's primary key */}
+                      {Plants.map((Plant) => (
+                          <PlantSelectorOption key={Plant.plantID} Plant={Plant} fetchPlants={fetchPlants} />
+                      ))}
                   </Form.Select>
-
-
-
               </Col>
           </Row>
           <br />

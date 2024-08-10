@@ -55,8 +55,15 @@ function AddWateringEvent(){
     
     const navigate = useNavigate();
       
+
+    
+    // CITATION FOR DATE STUFF
+    // DATE ACCESSED: 10 AUG 2024
+    // URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today
+    const todayDate = new Date().toISOString().slice(0,10);
+    
     const [formData, setFormData] = useState({
-        wateringDate: "",
+        wateringDate: todayDate,
         plantID: "",
     });
         
@@ -104,7 +111,7 @@ function AddWateringEvent(){
         
 
     };
-      
+    
     const resetFormFields = () => {
         setFormData({
         wateringDate: "",
@@ -130,11 +137,7 @@ function AddWateringEvent(){
     // const todayDate = new Date().toLocaleDateString("en-US");
     // todayDate = 8-8-2024
 
-    // CITATION FOR DATE STUFF
-    // DATE ACCESSED: 10 AUG 2024
-    // URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today
-    const todayDate = new Date().toISOString().slice(0,10);
-    // todayDate = 2024-08-10
+    // alert("todayDate:" +todayDate + "plantID:" + formData.plantID + " date:" + formData.wateringDate);
 
 
     return (
@@ -164,7 +167,7 @@ function AddWateringEvent(){
                             type="date"
                             name="wateringDate"
                             onChange={handleInputChange}
-                            defaultValue={todayDate}
+                            defaultValue={formData.wateringDate}
                         />
                     </Col>
 
