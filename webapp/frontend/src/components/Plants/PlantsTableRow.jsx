@@ -45,7 +45,7 @@ const TableRow = ({ Plant, fetchPlants }) => {
       <td>{Plant.displayName}</td>
       <td>{((Plant.isInside === 1) ? <p>Inside</p> : <p>Outside</p>)}</td> 
       <td>{Plant.currentLight}</td>
-      <td>{Plant.plantTypeID}</td>
+      <td>{Plant.commonName}</td>
       <td>{Plant.waterInterval}</td>
       <td>{Plant.fertilizerInterval}</td>
       <td>{Plant.plantedDate.slice(0,10)}</td>
