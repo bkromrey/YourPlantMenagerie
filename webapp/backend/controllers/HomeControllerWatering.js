@@ -24,6 +24,8 @@ const getPlantsDueWatering = async (req, res) => {
         Plants.plantID
       HAVING
         MAX(WateringEvents.wateringDate) IS NOT NULL
+      ORDER BY
+        NextWateringDate ASC
     `;
     const [rows] = await db.query(query, [displayName_Input]);
 
