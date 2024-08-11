@@ -1,7 +1,6 @@
 // This module adapted from the CS340 starter code.
 // Date Accessed: 1 August 2024
 // URL: https://github.com/osu-cs340-ecampus/react-starter-app
-// Authors:  Devin Daniels and Zachary Maes
 
 // Load db config
 const db = require("../database/config");
