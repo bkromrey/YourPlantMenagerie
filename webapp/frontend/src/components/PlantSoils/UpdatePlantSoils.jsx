@@ -121,7 +121,7 @@ const UpdatePlantSoil = () => {
             <Form onSubmit={handleSubmit}>
                 <Row>
                     <Col>
-                        <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
+                        <Form.Label htmlFor="plantID">Plant</Form.Label>
                         <Form.Select
                             name="plantID"
                             onChange={handleInputChange}
