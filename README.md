@@ -5,6 +5,16 @@ This is a simple database driven web app used to track the care and needs of you
 
 
 # Frontend
+
+Requires a .env file with the following three variables. Change ports as needed.
+
+```
+VITE_PORT=
+REACT_SERVER_PORT= #used for hosting, different than VITE_PORT
+VITE_API_URL=""
+# for example, 'http://flip1.engr.oregonstate.edu:23428/api/' # should match backend PORT
+```
+
 To launch the frontend, do the following.
 
 ```
@@ -13,9 +23,22 @@ npm install
 npm run dev -- --host
 ```
 
-This is the dev version of the frontend. When we are ready to publish/upload this, we can use the publish option within Vite to do so. Need to do more research, as `npm run build` isn't working, perhaps due to the Routes.
+This is the dev version of the frontend. When we are ready to publish/upload this, we can use the publish option within Vite to do so. 
+
+
 
 # Backend
+
+Requires a .env file with the following three variables
+```
+DB_HOST="" 
+DB_USER=""                   
+DB_DATABASE=""              
+DB_PASSWORD=""                 
+PORT= #should match frontend's VITE_API_URL
+```
+
+
 To launch the backend, do the following.
 ```
 cd webapp/backend
