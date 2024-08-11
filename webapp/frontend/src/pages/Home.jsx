@@ -27,10 +27,7 @@ function HomePage(){
             </p>
             <br/>
             <br/>
-                <p align='left'><strong>Watering Schedule: </strong> </p>
-            <br/>
-
-
+            
                 <p align='left'><strong>Watering Schedule </strong> </p>
 
                 {/* render the table */}
