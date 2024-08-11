@@ -122,7 +122,7 @@ const UpdatePlantType = () => {
             </Row>
             <br />
             <Row className="justify-content-md-center">
-                <Col xs={5}>
+                <Col >
                     <Form.Label htmlFor="toxicCat">Toxic to Cats?</Form.Label>
                     <Form.Select
                         name="toxicCat"
@@ -133,7 +133,7 @@ const UpdatePlantType = () => {
                         <option value="0">No</option>
                   </Form.Select>
                   </Col>
-                <Col xs={5}>
+                <Col >
                     <Form.Label htmlFor="toxicCat">Toxic to Dogs?</Form.Label>
                     <Form.Select
                         name="toxicDog"
