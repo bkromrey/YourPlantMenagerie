@@ -72,7 +72,7 @@ const UpdatePlantType = () => {
         // Forces the page to reload to display the new data
         // URL: https://stackoverflow.com/questions/56649094/how-to-reload-a-component-part-of-page-in-reactjs
         // Date Accessed: 5 August 2024
-        window.location.reload();
+        // window.location.reload();
         }
       } catch (err) {
         console.log("Error updating plant type:", err);
@@ -119,9 +119,6 @@ const UpdatePlantType = () => {
                 <Col>
                     <Form.Label htmlFor="toxicCat">Toxic to Cats?</Form.Label>
                     <Form.Select
-                        // type="text"
-                        // as="textarea" 
-                        // rows={3}
                         name="toxicCat"
                         onChange={handleInputChange}
                         defaultValue={prevPlantType.toxicCat}
@@ -133,9 +130,6 @@ const UpdatePlantType = () => {
                 <Col>
                     <Form.Label htmlFor="toxicCat">Toxic to Dogs?</Form.Label>
                     <Form.Select
-                        // type="text"
-                        // as="textarea" 
-                        // rows={3}
                         name="toxicDog"
                         onChange={handleInputChange}
                         defaultValue={prevPlantType.toxicDog}
@@ -179,55 +173,6 @@ const UpdatePlantType = () => {
         </Container>
 
         </Form>
-
-      {/* <Form onSubmit={handleSubmit}>
-
-      
-          <Row>
-              <Col>
-                  <Form.Label >Date Watered</Form.Label>
-                  <Form.Control
-                      required
-                      type="text"
-                      name="WateringEvent"
-                      defaultValue={prevPlantType.commonName}
-                      onChange={handleInputChange}
-                      autoFocus
-                  />
-              </Col>
-          </Row>
-
-          <br /> 
-          <Row>
-              {/* <Col> */}
-                  {/* <Form.Label >Description (Optional)</Form.Label>
-                  <Form.Control
-                      type="text"
-                      as="textarea" 
-                      rows={3}
-                      name="latinName"
-                      defaultValue={prevPlantType.latinName}
-                      onChange={handleInputChange}
-                  /> */}
-              {/* </Col> */}
-          {/* </Row>
-          <br />
-          <Container >
-          <Row>
-            <Col> 
-              <Button variant="secondary" type="button" onClick={() => navigate("/PlantTypes")} >Cancel</Button>{' '}
-            </Col>
-            
-            <Col> 
-              <Button variant="success" type="submit">Update</Button>{' '}
-            </Col>
-          
-          
-          </Row>
-
-      </Container>
-
-      </Form> */} 
 
     </div>
   );
