@@ -8,6 +8,7 @@
   --green1:         #4A9F79;
   --green-body:     rgba(190, 236, 200, 0.369);
   --green-bg:       rgb(190, 236, 200);
+  --alert:          rgb(238, 115, 115);
 }
 
 
@@ -44,6 +45,10 @@ body {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.pastDueRow{
+  background-color: var(--alert) !important;
 }
 
 // import bootstrap last, so our variables override the defaults
