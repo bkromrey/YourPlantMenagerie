@@ -179,16 +179,18 @@ function AddPlant(){
             <br />
 
             <Row >
-                <Col xs={4}>
-                    <Form.Label >Date Planted (Optional)</Form.Label>
-                    <Form.Control
-                        type="date"
-                        name="plantedDate"
+            <Col >
+                    <Form.Label >Inside/Outside</Form.Label>
+                    <Form.Select
+                        name="isInside"
                         onChange={handleInputChange}
-                        defaultValue={formData.plantedDate}
                         
-                    />
+                    >
+                        <option value="1" >Inside</option>
+                        <option value="0" selected>Outside</option>
+                    </Form.Select>
                 </Col>
+            
                 <Col >
                     <Form.Label htmlFor="plantTypeID">Plant Type (Optional)</Form.Label>
                         <Form.Select
@@ -209,17 +211,6 @@ function AddPlant(){
 
             <br /> 
             <Row>
-                <Col >
-                    <Form.Label >Inside/Outside</Form.Label>
-                    <Form.Select
-                        name="isInside"
-                        onChange={handleInputChange}
-                        
-                    >
-                        <option value="1" >Inside</option>
-                        <option value="0" selected>Outside</option>
-                    </Form.Select>
-                </Col>
 
                 <Col >
                     <Form.Label >Current Light (Optional)</Form.Label>
@@ -240,7 +231,7 @@ function AddPlant(){
             <br /> 
             <Row>
                 <Col >
-                    <Form.Label >Water Interval (Days)</Form.Label>
+                    <Form.Label >Water Interval (Days) (Optional)</Form.Label>
                     <Form.Control
                         type="number"
                         name="waterInterval"
@@ -257,6 +248,20 @@ function AddPlant(){
                         name="fertilizerInterval"
                         onChange={handleInputChange}
                         defaultValue={14}
+                        
+                    />
+                </Col>
+                
+            </Row>
+            <br/>
+            <Row>
+            <Col xs={4}>
+                    <Form.Label >Date Planted (Optional)</Form.Label>
+                    <Form.Control
+                        type="date"
+                        name="plantedDate"
+                        onChange={handleInputChange}
+                        defaultValue={formData.plantedDate}
                         
                     />
                 </Col>
