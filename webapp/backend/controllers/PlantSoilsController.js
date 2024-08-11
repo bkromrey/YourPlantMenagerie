@@ -13,7 +13,7 @@ const lodash = require("lodash");
 const getPlantSoils = async (req, res) => {
   try {
     // Select all rows from the "PlantSoils" table
-    const query = "SELECT plantSoilID, Plants.plantID, SoilTypes.soilID, Plants.displayName, SoilTypes.soilType FROM PlantSoils JOIN Plants ON PlantSoils.plantID = Plants.plantID JOIN SoilTypes ON PlantSoils.soilID = SoilTypes.soilID";    // Execute the query using the "db" object from the configuration file
+    const query = "SELECT plantSoilID, Plants.plantID, SoilTypes.soilID, Plants.displayName, SoilTypes.soilType FROM PlantSoils JOIN Plants ON PlantSoils.plantID = Plants.plantID JOIN SoilTypes ON PlantSoils.soilID = SoilTypes.soilID ORDER BY plantSoilID ASC";    // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
     // Send back the rows to the client
     res.status(200).json(rows);

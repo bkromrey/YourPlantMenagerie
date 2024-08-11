@@ -186,9 +186,9 @@ function AddPlantSoil(){
                 <br /> 
                     <Col>
 
-                    <Form.Label htmlFor="soilTypeID">Soil</Form.Label>
+                    <Form.Label htmlFor="soilID">Soil</Form.Label>
                     <Form.Select
-                        name="soilTypeID"
+                        name="soilID"
                         onChange={handleInputChange}
                         required
                         autoFocus
