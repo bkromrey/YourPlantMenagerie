@@ -6,13 +6,6 @@ import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Toast from 'react-bootstrap/Toast';
-
 
 /* eslint-disable react/prop-types */
 const TableRow = ({ SoilType, fetchSoilTypes }) => {

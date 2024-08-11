@@ -76,10 +76,6 @@ function AddWateringEvent(){
 
         InsertPopup(false);
 
-        // TODO remove completely, this doesn't play nice with bootstrap stuff 
-        // Prevent page reload
-        // e.preventDefault();  
-
         // Create a new SoilType object from the formData
         const newWateringEvent = {
         wateringDate: formData.wateringDate,
@@ -91,7 +87,6 @@ function AddWateringEvent(){
         const response = await axios.post(URL, newWateringEvent);
         if (response.status === 201) {
 
-            //maybe TODO put something here to re-render the component?
             navigate("/WateringEvents");
 
         } else {

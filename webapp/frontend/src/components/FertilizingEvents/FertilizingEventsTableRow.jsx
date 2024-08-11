@@ -29,7 +29,6 @@ const TableRow = ({ FertilizingEvent, fetchFertilizingEvents }) => {
       const response = await axios.delete(URL);
       // Ensure that the FertilizingEvent was deleted successfully
       if (response.status === 204) {
-        // <SuccessToast />  // TODO
         alert("FertilizingEvent deleted successfully");
       }
     } catch (err) {

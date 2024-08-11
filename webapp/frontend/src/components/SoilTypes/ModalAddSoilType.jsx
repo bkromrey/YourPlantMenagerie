@@ -31,10 +31,6 @@ function AddSoilType(){
         // close the popup window
         InsertPopup(false);
 
-        // TODO remove completely, this doesn't play nice with bootstrap stuff 
-        // Prevent page reload
-        // e.preventDefault();  
-
         // Create a new SoilType object from the formData
         const newSoilType = {
         soilType: formData.soilType,
@@ -48,8 +44,6 @@ function AddSoilType(){
         const URL = import.meta.env.VITE_API_URL + "soilTypes";
         const response = await axios.post(URL, newSoilType);
         if (response.status === 201) {
-
-            //maybe TODO put something here to re-render the component?
             navigate("/soilTypes");
 
         } else {
@@ -61,8 +55,6 @@ function AddSoilType(){
         }
         // Reset the form fields
         resetFormFields();
-
-        // TODO - i don't like how it forces the entire page to reload, i just want to reload the component
         
 
         // Citation for this line of code

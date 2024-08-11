@@ -76,10 +76,6 @@ function AddFertilizingEvent(){
 
         InsertPopup(false);
 
-        // TODO remove completely, this doesn't play nice with bootstrap stuff 
-        // Prevent page reload
-        // e.preventDefault();  
-
         // Create a new SoilType object from the formData
         const newFertilizingEvent = {
         fertilizingDate: formData.fertilizingDate,
@@ -90,8 +86,6 @@ function AddFertilizingEvent(){
         const URL = import.meta.env.VITE_API_URL + "FertilizingEvents";
         const response = await axios.post(URL, newFertilizingEvent);
         if (response.status === 201) {
-
-            //maybe TODO put something here to re-render the component?
             navigate("/FertilizingEvents");
 
         } else {

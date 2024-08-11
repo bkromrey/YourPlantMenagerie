@@ -33,8 +33,8 @@ If you have adapted the CS340 starter app code this should be clearly stated in 
 
 # Citations 
 
-A large majority of code is based on the CS340 starter code which can be found at https://github.com/osu-cs340-ecampus/react-starter-app\
-Exceptions include the frontend framework which was generated directly from Vite (including App.jsx, components such as footer.jsx, navigation.jsx, PlantsRow.jsx and some of FormsPlants.jsx, as well as the .jsx files within the pages directory).
+A large majority of the code is based on the CS340 starter code which can be found at https://github.com/osu-cs340-ecampus/react-starter-app\
+Exceptions include some of the frontend framework which was generated directly from Vite (including App.jsx, components such as footer.jsx, navigation.jsx).
 
 **App Scaffolding Provided by Vite**\
 Used Vite to build the React scaffolding for this project.\

@@ -81,10 +81,6 @@ function AddPlantSoil(){
 
         InsertPopup(false);
 
-        // TODO remove completely, this doesn't play nice with bootstrap stuff 
-        // Prevent page reload
-        // e.preventDefault();  
-
         // Create a new SoilType object from the formData
         const newPlantSoil = {
         plantID: formData.plantID,
@@ -95,8 +91,6 @@ function AddPlantSoil(){
         const URL = import.meta.env.VITE_API_URL + "PlantSoils";
         const response = await axios.post(URL, newPlantSoil);
         if (response.status === 201) {
-
-            //maybe TODO put something here to re-render the component?
             navigate("/PlantSoils");
 
         } else {

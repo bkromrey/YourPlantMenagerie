@@ -83,8 +83,6 @@ function AddPlant(){
         const URL = import.meta.env.VITE_API_URL + "Plants";
         const response = await axios.post(URL, newPlant);
         if (response.status === 201) {
-
-            //maybe TODO put something here to re-render the component?
             navigate("/Plants");
 
         } else {
@@ -95,10 +93,7 @@ function AddPlant(){
         console.error("Error creating Plants:", error);
         }
         // Reset the form fields
-        resetFormFields();
-
-        // TODO - i don't like how it forces the entire page to reload, i just want to reload the component
-        
+        resetFormFields();        
 
         // Citation for this line of code
         // Forces the page to reload to display the new data

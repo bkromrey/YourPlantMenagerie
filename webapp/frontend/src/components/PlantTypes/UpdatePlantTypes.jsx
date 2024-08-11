@@ -48,7 +48,7 @@ const UpdatePlantType = () => {
       preferredLight:   prevPlantType.preferredLight || '',
     })) {
       alert("No changes made.");
-      navigate("/plantTypes"); //TODO - do we want to standardize this everywhere
+      navigate("/plantTypes"); 
       return false;
     }
     return true
@@ -92,7 +92,7 @@ const UpdatePlantType = () => {
       <br />
 
 
-      <Form id="updatePlantTODO" onSubmit={handleSubmit}>
+      <Form id="updatePlant" onSubmit={handleSubmit}>
         <Container >
             <Row>
                 <Col>

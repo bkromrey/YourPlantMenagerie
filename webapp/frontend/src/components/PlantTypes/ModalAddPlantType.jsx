@@ -12,8 +12,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-//TODO
-
 function AddPlantType(){
     const [showInsertPopup, InsertPopup] = useState(false);
 
@@ -43,10 +41,6 @@ function AddPlantType(){
         // close the popup window
         InsertPopup(false);
 
-        // TODO remove completely, this doesn't play nice with bootstrap stuff 
-        // Prevent page reload
-        // e.preventDefault();  
-
         // Create a new PlantType object from the formData
         const newPlantType = {
             commonName: formData.commonName,
@@ -61,7 +55,6 @@ function AddPlantType(){
         const response = await axios.post(URL, newPlantType);
         if (response.status === 201) {
 
-            //maybe TODO put something here to re-render the component?
             navigate("/plantTypes");
 
         } else {
@@ -72,10 +65,7 @@ function AddPlantType(){
         console.error("Error creating PlantTypes:", error);
         }
         // Reset the form fields
-        resetFormFields();
-
-        // TODO - i don't like how it forces the entire page to reload, i just want to reload the component
-        
+        resetFormFields();        
 
         // Citation for this line of code
         // Forces the page to reload to display the new data

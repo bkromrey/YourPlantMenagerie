@@ -1,7 +1,7 @@
 // This module from the CS340 starter code.
 // Date Accessed: 1 August 2024
 // URL: https://github.com/osu-cs340-ecampus/react-starter-app
-// TODO do we need to cite authors
+// Authors:  Devin Daniels and Zachary Maes
 
 // Get an instance of mysql we can use in the app
 const mysql = require("mysql2");  
