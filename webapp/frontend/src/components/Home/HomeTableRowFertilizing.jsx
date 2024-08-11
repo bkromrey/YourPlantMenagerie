@@ -24,8 +24,27 @@ const HomeTableRowFertilizing = ({ PlantsDueFertilizing, fetchPlantsDueFertilizi
   return (
     <tr key={PlantsDueFertilizing.plantID}>
       <td>{PlantsDueFertilizing.displayName}</td>
-      <td>{PlantsDueFertilizing.LastFertilizedDate.slice(0,10)}</td>
-      <td>{PlantsDueFertilizing.NextFertilizingDate.slice(0,10)}</td>
+
+      {PlantsDueFertilizing.LastFertilizedDate &&
+                        <td>{PlantsDueFertilizing.LastFertilizedDate.slice(0,10)}</td>
+      }
+
+      {!PlantsDueFertilizing.LastFertilizedDate &&
+                        <td>none</td>
+      }
+
+      {PlantsDueFertilizing.NextFertilizingDate &&
+                        <td>{PlantsDueFertilizing.NextFertilizingDate.slice(0,10)}</td>
+      }
+
+      {!PlantsDueFertilizing.NextFertilizingDate &&
+                        <td>none</td>
+      }
+
+
+
+      {/* <td>{PlantsDueFertilizing.LastFertilizedDate.slice(0,10)}</td>
+      <td>{PlantsDueFertilizing.NextFertilizingDate.slice(0,10)}</td> */}
     </tr>
   );
 };

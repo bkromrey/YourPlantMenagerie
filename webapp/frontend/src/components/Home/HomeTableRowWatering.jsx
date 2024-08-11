@@ -24,8 +24,24 @@ const HomeTableRowWatering = ({ PlantsDueWatering, fetchPlantsDueWatering }) => 
   return (
     <tr key={PlantsDueWatering.plantID}>
       <td>{PlantsDueWatering.displayName}</td>
-      <td>{PlantsDueWatering.LastWateredDate.slice(0,10)}</td>
-      <td>{PlantsDueWatering.NextWateringDate.slice(0,10)}</td>
+
+
+      {PlantsDueWatering.LastWateredDate &&
+                        <td>{PlantsDueWatering.LastWateredDate.slice(0,10)}</td>
+      }
+
+      {!PlantsDueWatering.LastWateredDate &&
+                        <td>none</td>
+      }
+
+      {PlantsDueWatering.NextWateringDate &&
+                        <td>{PlantsDueWatering.NextWateringDate.slice(0,10)}</td>
+      }
+
+      {!PlantsDueWatering.NextWateringDate &&
+                        <td>none</td>
+      }
+
     </tr>
   );
 };
