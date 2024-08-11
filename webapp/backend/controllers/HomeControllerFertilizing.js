@@ -16,13 +16,15 @@ const getPlantsDueFertilizing = async (req, res) => {
           Plants.displayName, 
           MAX(FertilizingEvents.fertilizingDate) AS 'LastFertilizedDate', 
           DATE(MAX(FertilizingEvents.fertilizingDate) + INTERVAL Plants.fertilizerInterval DAY) AS 'NextFertilizingDate',
-          'NextFertilizingDate' <= CURDATE() AS 'DueForFertilizing'
+          'NextFertilizingDate' AS 'DueForFertilizing'
         FROM 
           Plants
         LEFT JOIN 
           FertilizingEvents ON Plants.plantID = FertilizingEvents.plantID
         GROUP BY 
           Plants.plantID
+        HAVING
+          MAX(FertilizingEvents.fertilizingDate) IS NOT NULL
       `;
       const [rows] = await db.query(query, [displayName_Input]);
   

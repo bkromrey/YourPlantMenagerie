@@ -57,21 +57,13 @@ function AddPlant(){
         isInside:"",
         currentLight:"",
         plantTypeID:"",
-        waterInterval:"",
-        fertilizerInterval:"",
+        waterInterval:"7",
+        fertilizerInterval:"14",
         plantedDate:todayDate,
     });
 
         
     const handleSubmit = async (e) => {
-
-        // check for required field(s) otherwise not caught by modal (things that don't have a default in database but are required)
-        if (!formData.displayName){
-            alert("Display Name is required when creating Plant.");
-        }
-
-        // attempt to add to database if all required fields present
-        else{
         // close the popup window
         InsertPopup(false);
 
@@ -88,8 +80,8 @@ function AddPlant(){
 
 
         try {
-            const URL = import.meta.env.VITE_API_URL + "Plants";
-            const response = await axios.post(URL, newPlant);
+        const URL = import.meta.env.VITE_API_URL + "Plants";
+        const response = await axios.post(URL, newPlant);
         if (response.status === 201) {
 
             //maybe TODO put something here to re-render the component?
@@ -102,7 +94,6 @@ function AddPlant(){
         alert("Error creating Plants");
         console.error("Error creating Plants:", error);
         }
-    
         // Reset the form fields
         resetFormFields();
 
@@ -115,7 +106,7 @@ function AddPlant(){
         // Date Accessed: 5 August 2024
         window.location.reload();
         
-    }
+
     };
       
     const resetFormFields = () => {

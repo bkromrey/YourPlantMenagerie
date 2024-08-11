@@ -30,17 +30,19 @@ function HomePage(){
             <br/>
             <br/>
             <br/>
-                <p><strong>These plants are due for watering: </strong></p>
+                <p align='left'><strong>Watering Schedule: </strong> </p>
 
                 {/* render the table */}
                 <HomeTableWatering />
+                <p>*Plants that have not been watered won't show up until they have at least one event logged.</p>
+                <br/>
                 <br/>
 
-                <p><strong>These plants are due for fertilizing: </strong></p>
+                <p align='left'><strong>Fertilizing Schedule: </strong></p>
 
                 {/* render the table */}
                 <HomeTableFertilzing />
-                <br/>
+                <p>*Plants that have not been fertilized won't show up until they have at least one event logged.</p>
 
                 </> 
             } />
