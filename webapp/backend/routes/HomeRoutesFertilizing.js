@@ -5,9 +5,9 @@
 const express = require("express");
 const router = express.Router();
 const {
-    getPlantsDueWatering,
-} = require("../controllers/HomeController");
+    getPlantsDueFertilizing,
+} = require("../controllers/HomeControllerFertilizing");
 
-router.get("/", getPlantsDueWatering);
+router.get("/", getPlantsDueFertilizing);
 
 module.exports = router;

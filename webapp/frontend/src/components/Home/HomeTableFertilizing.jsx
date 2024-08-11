@@ -3,21 +3,21 @@
 // URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
 import { useState, useEffect } from "react";
-import TableRow from "./HomeTableRow";
+import TableRow from "./HomeTableRowFertilizing";
 import axios from "axios";
 
 // bootstrap components
 import Table from 'react-bootstrap/Table';
 
 
-const HomeTable = () => {
-  const [PlantsDueWatering, setPlantsDueWatering] = useState([]);
+const HomeTableFertilizing = () => {
+  const [PlantsDueFertilizing, setPlantsDueFertilizing] = useState([]);
 
-  const fetchPlantsDueWatering = async () => {
+  const fetchPlantsDueFertilizing = async () => {
     try {
-      const URL = import.meta.env.VITE_API_URL + "NextWateringDate";
+      const URL = import.meta.env.VITE_API_URL + "NextFertilizingDate";
       const response = await axios.get(URL);
-      setPlantsDueWatering(response.data);
+      setPlantsDueFertilizing(response.data);
     } catch (error) {
       alert("Error fetching Plants from the server.");
       console.error("Error fetching Plants:", error);
@@ -25,16 +25,16 @@ const HomeTable = () => {
   };
 
   useEffect(() => {
-    fetchPlantsDueWatering();
+    fetchPlantsDueFertilizing();
   }, []);
 
   return (
-    <div>
+    <div> 
 
       {/* if Plants table is empty, throw an error */}
-      {PlantsDueWatering.length === 0 ? (
+      {PlantsDueFertilizing.length === 0 ? (
         <div>
-          <p>There are currently no plants due for watering.</p>
+          <p>There are currently no plants due for fertilizing.</p>
         </div>
         
       ) : (   
@@ -43,15 +43,15 @@ const HomeTable = () => {
           <thead>
             <tr>
               <th>Plant</th>
-              <th>Last Watered Date</th>
-              <th>Next Watering Date</th>
+              <th>Last Fertilized Date</th>
+              <th>Next Fertilizing Date</th>
             </tr>
           </thead>
 
           <tbody>
             {/* use the map function to generate each row within the table */}
-            {PlantsDueWatering.map((PlantsDueWatering) => (
-              <TableRow key={PlantsDueWatering.plantID} PlantsDueWatering={PlantsDueWatering} fetchPlantsDueWatering={fetchPlantsDueWatering} />
+            {PlantsDueFertilizing.map((PlantsDueFertilizing) => (
+              <TableRow key={PlantsDueFertilizing.plantID} PlantsDueFertilizing={PlantsDueFertilizing} fetchPlantsDueFertilizing={fetchPlantsDueFertilizing} />
             ))}
           </tbody>
         </Table>
@@ -60,4 +60,4 @@ const HomeTable = () => {
   );
 };
 
-export default HomeTable;
+export default HomeTableFertilizing;

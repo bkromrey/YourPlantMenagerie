@@ -1,7 +1,8 @@
 import { Routes, Route, Link } from "react-router-dom";
 
 // custom components
-import HomeTable from "../components/Home/HomeTable";
+import HomeTableWatering from "../components/Home/HomeTableWatering";
+import HomeTableFertilzing from "../components/Home/HomeTableFertilizing";
 
 // Code in this function adapted from the CS340 starter code.
 // Date Accessed: 4 August 2024
@@ -21,6 +22,7 @@ function HomePage(){
                 
                 {/* header & description */}
                 <h2>Your Plant Menagerie</h2>
+            <br/>
             <p>A database driven web app to help you care for your house plants.</p>
             <p> For more information about this project click <Link to="/about">here</Link>.
             </p>
@@ -31,7 +33,13 @@ function HomePage(){
                 <p><strong>These plants are due for watering: </strong></p>
 
                 {/* render the table */}
-                <HomeTable />
+                <HomeTableWatering />
+                <br/>
+
+                <p><strong>These plants are due for fertilizing: </strong></p>
+
+                {/* render the table */}
+                <HomeTableFertilzing />
                 <br/>
 
                 </> 

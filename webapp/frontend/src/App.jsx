@@ -18,7 +18,6 @@ import WateringEventsPage from './pages/WateringEvents.jsx'
 import FertilizingEventsPage from './pages/FertilizingEvents.jsx'
 import PlantSoilsPage from './pages/PlantSoils.jsx'
 import AboutPage from './pages/About.jsx';
-import HomePage from './pages/Home.jsx';
 
 function App() {
  
@@ -39,7 +38,6 @@ function App() {
           <Route path="/fertilizingEvents/*" element={<FertilizingEventsPage />} />
           <Route path="/plantSoils/*" element={<PlantSoilsPage />} />
           <Route path="/about" element={<AboutPage />} />
-          {/* <Route path="/home/*" element={<HomePage/>} /> */}
         </Routes>   
       </section>
     </main>

@@ -15,7 +15,7 @@ import Toast from 'react-bootstrap/Toast';
 
 
 /* eslint-disable react/prop-types */
-const TableRow = ({ PlantsDueWatering, fetchPlantsDueWatering }) => {
+const HomeTableRowWatering = ({ PlantsDueWatering, fetchPlantsDueWatering }) => {
   // Hook that allows us to navigate programmatically
   const navigate = useNavigate();
   // Redirect to edit SoilType page
@@ -30,4 +30,4 @@ const TableRow = ({ PlantsDueWatering, fetchPlantsDueWatering }) => {
   );
 };
 
-export default TableRow;
+export default HomeTableRowWatering;
