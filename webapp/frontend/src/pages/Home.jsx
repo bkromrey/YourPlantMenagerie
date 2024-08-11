@@ -26,8 +26,8 @@ function HomePage(){
             <p>A database driven web app to help you care for your house plants. <br/> For more information about this project click <Link to="/about">here</Link>.
             </p>
             <br/>
-            <br/>
-            
+
+
                 <p align='left'><strong>Watering Schedule </strong> </p>
 
                 {/* render the table */}
