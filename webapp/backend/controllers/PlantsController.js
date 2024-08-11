@@ -49,6 +49,10 @@ const createPlant = async (req, res) => {
     const query =
       "INSERT INTO Plants (displayName, isInside, currentLight, plantTypeID, waterInterval, fertilizerInterval, plantedDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+    console.log(query);
+    console.log('displayName=' + displayName + ', isInside=' + isInside + ', currentLight=' + currentLight + '\n plantTypeID=' + plantTypeID + ' waterInterval=' + waterInterval + ' fertilizerInterval=' + fertilizerInterval + ' plantedDate=' + plantedDate);
+  
+
     const response = await db.query(query, [
         displayName,
         Number(isInside),

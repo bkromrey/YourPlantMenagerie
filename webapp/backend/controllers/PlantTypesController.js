@@ -50,13 +50,13 @@ const createPlantType = async (req, res) => {
       "INSERT INTO PlantTypes (commonName, latinName, toxicCat, toxicDog, preferredLight) VALUES (?, ?, ?, ?, ?)";
 
     console.log(query);
-    console.log('commonName=' + commonName + ', latinName=' + latinName + ', toxicCat=' + toxicCat + ' toxicDog=' + toxicDog);
+    console.log('commonName=' + commonName + ', latinName=' + latinName + ', toxicCat=' + toxicCat + ' toxicDog=' + toxicDog + 'preferredLight=' + preferredLight);
 
     // let sanitizedpreferredLight ? preferredLight : NULL;
     // if (preferredLight = ''){
     //   const = NULL;
     // }
-    console.log('preferredLight=' + preferredLight);
+    // console.log('preferredLight=' + preferredLight);
     // if (preferredLight ===  ){
     //   console.log('preferredLight is NULL')
     // }

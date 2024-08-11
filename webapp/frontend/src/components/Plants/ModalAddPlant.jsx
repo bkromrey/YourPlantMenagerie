@@ -151,10 +151,10 @@ function AddPlant(){
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={showInsertPopup} onHide={CloseButton}>
-        
-          <Modal.Header closeButton>
+    
+        <Modal.Header closeButton>
             <Modal.Title>Add New Plant</Modal.Title>
-          </Modal.Header>
+        </Modal.Header>
   
         <Modal.Body>
             <Form id="addPlant" onSubmit={handleSubmit}>
@@ -166,125 +166,106 @@ function AddPlant(){
                   <Form.Control
                       required
                       type="text"
-                    //   as="textarea"
                       name="displayName"
-                      // value={ moment(prevPlant.fertilizingDate).subtract(10, 'days').calendar() }
                       onChange={handleInputChange}
                       autoFocus
                   />
               </Col>
-          </Row>
-          <br />
-          <Row >
+            </Row>
+            <br />
 
-          <Col xs={4}>
-                  <Form.Label >Planted Date (Optional)</Form.Label>
-                  <Form.Control
-                      type="date"
-                      name="plantedDate"
-                      onChange={handleInputChange}
-                      defaultValue={formData.plantedDate}
-                      
-                  />
-              </Col>
-            <Col >
-            
-          <Form.Label htmlFor="plantTypeID">Plant Type (Optional)</Form.Label>
-                <Form.Select
-                    name="plantTypeID"
-                    onChange={handleInputChange}
-                    required
-                    >
-                    {/* set a blank option since we need something to be selected to handleInputChange */}
-                    <option></option>
-                    {/* use the map function to generate all of the options */}
-                    {/* displays the plant's name but sets the value equal to the plant's primary key */}
-                    {PlantTypes.map((PlantType) => (
-                        <PlantTypeSelectorOption key={PlantType.plantTypeID} PlantType={PlantType} fetchPlantTypes={fetchPlantTypes} />
-                    ))}
-
-
-                </Form.Select>
+            <Row >
+                <Col xs={4}>
+                    <Form.Label >Date Planted (Optional)</Form.Label>
+                    <Form.Control
+                        type="date"
+                        name="plantedDate"
+                        onChange={handleInputChange}
+                        defaultValue={formData.plantedDate}
+                        
+                    />
                 </Col>
-          </Row>
+                <Col >
+                    <Form.Label htmlFor="plantTypeID">Plant Type (Optional)</Form.Label>
+                        <Form.Select
+                            name="plantTypeID"
+                            onChange={handleInputChange}
+                            required
+                            >
+                            {/* set a blank option since we need something to be selected to handleInputChange */}
+                            <option></option>
+                            {/* use the map function to generate all of the options */}
+                            {/* displays the plant's name but sets the value equal to the plant's primary key */}
+                            {PlantTypes.map((PlantType) => (
+                                <PlantTypeSelectorOption key={PlantType.plantTypeID} PlantType={PlantType} fetchPlantTypes={fetchPlantTypes} />
+                            ))}
+                    </Form.Select>
+                </Col>
+            </Row>
 
-          <br /> 
-          <Row>
-              <Col >
+            <br /> 
+            <Row>
+                <Col >
+                    <Form.Label >Inside/Outside</Form.Label>
+                    <Form.Select
+                        name="isInside"
+                        onChange={handleInputChange}
+                        
+                    >
+                        <option value="1" >Inside</option>
+                        <option value="0" selected>Outside</option>
+                    </Form.Select>
+                </Col>
 
-                {/* TODO: we might want to get rid of this first option or default it to a 0 or 1 instead of "" to mitigate sql issues */}
-                  <Form.Label >Inside/Outside</Form.Label>
-                  <Form.Select
-                      name="isInside"
-                      onChange={handleInputChange}
-                      
-                  >
-                      <option value="1" >Inside</option>
-                      <option value="0" selected>Outside</option>
-                  </Form.Select>
-              </Col>
-          {/* </Row>
-          <br /> 
-
-          <Row> */}
-              <Col >
-                  <Form.Label >Current Light (Optional)</Form.Label>
-                  <Form.Select
-                      name="currentLight"
-                      onChange={handleInputChange}
-                      
-                  >
-                    <option value="NULL" selected></option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                </Form.Select>
-              </Col>
-          </Row>
+                <Col >
+                    <Form.Label >Current Light (Optional)</Form.Label>
+                    <Form.Select
+                        name="currentLight"
+                        onChange={handleInputChange}
+                        
+                    >
+                        <option value="NULL" selected></option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </Form.Select>
+                </Col>
+            </Row>
 
 
-          <br /> 
-          <Row>
-              <Col >
-                  <Form.Label >Water Interval (Days)</Form.Label>
-                  <Form.Control
-                      type="number"
-                      name="waterInterval"
-                      onChange={handleInputChange}
-                      defaultValue={7}
-                      
-                  />
-              </Col>
-          {/* </Row>
+            <br /> 
+            <Row>
+                <Col >
+                    <Form.Label >Water Interval (Days)</Form.Label>
+                    <Form.Control
+                        type="number"
+                        name="waterInterval"
+                        onChange={handleInputChange}
+                        defaultValue={7}
+                        
+                    />
+                </Col>
 
-          <br /> 
-          <Row> */}
-              <Col >
-                  <Form.Label >Fertilizer Interval (Days) (Optional)</Form.Label>
-                  <Form.Control
-                      type="number"
-                      name="fertilizerInterval"
-                      onChange={handleInputChange}
-                      defaultValue={14}
-                      
-                  />
-              </Col>
-          </Row>
-
-          <br /> 
-          <Row>
-
-          </Row>
-
+                <Col >
+                    <Form.Label >Fertilizer Interval (Days) (Optional)</Form.Label>
+                    <Form.Control
+                        type="number"
+                        name="fertilizerInterval"
+                        onChange={handleInputChange}
+                        defaultValue={14}
+                        
+                    />
+                </Col>
+            </Row>
 
           </Container>
 
             </Form>
         </Modal.Body>
   
-          <Modal.Footer>
+        <Modal.Footer>
             <Button variant="primary" onClick={SaveButton}>Submit</Button>
-          </Modal.Footer>
+        </Modal.Footer>
 
         </Modal>
 

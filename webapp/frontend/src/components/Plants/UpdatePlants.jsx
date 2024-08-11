@@ -157,7 +157,10 @@ const UpdatePlant = () => {
       <br />
 
       <Form id="updatePlants" onSubmit={handleSubmit}>
-      
+      <Container fluid>
+        <Row>
+          <Col xl={1}></Col>
+        </Row>
           <Row>
               <Col>
                   <Form.Label htmlFor="displayName">Display Name</Form.Label>
@@ -165,7 +168,6 @@ const UpdatePlant = () => {
                       required
                       type="text"
                       name="displayName"
-                      // value={ moment(prevPlant.fertilizingDate).subtract(10, 'days').calendar() }
                       onChange={handleInputChange}
                       defaultValue={prevPlant.displayName}
                       autoFocus
@@ -175,47 +177,23 @@ const UpdatePlant = () => {
 
           <br /> 
           <Row>
-              {/* <Col> */}
-                  <Form.Label htmlFor="isInside" >Inside/Outside</Form.Label>
-                  <Form.Select
-                      required
-                      name="isInside"
+              <Col xs={5}>
+                  <Form.Label>Date Planted</Form.Label>
+                  <Form.Control
+                      type="date"
+                      name="plantedDate"
+                      defaultValue={formData.plantedDate}
                       onChange={handleInputChange}
-                      defaultValue={prevPlant.isInside}
                       
-                  >
-                      <option value="1">Inside</option>
-                      <option value="0">Outside</option>
-                  </Form.Select>
-              {/* </Col> */}
-          </Row>
-          <br /> 
-
-          <Row>
-              {/* <Col> */}
-                  <Form.Label htmlFor="currentLight" >Current Light</Form.Label>
-                  <Form.Select
-                      name="currentLight"
-                      onChange={handleInputChange}
-                      defaultValue={prevPlant.currentLight}
-                      
-                  >
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                </Form.Select>
-              {/* </Col> */}
-          </Row>
-
-          <br /> 
-          <Row>
+                  />
+              </Col>
               <Col >
                   <Form.Label htmlFor="plantTypeID">Plant Type</Form.Label>
 
                   <Form.Select
                       name="plantTypeID"
                       onChange={handleInputChange}
-                      required
+                      
                       >
                       {/* use the map function to generate all of the options */}
                       {/* displays the plant's name but sets the value equal to the plant's primary key */}
@@ -224,6 +202,25 @@ const UpdatePlant = () => {
                       {selectorDefault.map((PlantType) => (
                           <PlantTypeSelectorDefaultOption key={PlantType.plantTypeID} PlantType={PlantType} fetchPlantTypes={fetchPlantTypes} />
                       ))}
+
+
+                      {/* 
+                      CITATION FOR CONDITIONAL RENDERING IN RETURN
+                      Used the following post to aid in figuring out how to use a conditional within the return.
+                      DATE ACCESSED: 11 AUG 2024
+                      URL: https://stackoverflow.com/questions/40477245/is-it-possible-to-use-if-else-statement-in-react-render-function
+                      */}
+                      
+                      
+                      {selectorDefault.length === 0 &&
+                        <option selected value='NULL'> </option>
+                      }
+
+                      {selectorDefault.length > 0 &&
+                        <option value='NULL'></option>
+                      }
+
+
                       
                       {/* then display all other options */}
                       {selectorNonDefaults.map((PlantType) => (
@@ -240,9 +237,43 @@ const UpdatePlant = () => {
               </Col>
           </Row>
 
+          <br />
+          <Row>
+              <Col>
+                  <Form.Label htmlFor="isInside" >Inside/Outside</Form.Label>
+                  <Form.Select
+                      required
+                      name="isInside"
+                      onChange={handleInputChange}
+                      defaultValue={prevPlant.isInside}
+                      
+                  >
+                      <option value="1">Inside</option>
+                      <option value="0">Outside</option>
+                  </Form.Select>
+              </Col>
+          {/* </Row>
+          <br /> 
+
+          <Row> */}
+              <Col>
+                  <Form.Label htmlFor="currentLight" >Current Light</Form.Label>
+                  <Form.Select
+                      name="currentLight"
+                      onChange={handleInputChange}
+                      defaultValue={prevPlant.currentLight}
+                      
+                  >
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </Form.Select>
+              </Col>
+          </Row>
+
           <br /> 
           <Row>
-              {/* <Col> */}
+              <Col>
                   <Form.Label htmlFor="waterInterval">Water Interval (Days)</Form.Label>
                   <Form.Control
                       type="number"
@@ -251,12 +282,9 @@ const UpdatePlant = () => {
                       defaultValue={prevPlant.waterInterval}
                       
                   />
-              {/* </Col> */}
-          </Row>
+              </Col>
 
-          <br /> 
-          <Row>
-              {/* <Col> */}
+              <Col>
                   <Form.Label htmlFor="fertilizerInterval">Fertilizer Interval (Days)</Form.Label>
                   <Form.Control
                       type="number"
@@ -265,25 +293,16 @@ const UpdatePlant = () => {
                       defaultValue={prevPlant.fertilizerInterval}
                       
                   />
-              {/* </Col> */}
+              </Col>
           </Row>
 
           <br /> 
           <Row>
-              <Col xs={5}>
-                  <Form.Label> Date</Form.Label>
-                  <Form.Control
-                      type="date"
-                      name="plantedDate"
-                      defaultValue={formData.plantedDate}
-                      onChange={handleInputChange}
-                      
-                  />
-              </Col>
+
           </Row>
 
           <br />
-          <Container >
+
           <Row>
             <Col> 
               <Button variant="secondary" type="button" onClick={() => navigate("/Plants")} >Cancel</Button>{' '}
