@@ -14,15 +14,20 @@ import Col from 'react-bootstrap/Col';
 import Toast from 'react-bootstrap/Toast';
 
 
+
 /* eslint-disable react/prop-types */
-const HomeTableRowFertilizing = ({ PlantsDueFertilizing, fetchPlantsDueFertilizing }) => {
+const HomeTableRowFertilizing = ({ PlantsDueFertilizing }) => {
+    const nextFertilizingDate = PlantsDueFertilizing.NextFertilizingDate.slice(0,10);
+    const todayDate = new Date().toISOString().slice(0,10);
+    const pastDue = nextFertilizingDate < todayDate;
   // Hook that allows us to navigate programmatically
   const navigate = useNavigate();
   // Redirect to edit SoilType page
 
 
   return (
-    <tr key={PlantsDueFertilizing.plantID}>
+    {pastDue && 
+    <tr class="pastDueRow">
       <td>{PlantsDueFertilizing.displayName}</td>
 
       {PlantsDueFertilizing.LastFertilizedDate &&
@@ -41,11 +46,30 @@ const HomeTableRowFertilizing = ({ PlantsDueFertilizing, fetchPlantsDueFertilizi
                         <td>none</td>
       }
 
-
-
-      {/* <td>{PlantsDueFertilizing.LastFertilizedDate.slice(0,10)}</td>
-      <td>{PlantsDueFertilizing.NextFertilizingDate.slice(0,10)}</td> */}
     </tr>
+    }
+
+    {!pastDue && 
+        <tr class="pastDueRow">
+          <td>{PlantsDueFertilizing.displayName}</td>
+    
+          {PlantsDueFertilizing.LastFertilizedDate &&
+                            <td>{PlantsDueFertilizing.LastFertilizedDate.slice(0,10)}</td>
+          }
+    
+          {!PlantsDueFertilizing.LastFertilizedDate &&
+                            <td>none</td>
+          }
+    
+          {PlantsDueFertilizing.NextFertilizingDate &&
+                            <td>{PlantsDueFertilizing.NextFertilizingDate.slice(0,10)}</td>
+          }
+    
+          {!PlantsDueFertilizing.NextFertilizingDate &&
+                            <td>none</td>
+          }
+    
+        </tr>}
   );
 };
 
