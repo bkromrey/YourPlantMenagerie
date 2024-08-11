@@ -216,7 +216,6 @@ const UpdatePlant = () => {
                       name="plantTypeID"
                       onChange={handleInputChange}
                       required
-                      autoFocus
                       >
                       {/* use the map function to generate all of the options */}
                       {/* displays the plant's name but sets the value equal to the plant's primary key */}

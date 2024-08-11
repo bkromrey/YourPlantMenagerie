@@ -218,7 +218,6 @@ function AddPlant(){
                     name="plantTypeID"
                     onChange={handleInputChange}
                     required
-                    autoFocus
                     >
                     {/* set a blank option since we need something to be selected to handleInputChange */}
                     <option></option>
