@@ -83,7 +83,6 @@ const UpdatePlantSoil = () => {
                 } else {
                     alert(response.data.message);
                     navigate("/PlantSoils");
-                    window.location.reload();
                 }
             } catch (err) {
                 console.log("Error updating plant soil relationship:", err);

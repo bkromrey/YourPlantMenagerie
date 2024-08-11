@@ -92,7 +92,7 @@ const UpdateFertilizingEvent = () => {
         // Forces the page to reload to display the new data
         // URL: https://stackoverflow.com/questions/56649094/how-to-reload-a-component-part-of-page-in-reactjs
         // Date Accessed: 5 August 2024
-        window.location.reload();
+        // window.location.reload();
         }
       } catch (err) {
         console.log("Error updating fertilizing event:", err);
