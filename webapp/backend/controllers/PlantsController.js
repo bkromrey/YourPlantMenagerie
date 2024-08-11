@@ -14,7 +14,7 @@ const getPlants = async (req, res) => {
   try {
     // Select all rows from the "Plants" table
     const query = 
-    "SELECT plantID, displayName, isInside, currentLight, PlantTypes.plantTypeID, PlantTypes.commonName, waterInterval, fertilizerInterval, plantedDate FROM Plants JOIN PlantTypes ON Plants.plantTypeID = PlantTypes.plantTypeID";
+    "SELECT plantID, displayName, isInside, currentLight, PlantTypes.plantTypeID, PlantTypes.commonName, waterInterval, fertilizerInterval, plantedDate FROM Plants LEFT JOIN PlantTypes ON Plants.plantTypeID = PlantTypes.plantTypeID";
     const [rows] = await db.query(query);
     // Send back the rows to the client
     res.status(200).json(rows);
