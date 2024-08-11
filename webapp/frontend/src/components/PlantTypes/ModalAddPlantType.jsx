@@ -32,6 +32,14 @@ function AddPlantType(){
     });
         
     const handleSubmit = async (e) => {
+
+        // check for required field(s) otherwise not caught by modal (things that don't have a default in database but are required)
+        if (!formData.commonName){
+            alert("Common Name is required when creating Plant.");
+        }
+        
+        // attempt to add to database if all required fields present
+        else{
         // close the popup window
         InsertPopup(false);
 
@@ -75,7 +83,7 @@ function AddPlantType(){
         // Date Accessed: 5 August 2024
         window.location.reload();
         
-
+    }
     };
       
     const resetFormFields = () => {
@@ -190,7 +198,6 @@ function AddPlantType(){
         </Modal.Body>
   
           <Modal.Footer>
-            <Button variant="secondary" onClick={CloseButton}>Close</Button>
             <Button variant="primary" onClick={SaveButton}>Submit</Button>
           </Modal.Footer>
 
