@@ -161,12 +161,12 @@ function AddPlant(){
 
             <Container >
             <Row>
-              <Col xs={3}>
+              <Col >
                   <Form.Label htmlFor="displayName" >Display Name</Form.Label>
                   <Form.Control
                       required
                       type="text"
-                      as="textarea"
+                    //   as="textarea"
                       name="displayName"
                       // value={ moment(prevPlant.fertilizingDate).subtract(10, 'days').calendar() }
                       onChange={handleInputChange}
@@ -174,46 +174,22 @@ function AddPlant(){
                   />
               </Col>
           </Row>
+          <br />
+          <Row >
 
-          <br /> 
-          <Row>
-              <Col xs={3}>
-
-                {/* TODO: we might want to get rid of this first option or default it to a 0 or 1 instead of "" to mitigate sql issues */}
-                  <Form.Label >Inside/Outside</Form.Label>
-                  <Form.Select
-                      name="isInside"
+          <Col xs={3}>
+                  <Form.Label >Planted Date (Optional)</Form.Label>
+                  <Form.Control
+                      type="date"
+                      name="plantedDate"
                       onChange={handleInputChange}
+                      defaultValue={formData.plantedDate}
                       
-                  >
-                      <option value="1" >Inside</option>
-                      <option value="0" selected>Outside</option>
-                  </Form.Select>
+                  />
               </Col>
-          </Row>
-          <br /> 
-
-          <Row>
-              <Col xs={3}>
-                  <Form.Label >Current Light</Form.Label>
-                  <Form.Select
-                      name="currentLight"
-                      onChange={handleInputChange}
-                      
-                  >
-                    <option value="NULL" selected>Select Current Light</option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                </Form.Select>
-              </Col>
-          </Row>
-
-          <br /> 
-          <Row>
-                <Col>
-
-                <Form.Label htmlFor="plantTypeID">Plant Type</Form.Label>
+            <Col>
+            
+          <Form.Label htmlFor="plantTypeID">Plant Type (Optional)</Form.Label>
                 <Form.Select
                     name="plantTypeID"
                     onChange={handleInputChange}
@@ -229,15 +205,47 @@ function AddPlant(){
 
 
                 </Form.Select>
-
-
                 </Col>
-
           </Row>
 
           <br /> 
           <Row>
-              <Col xs={3}>
+              <Col >
+
+                {/* TODO: we might want to get rid of this first option or default it to a 0 or 1 instead of "" to mitigate sql issues */}
+                  <Form.Label >Inside/Outside</Form.Label>
+                  <Form.Select
+                      name="isInside"
+                      onChange={handleInputChange}
+                      
+                  >
+                      <option value="1" >Inside</option>
+                      <option value="0" selected>Outside</option>
+                  </Form.Select>
+              </Col>
+          {/* </Row>
+          <br /> 
+
+          <Row> */}
+              <Col >
+                  <Form.Label >Current Light (Optional)</Form.Label>
+                  <Form.Select
+                      name="currentLight"
+                      onChange={handleInputChange}
+                      
+                  >
+                    <option value="NULL" selected></option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </Form.Select>
+              </Col>
+          </Row>
+
+
+          <br /> 
+          <Row>
+              <Col >
                   <Form.Label >Water Interval (Days)</Form.Label>
                   <Form.Control
                       type="number"
@@ -247,12 +255,12 @@ function AddPlant(){
                       
                   />
               </Col>
-          </Row>
+          {/* </Row>
 
           <br /> 
-          <Row>
-              <Col xs={3}>
-                  <Form.Label >Fertilizer Interval (Days)</Form.Label>
+          <Row> */}
+              <Col >
+                  <Form.Label >Fertilizer Interval (Days) (Optional)</Form.Label>
                   <Form.Control
                       type="number"
                       name="fertilizerInterval"
@@ -265,16 +273,7 @@ function AddPlant(){
 
           <br /> 
           <Row>
-              <Col xs={3}>
-                  <Form.Label >Planted Date</Form.Label>
-                  <Form.Control
-                      type="date"
-                      name="plantedDate"
-                      onChange={handleInputChange}
-                      defaultValue={formData.plantedDate}
-                      
-                  />
-              </Col>
+
           </Row>
 
 
@@ -284,7 +283,6 @@ function AddPlant(){
         </Modal.Body>
   
           <Modal.Footer>
-            {/* <Button variant="secondary" onClick={CloseButton}>Close</Button> */}
             <Button variant="primary" onClick={SaveButton}>Submit</Button>
           </Modal.Footer>
 
