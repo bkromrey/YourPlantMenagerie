@@ -28,6 +28,15 @@ function AddSoilType(){
     });
         
     const handleSubmit = async (e) => {
+
+        // check for required field(s) otherwise not caught by modal (things that don't have a default in database but are required)
+        if (!formData.soilType){
+            alert("Soil Name is required when creating a Soil Type.");
+        }
+
+        // attempt to add to database if all required fields present
+        else{
+
         // close the popup window
         InsertPopup(false);
 
@@ -63,7 +72,7 @@ function AddSoilType(){
         // Date Accessed: 5 August 2024
         window.location.reload();
         
-
+    }
     };
       
     const resetFormFields = () => {
