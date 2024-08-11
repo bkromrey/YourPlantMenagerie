@@ -80,6 +80,12 @@ const UpdatePlantType = () => {
     }
   };
 
+    // Citation for className="justify-content-md-center"
+    // aligns row in center
+    // URL: https://react-bootstrap.netlify.app/docs/layout/grid/
+    // Date Accessed: 11 August 2024
+
+
   return (
     <div>
       <h2>Update Plant Type</h2>
@@ -115,13 +121,10 @@ const UpdatePlantType = () => {
                 </Col>
             </Row>
             <br />
-            <Row>
-                <Col>
+            <Row className="justify-content-md-center">
+                <Col xs={5}>
                     <Form.Label htmlFor="toxicCat">Toxic to Cats?</Form.Label>
                     <Form.Select
-                        // type="text"
-                        // as="textarea" 
-                        // rows={3}
                         name="toxicCat"
                         onChange={handleInputChange}
                         defaultValue={prevPlantType.toxicCat}
@@ -129,13 +132,10 @@ const UpdatePlantType = () => {
                         <option value="1">Yes</option>
                         <option value="0">No</option>
                   </Form.Select>
-                </Col>
-                <Col>
+                  </Col>
+                <Col xs={5}>
                     <Form.Label htmlFor="toxicCat">Toxic to Dogs?</Form.Label>
                     <Form.Select
-                        // type="text"
-                        // as="textarea" 
-                        // rows={3}
                         name="toxicDog"
                         onChange={handleInputChange}
                         defaultValue={prevPlantType.toxicDog}
@@ -143,7 +143,7 @@ const UpdatePlantType = () => {
                         <option value="1">Yes</option>
                         <option value="0">No</option>
                   </Form.Select>
-                </Col>
+                  </Col>
             </Row>
 
             <br />

@@ -1,34 +1,49 @@
-import Container from "react-bootstrap/esm/Container";
-import {Link} from 'react-router-dom';
+import { Routes, Route, Link } from "react-router-dom";
+
+// custom components
+import HomeTable from "../components/Home/HomeTable";
+
+// Code in this function adapted from the CS340 starter code.
+// Date Accessed: 4 August 2024
+// URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
 
-function Home(){
+function HomePage(){
     return (
         <>
-        <div>
-            <h2>Your Plant Menagerie</h2>
+
+        {/* display either the route is needed for the edit function */}
+        <Routes>
+
+            
+            <Route path="/" element={
+                <>
+                
+                {/* header & description */}
+                <h2>Your Plant Menagerie</h2>
             <p>A database driven web app to help you care for your house plants.</p>
             <p> For more information about this project click <Link to="/about">here</Link>.
             </p>
-            
-            {/* <Container>
-                <br/>
-                <h2>These Plants Need Attention!</h2>
-                <ul>
-                    <li>Water me! (Pothos in living room)</li>
-                    <li>Cherry tomatoes outside</li>
-                </ul>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+                <p><strong>These plants are due for watering: </strong></p>
+
+                {/* render the table */}
+                <HomeTable />
                 <br/>
 
-                
-                <p>
-                    More text here. I'm thinking we have a "quick view" dashboard of plants needing fertilizer or water, and we also present the user with a button that says "Record Watering Event" and likewise with fertilizer.
-                </p>
-                
-            </Container> */}
-        </div>
-    </>
+                </> 
+            } />
+
+        </Routes>
+        
+
+        </>
     );
 }
 
-export default Home;
+
+
+export default HomePage;

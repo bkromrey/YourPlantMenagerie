@@ -169,7 +169,7 @@ function AddPlantSoil(){
                         autoFocus
                         >
                         {/* set a blank option since we need something to be selected to handleInputChange */}
-                        <option></option>
+                        <option value="">Select a plant</option>
                         {/* use the map function to generate all of the options */}
                         {/* displays the plant's name but sets the value equal to the plant's primary key */}
                         {Plants.map((Plant) => (
@@ -194,7 +194,7 @@ function AddPlantSoil(){
                         autoFocus
                         >
                         {/* set a blank optioxa since we need something to be selected to handleInputChange */}
-                        <option></option>
+                        <option value =""> Select a soil </option>
                         {/* use the map function to generate all of the options */}
                         {/* displays the plant's name but sets the value equal to the plant's primary key */}
                         {SoilTypes.map((SoilType) => (
