@@ -111,7 +111,7 @@ const UpdatePlantType = () => {
             <br /> 
             <Row>
                 <Col>
-                    <Form.Label htmlFor="latinName" >Latin Name</Form.Label>
+                    <Form.Label htmlFor="latinName" >Latin Name (Optional)</Form.Label>
                     <Form.Control
                         type="text"
                         name="latinName"
@@ -150,7 +150,7 @@ const UpdatePlantType = () => {
             <Row>
 
                 <Col>
-                    <Form.Label htmlFor="preferredLight">Preferred Light</Form.Label>
+                    <Form.Label htmlFor="preferredLight">Preferred Light (Optional)</Form.Label>
                     <Form.Select
                         name="preferredLight"
                         onChange={handleInputChange}

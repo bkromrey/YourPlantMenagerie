@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // custom components
 import FertilizingEventsTable from "../components/FertilizingEvents/FertilizingEventsTable";
@@ -17,8 +17,6 @@ function FertilizingEventsPage(){
         {/* display either the route is needed for the edit function */}
         <Routes>
             <Route path="/edit/:id" element={<UpdateFertilizingEvents />} />
-            {/* <Route path="/add" element={<CreateFertilizingEvent />} /> */}
-
             
             <Route path="/" element={
                 <>

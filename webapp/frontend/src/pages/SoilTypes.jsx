@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // custom components
 import SoilTypesTable from "../components/SoilTypes/SoilTypesTable";
@@ -15,8 +15,6 @@ function SoilTypesPage(){
         {/* display either the route is needed for the edit function */}
         <Routes>
             <Route path="/edit/:id" element={<UpdateSoilType />} />
-            {/* <Route path="/add" element={<CreateSoilType />} /> */}
-
             
             <Route path="/" element={
                 <>

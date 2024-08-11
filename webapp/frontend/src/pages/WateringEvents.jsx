@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // custom components
 import WateringEventsTable from "../components/WateringEvents/WateringEventsTable";
@@ -17,9 +17,7 @@ function WateringEventsPage(){
         {/* display either the route is needed for the edit function */}
         <Routes>
             <Route path="/edit/:id" element={<UpdateWateringEvents />} />
-            {/* <Route path="/add" element={<CreateWateringEvent />} /> */}
-
-            
+  
             <Route path="/" element={
                 <>
                 

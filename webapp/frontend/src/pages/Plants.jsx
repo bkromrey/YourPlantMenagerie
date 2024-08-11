@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // custom components
 import PlantsTable from "../components/Plants/PlantsTable";
@@ -17,9 +17,7 @@ function PlantsPage(){
         {/* display either the route is needed for the edit function */}
         <Routes>
             <Route path="/edit/:id" element={<UpdatePlants />} />
-            {/* <Route path="/add" element={<CreatePlant />} /> */}
 
-            
             <Route path="/" element={
                 <>
                 
