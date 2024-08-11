@@ -50,8 +50,7 @@ const PlantsTable = () => {
               <th>Water Interval (Days)</th>
               <th>Fertilizer Interval (Days)</th>
               <th>Planted Date</th>
-              <th></th>
-              <th></th>
+              <th colSpan={2}>Modify</th>
             </tr>
           </thead>
 

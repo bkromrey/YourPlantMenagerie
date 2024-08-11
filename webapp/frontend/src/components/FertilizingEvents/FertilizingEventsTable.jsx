@@ -45,8 +45,7 @@ const FertilizingEventsTable = () => {
               <th>Event ID</th>
               <th>Fertilizing Date</th>
               <th>Plant</th>
-              <th></th>
-              <th></th>
+              <th colSpan={2}>Modify</th>
             </tr>
           </thead>
 

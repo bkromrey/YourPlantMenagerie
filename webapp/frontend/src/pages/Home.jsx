@@ -22,13 +22,16 @@ function HomePage(){
                 
                 {/* header & description */}
                 <h2>Your Plant Menagerie</h2>
-            <br/>
-            <p>A database driven web app to help you care for your house plants.</p>
-            <p> For more information about this project click <Link to="/about">here</Link>.
+
+            <p>A database driven web app to help you care for your house plants. <br/> For more information about this project click <Link to="/about">here</Link>.
             </p>
             <br/>
             <br/>
                 <p align='left'><strong>Watering Schedule: </strong> </p>
+            <br/>
+
+
+                <p align='left'><strong>Watering Schedule </strong> </p>
 
                 {/* render the table */}
                 <HomeTableWatering />
@@ -36,7 +39,7 @@ function HomePage(){
                 <br/>
                 <br/>
 
-                <p align='left'><strong>Fertilizing Schedule: </strong></p>
+                <p align='left'><strong>Fertilizing Schedule </strong></p>
 
                 {/* render the table */}
                 <HomeTableFertilzing />

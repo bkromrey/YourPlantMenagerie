@@ -48,8 +48,7 @@ const PlantTypesTable = () => {
               <th>Toxic to Cats</th>
               <th>Toxic to Dogs</th>
               <th>Preferred Light</th>
-              <th></th>
-              <th></th>
+              <th colSpan={2}>Modify</th>
             </tr>
           </thead>
 

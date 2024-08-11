@@ -45,8 +45,7 @@ const PlantSoilsTable = () => {
               <th>Plant Soil ID</th>
               <th>Plant</th>
               <th>Soil</th>
-              <th></th>
-              <th></th>
+              <th colSpan={2}>Modify</th>
             </tr>
           </thead>
 
