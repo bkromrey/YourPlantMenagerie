@@ -177,7 +177,7 @@ function AddPlant(){
           <br />
           <Row >
 
-          <Col xs={3}>
+          <Col xs={4}>
                   <Form.Label >Planted Date (Optional)</Form.Label>
                   <Form.Control
                       type="date"
@@ -187,7 +187,7 @@ function AddPlant(){
                       
                   />
               </Col>
-            <Col>
+            <Col >
             
           <Form.Label htmlFor="plantTypeID">Plant Type (Optional)</Form.Label>
                 <Form.Select
