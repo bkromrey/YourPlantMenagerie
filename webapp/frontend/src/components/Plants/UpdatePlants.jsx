@@ -204,28 +204,27 @@ const UpdatePlant = () => {
                       ))}
 
 
-                      {/* 
-                      CITATION FOR CONDITIONAL RENDERING IN RETURN
+                      {/* CITATION FOR CONDITIONAL RENDERING IN RETURN
                       Used the following post to aid in figuring out how to use a conditional within the return.
                       DATE ACCESSED: 11 AUG 2024
                       URL: https://stackoverflow.com/questions/40477245/is-it-possible-to-use-if-else-statement-in-react-render-function
                       */}
                       
-                      
+                      {/* If PlantType is empty to begin with, upon edit, defaults to show a blank selector */}
                       {selectorDefault.length === 0 &&
-                        <option selected value='NULL'> </option>
+                        <option selected value=''> </option>
                       }
-
-                      {selectorDefault.length > 0 &&
-                        <option value='NULL'></option>
-                      }
-
-
                       
-                      {/* then display all other options */}
+                      {/* display all other options */}
                       {selectorNonDefaults.map((PlantType) => (
                           <PlantTypeSelectorOption key={PlantType.plantTypeID} PlantType={PlantType} fetchPlantTypes={fetchPlantTypes} />
                       ))}
+
+                      {/* if Plant had an existing PlantType displays an option to null it */}
+                      {selectorDefault.length > 0 &&
+                        <option value=''></option>
+                      }
+
 
                       
                       {/* {Plants.map((Plant) => (

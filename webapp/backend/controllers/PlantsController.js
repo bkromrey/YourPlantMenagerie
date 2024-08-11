@@ -97,7 +97,7 @@ const updatePlant = async (req, res) => {
         newPlant.displayName,
         Number(newPlant.isInside),
         newPlant.currentLight,
-        newPlant.plantTypeID,
+        newPlant.plantTypeID === "" ? null : parseInt(newPlant.plantTypeID), 
         newPlant.waterInterval,
         newPlant.fertilizerInterval, 
         newPlant.plantedDate,
