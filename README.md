@@ -46,14 +46,6 @@ npm install
 npm start -- --host
 ```
 
-# REMINDER
-
-(TODO - delete this after cleaning up and citing all the starter code)
-
-If you have adapted the CS340 starter app code this should be clearly stated in the readme (e.g. "All code is based on the CS 340 starter code, with the exception of...") and also in the source code to describe the extent to which any non-original sources were used (e.g. "this module adapted from the starter code"). 
-
-
-
 # Citations 
 
 A large majority of the code is based on the CS340 starter code which can be found at https://github.com/osu-cs340-ecampus/react-starter-app\
