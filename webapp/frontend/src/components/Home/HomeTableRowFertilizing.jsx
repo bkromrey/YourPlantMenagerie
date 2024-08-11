@@ -26,28 +26,19 @@ const HomeTableRowFertilizing = ({ PlantsDueFertilizing }) => {
 
 
   return (
+    <>
     {pastDue && 
     <tr class="pastDueRow">
       <td>{PlantsDueFertilizing.displayName}</td>
 
-      {PlantsDueFertilizing.LastFertilizedDate &&
-                        <td>{PlantsDueFertilizing.LastFertilizedDate.slice(0,10)}</td>
-      }
+      {PlantsDueFertilizing.LastFertilizedDate && <td>{PlantsDueFertilizing.LastFertilizedDate.slice(0,10)}</td>}
+      {!PlantsDueFertilizing.LastFertilizedDate && <td>none</td>}
 
-      {!PlantsDueFertilizing.LastFertilizedDate &&
-                        <td>none</td>
-      }
-
-      {PlantsDueFertilizing.NextFertilizingDate &&
-                        <td>{PlantsDueFertilizing.NextFertilizingDate.slice(0,10)}</td>
-      }
-
-      {!PlantsDueFertilizing.NextFertilizingDate &&
-                        <td>none</td>
-      }
+      {PlantsDueFertilizing.NextFertilizingDate && <td>{PlantsDueFertilizing.NextFertilizingDate.slice(0,10)}</td>}
+      {!PlantsDueFertilizing.NextFertilizingDate && <td>none</td>}
 
     </tr>
-    }
+}
 
     {!pastDue && 
         <tr class="pastDueRow">
@@ -70,6 +61,7 @@ const HomeTableRowFertilizing = ({ PlantsDueFertilizing }) => {
           }
     
         </tr>}
+        </>
   );
 };
 
