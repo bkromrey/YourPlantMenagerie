@@ -175,18 +175,25 @@ const UpdatePlant = () => {
               </Col>
           </Row>
 
-          <br /> 
+          <br/>
+
           <Row>
-              <Col xs={5}>
-                  <Form.Label>Date Planted</Form.Label>
-                  <Form.Control
-                      type="date"
-                      name="plantedDate"
-                      defaultValue={formData.plantedDate}
+              <Col>
+                  <Form.Label htmlFor="isInside" >Inside/Outside</Form.Label>
+                  <Form.Select
+                      required
+                      name="isInside"
                       onChange={handleInputChange}
+                      defaultValue={prevPlant.isInside}
                       
-                  />
+                  >
+                      <option value="1">Inside</option>
+                      <option value="0">Outside</option>
+                  </Form.Select>
               </Col>
+
+          <br /> 
+              
               <Col >
                   <Form.Label htmlFor="plantTypeID">Plant Type</Form.Label>
 
@@ -238,19 +245,7 @@ const UpdatePlant = () => {
 
           <br />
           <Row>
-              <Col>
-                  <Form.Label htmlFor="isInside" >Inside/Outside</Form.Label>
-                  <Form.Select
-                      required
-                      name="isInside"
-                      onChange={handleInputChange}
-                      defaultValue={prevPlant.isInside}
-                      
-                  >
-                      <option value="1">Inside</option>
-                      <option value="0">Outside</option>
-                  </Form.Select>
-              </Col>
+              
           {/* </Row>
           <br /> 
 
@@ -293,11 +288,22 @@ const UpdatePlant = () => {
                       
                   />
               </Col>
+
+            
           </Row>
 
           <br /> 
           <Row>
-
+          <Col xs={5}>
+                  <Form.Label>Date Planted</Form.Label>
+                  <Form.Control
+                      type="date"
+                      name="plantedDate"
+                      defaultValue={formData.plantedDate}
+                      onChange={handleInputChange}
+                      
+                  />
+              </Col>
           </Row>
 
           <br />

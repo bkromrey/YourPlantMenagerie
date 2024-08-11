@@ -1,7 +1,7 @@
 # About
 This is a simple database driven web app used to track the care and needs of your plants.
 
-- [ ] TODO: add more to our README file describing the project
+- Tired of killing all your houseplants? Looking to optimize yield in your vegetable garden? Gardening is a fantastic hobby for millions of people worldwide, but the more you delve into the hobby, the harder it is to keep track of all your plants' needs. Your Plant Menagerie tracks the care and upkeep of people's plants, so they focus more on their gardening hobby and less on their plant schedules. Information such as the soil a plant has been in or is currently in, a plant's currentLight versus its preferred light, and if its due to be watered are just some ways in which you can populate and utilize the database for future plant care ease. Track the UpkeepEvents of your Plants in multiple locations with the web-based database application. The application will be able to keep track of up to 500 of your houseplants and garden plants, to make sure you never have to guess when your plant needs care. 
 
 
 # Frontend
