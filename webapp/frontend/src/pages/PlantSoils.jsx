@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // custom components
 import PlantSoilsTable from "../components/PlantSoils/PlantSoilsTable";
@@ -17,8 +17,6 @@ function PlantSoilsPage(){
         {/* display either the route is needed for the edit function */}
         <Routes>
             <Route path="/edit/:id" element={<UpdatePlantSoils />} />
-            {/* <Route path="/add" element={<CreatePlantSoil />} /> */}
-
             
             <Route path="/" element={
                 <>

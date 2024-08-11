@@ -17,7 +17,6 @@ function AddPlantType(){
 
     const CloseButton = () => InsertPopup(false);
     const SaveButton = () => handleSubmit();
-        // InsertPopup(false);
     
     const navigate = useNavigate();
       
