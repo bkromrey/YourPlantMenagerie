@@ -26,7 +26,6 @@ function App() {
     <BrowserRouter>
   
     <NavBar />
-{/* TODO update routes that aren't child react components */}
     <main className="main-content">
       <section>
         <Routes> 

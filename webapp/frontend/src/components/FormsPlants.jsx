@@ -19,11 +19,7 @@ function PlantsRow(){
         
         <tbody>
 
-            {/* TODO: use the map function to dynamically build these rows once we connect to database */}
-
             <tr>
-
-                {/* <td><a href="#" onClick="updatePlant('this.plantID')">Edit</a></td> */}
 
                 <td>1</td>
                 <td>Pothos in Living Room</td>
@@ -240,9 +236,6 @@ export function InsertPlant(){
             />
           </Container>
 
-                {/* TODO: fix the functions with onClick, below are our original HTML */}
-                {/* <input class="btn" type="submit" id="addPlant" value="Add Plant"/>
-                    <input class="btn" type="button" value="cancel" onClick="browsePlant()"/> */}
 
             </Form>
         </Modal.Body>
@@ -390,10 +383,6 @@ export function UpdatePlant(){
                 name="plantedDate" 
             />
           </Container>
-
-                {/* TODO: fix the functions with onClick, below are our original HTML */}
-                {/* <input class="btn" type="submit" id="addPlant" value="Add Plant"/>
-                    <input class="btn" type="button" value="cancel" onClick="browsePlant()"/> */}
 
             </Form>
         </Modal.Body>
