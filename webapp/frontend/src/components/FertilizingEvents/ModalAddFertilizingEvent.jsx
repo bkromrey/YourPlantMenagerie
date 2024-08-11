@@ -176,15 +176,15 @@ function AddFertilizingEvent(){
 
                     <Col>
 
-                    <Form.Label htmlFor="plantID">Plant Being Fertilized</Form.Label>
+                    <Form.Label htmlFor="plantID">Fertilized Plant</Form.Label>
                     <Form.Select
                         name="plantID"
+                        defaultValue={formData.plantID}
                         onChange={handleInputChange}
                         required
-                        autoFocus
                         >
                         {/* set a blank option since we need something to be selected to handleInputChange */}
-                        <option></option>
+                        <option value="">Select a plant</option>
                         {/* use the map function to generate all of the options */}
                         {/* displays the plant's name but sets the value equal to the plant's primary key */}
                         {Plants.map((Plant) => (

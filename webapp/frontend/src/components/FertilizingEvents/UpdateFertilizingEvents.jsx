@@ -65,7 +65,7 @@ const UpdateFertilizingEvent = () => {
   function isUpdate(){
     // Check if formData is equal to prevFertilizingEvent
     if (JSON.stringify(formData) === JSON.stringify({
-      fertilizingDate:         prevFertilizingEvent.fertilizingDate || '',
+      fertilizingDate:         prevFertilizingEvent.fertilizingDate.slice(0,10) || '',
       plantID:                 prevFertilizingEvent.plantID || '',
     })) {
       alert("No changes made.");
@@ -165,7 +165,7 @@ const UpdateFertilizingEvent = () => {
           </Col>
 
           <Col>
-                <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
+                <Form.Label htmlFor="plantID"> Fertilized Plant</Form.Label>
 
                 <Form.Select
                     name="plantID"

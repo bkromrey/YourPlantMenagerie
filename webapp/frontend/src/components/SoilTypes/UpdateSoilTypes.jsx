@@ -94,24 +94,21 @@ const UpdateSoilType = () => {
                       autoFocus
                   />
               </Col>
-          </Row>
-
-          <br /> 
-          <Row>
-              {/* <Col> */}
+              <Col>
                   <Form.Label >Description (Optional)</Form.Label>
                   <Form.Control
                       type="text"
                       as="textarea" 
-                      rows={3}
+                      rows={1}
                       name="soilDescription"
                       defaultValue={prevSoilType.soilDescription}
                       onChange={handleInputChange}
                   />
-              {/* </Col> */}
+              </Col>
           </Row>
           <br />
           <Container >
+          <br />
           <Row>
             <Col> 
               <Button variant="secondary" type="button" onClick={() => navigate("/soilTypes")} >Cancel</Button>{' '}

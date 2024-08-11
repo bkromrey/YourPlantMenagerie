@@ -125,16 +125,14 @@ function AddSoilType(){
                             autoFocus
                         />
                     </Col>
-                </Row>
 
                 <br /> 
-                <Row>
                     <Col>
                         <Form.Label htmlFor="soilDescription">Description (Optional)</Form.Label>
                         <Form.Control
                             type="text"
                             as="textarea" 
-                            rows={3}
+                            rows={1}
                             name="soilDescription"
                             onChange={handleInputChange}
                         />

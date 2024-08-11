@@ -71,7 +71,7 @@ const UpdateWateringEvent = () => {
   function isUpdate(){
     // Check if formData is equal to prevWateringEvent
     if (JSON.stringify(formData) === JSON.stringify({
-      wateringDate:         prevWateringEvent.wateringDate || '',
+      wateringDate:         prevWateringEvent.wateringDate.slice(0,10) || '',
       plantID:              prevWateringEvent.plantID || '',
     })) {
       alert("No changes made.");
@@ -161,8 +161,7 @@ const UpdateWateringEvent = () => {
 
           <Row >
               <Col xs={5}>
-                  <Form.Label >Date</Form.Label>
-fprev
+                  <Form.Label  htmlfor="wateringDate"> Date </Form.Label>
                   <Form.Control
                       required
                       type="date"
@@ -173,14 +172,12 @@ fprev
               </Col>
 
               <Col >
-                  <Form.Label htmlFor="plantID">Plant Being Watered</Form.Label>
+                  <Form.Label htmlFor="plantID">Watered Plant</Form.Label>
 
                   <Form.Select
                       name="plantID"
                       onChange={handleInputChange}
                       required
-                      // defaultValue={formData.plantID}
-                      autoFocus
                       >
                       {/* use the map function to generate all of the options */}
                       {/* displays the plant's name but sets the value equal to the plant's primary key */}
