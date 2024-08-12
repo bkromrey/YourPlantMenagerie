@@ -3,7 +3,9 @@
 // URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
 
-// TODO do we want to just remove this whole file since it doesn't work?
+
+// NOTE - it seems that this diagnostic page doesn't work as-is from the starter code.  Keeping this here in case we want to revisit it later, but it's largely unused.
+
 
 import { useState, useEffect } from 'react';  // import the hooks you are going to use
 import axios from 'axios';

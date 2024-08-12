@@ -69,7 +69,7 @@ function CreateSoilType() {
         />
         <label htmlFor="soilDescription">Soil Description</label>
         <input
-          type="text" // TODO make this a text box for a longer description
+          type="text" 
           name="soilDescription"
           defaultValue={formData.soilDescription}
           onChange={handleInputChange}

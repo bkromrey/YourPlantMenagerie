@@ -45,8 +45,7 @@ const SoilTypesTable = () => {
               <th>Soil ID</th>
               <th>Soil Name</th>
               <th>Soil Description</th>
-              <th></th>
-              <th></th>
+              <th colSpan={2}>Modify</th>
             </tr>
           </thead>
 

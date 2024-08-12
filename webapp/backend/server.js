@@ -20,35 +20,18 @@ app.use(express.json());
 
 // API Routes for backend CRUD:
 app.use("/api/soilTypes", require("./routes/SoilTypesRoutes.js"));
+app.use("/api/WateringEvents", require("./routes/WateringEventsRoutes.js"));
+app.use("/api/FertilizingEvents", require("./routes/FertilizingEventsRoutes.js"));
+app.use("/api/plantTypes", require("./routes/PlantTypesRoutes.js"));
+app.use("/api/Plants", require("./routes/PlantsRoutes.js"));
+app.use("/api/PlantSoils", require("./routes/PlantSoilsRoutes.js"));
+app.use("/api/NextWateringDate", require("./routes/HomeRoutesWatering.js"));
+app.use("/api/NextFertilizingDate", require("./routes/HomeRoutesFertilizing.js"));
 
 
 
 // Match to your database config route
 const db = require('./database/config.js');
-
-
-
-// DIAGNOSTIC CODE --- SEEMS TO HAVE A CORS ISSUE, TODO take this out?
-
-// define a new GET request with express:
-// app.get('/api/diagnostic', async (req, res) => {
-//   try {
-//     // Await your database queries here
-//     console.log('making an attempt');
-//     await db.pool.query('DROP TABLE IF EXISTS diagnostic;');
-//     await db.pool.query('CREATE TABLE diagnostic(id INT PRIMARY KEY AUTO_INCREMENT, text VARCHAR(255) NOT NULL);');
-//     await db.pool.query('INSERT INTO diagnostic (text) VALUES ("MySQL is working!")');
-//     const results = await db.pool.query('SELECT * FROM diagnostic;');
-
-//     // res.json() automatically stringifies the JavaScript object to JSON
-//     res.json(results);
-
-//   } catch (error) {
-//     // Handle Errors
-//     console.error('Database operation failed:', error);
-//     res.status(500).send('Server error');
-//   }
-// });
 
 
 // Citation for how to dynamically change the hostname in the log output

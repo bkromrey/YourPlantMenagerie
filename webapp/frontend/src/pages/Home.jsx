@@ -1,34 +1,59 @@
-import Container from "react-bootstrap/esm/Container";
-import {Link} from 'react-router-dom';
+import { Routes, Route, Link } from "react-router-dom";
+
+// custom components
+import HomeTableWatering from "../components/Home/HomeTableWatering";
+import HomeTableFertilzing from "../components/Home/HomeTableFertilizing";
+
+// Code in this function adapted from the CS340 starter code.
+// Date Accessed: 4 August 2024
+// URL: https://github.com/osu-cs340-ecampus/react-starter-app
 
 
-function Home(){
+function HomePage(){
     return (
         <>
-        <div>
-            <h2>Your Plant Menagerie</h2>
-            <p>A database driven web app to help you care for your house plants.</p>
-            <p> For more information about this project click <Link to="/about">here</Link>.
-            </p>
+
+        {/* display either the route is needed for the edit function */}
+        <Routes>
+
             
-            {/* <Container>
+            <Route path="/" element={
+                <>
+                
+                {/* header & description */}
+                <h2>Your Plant Menagerie</h2>
+
+            <p>A database driven web app to help you care for your house plants. <br/> For more information about this project click <Link to="/about">here</Link>.
+            </p>
+            <br/>
+
+
+                <p align='left'><strong>Watering Schedule </strong> </p>
+
+                {/* render the table */}
+                <HomeTableWatering />
+                <p align='left'>* Red Highlight means your plant is overdue for a watering.</p>
+                <p>*Plants that have not been watered won't show up until they have at least one event logged.</p>
                 <br/>
-                <h2>These Plants Need Attention!</h2>
-                <ul>
-                    <li>Water me! (Pothos in living room)</li>
-                    <li>Cherry tomatoes outside</li>
-                </ul>
                 <br/>
 
-                
-                <p>
-                    More text here. I'm thinking we have a "quick view" dashboard of plants needing fertilizer or water, and we also present the user with a button that says "Record Watering Event" and likewise with fertilizer.
-                </p>
-                
-            </Container> */}
-        </div>
-    </>
+                <p align='left'><strong>Fertilizing Schedule </strong></p>
+
+                {/* render the table */}
+                <HomeTableFertilzing />
+                <p align='left'>* Red Highlight means your plant is overdue for a fertilizing.</p>
+                <p>*Plants that have not been fertilized won't show up until they have at least one event logged.</p>
+
+                </> 
+            } />
+
+        </Routes>
+        
+
+        </>
     );
 }
 
-export default Home;
+
+
+export default HomePage;

@@ -14,8 +14,8 @@ import Home from './pages/Home.jsx';
 import PlantsPage from './pages/Plants.jsx';
 import PlantTypesPage from './pages/PlantTypes.jsx';
 import SoilTypesPage from './pages/SoilTypes.jsx'
-import WateringEventsPage from './pages/wateringEvents.jsx'
-import FertilizingEventsPage from './pages/fertilizingEvents.jsx'
+import WateringEventsPage from './pages/WateringEvents.jsx'
+import FertilizingEventsPage from './pages/FertilizingEvents.jsx'
 import PlantSoilsPage from './pages/PlantSoils.jsx'
 import AboutPage from './pages/About.jsx';
 
@@ -26,17 +26,16 @@ function App() {
     <BrowserRouter>
   
     <NavBar />
-{/* TODO update routes that aren't child react components */}
     <main className="main-content">
       <section>
         <Routes> 
-          <Route path="/" element={<Home />} />
-          <Route path="/plants" element={<PlantsPage />} />
-          <Route path="/plantTypes" element={<PlantTypesPage />} />
+          <Route path="/*" element={<Home />} />
+          <Route path="/plants/*" element={<PlantsPage />} />
+          <Route path="/plantTypes/*" element={<PlantTypesPage />} />
           <Route path="/soilTypes/*" element={<SoilTypesPage />} />  
-          <Route path="/wateringEvents" element={<WateringEventsPage />} />
-          <Route path="/fertilizingEvents" element={<FertilizingEventsPage />} />
-          <Route path="/plantSoils" element={<PlantSoilsPage />} />
+          <Route path="/wateringEvents/*" element={<WateringEventsPage />} />
+          <Route path="/fertilizingEvents/*" element={<FertilizingEventsPage />} />
+          <Route path="/plantSoils/*" element={<PlantSoilsPage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>   
       </section>

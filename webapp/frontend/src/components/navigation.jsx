@@ -13,7 +13,8 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function NavBar() {
     return (
-        <Navbar expand="lg" className="bg-body-tertiary" fixed='top'>
+        // <Navbar expand="lg" className="bg-body-tertiary" fixed='top'>
+        <Navbar expand="lg" className="nav" fixed='top'>
         <Container>
         <img className="d-flex align-items-center"
                 src='plant.svg' alt='plant icon' width='20' />

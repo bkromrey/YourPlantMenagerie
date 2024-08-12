@@ -7,8 +7,8 @@
 
 -- get relevant plant info and replace plantTypeID w/ common name
 SELECT plantID, displayName, isInside, currentLight, PlantTypes.commonName AS "Plant Type"
-FROM Plant
-   INNER JOIN PlantTypes ON Plants.plantTypeID = PlantTypes.plantTypeID;
+FROM Plants
+   LEFT JOIN PlantTypes ON Plants.plantTypeID = PlantTypes.plantTypeID;
 
 -- get all info from PlantTypes table
 SELECT * FROM PlantTypes;

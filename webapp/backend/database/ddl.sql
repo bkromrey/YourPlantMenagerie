@@ -39,18 +39,16 @@ CREATE OR REPLACE TABLE PlantTypes (
 CREATE OR REPLACE TABLE Plants (
   plantID int(11) NOT NULL AUTO_INCREMENT,
   displayName varchar(50) NOT NULL,
-  isInside tinyint(1) NOT NULL DEFAULT 1,
+  isInside tinyint(4) NOT NULL DEFAULT 1,
   currentLight enum('Low','Medium','High') DEFAULT NULL,
-  plantTypeID int(11),
-  waterInterval int(11) NOT NULL DEFAULT 7,
+  plantTypeID int(11) DEFAULT NULL,
+  waterInterval int(11) DEFAULT 7,
   fertilizerInterval int(11) DEFAULT 14,
   plantedDate date DEFAULT NULL,
-  UNIQUE (plantTypeID, displayName),
-  PRIMARY KEY (plantID,plantTypeID),
-  UNIQUE KEY plantID_UNIQUE (plantID),
-  FOREIGN KEY (plantTypeID) REFERENCES PlantTypes (plantTypeID) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (plantID),
+  UNIQUE KEY unique_plant (plantTypeID, displayName),
+  FOREIGN KEY (plantTypeID) REFERENCES PlantTypes (plantTypeID) ON DELETE SET NULL ON UPDATE CASCADE
 );
-
 
 
 -- create table for SoilTypes
@@ -69,7 +67,7 @@ CREATE OR REPLACE TABLE PlantSoils (
   soilID int(11) NOT NULL,
   PRIMARY KEY (plantSoilID),
   UNIQUE KEY plantSoilID_unique (plantSoilID),
-  FOREIGN KEY (plantId) REFERENCES Plants (plantID) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (plantID) REFERENCES Plants (plantID) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (soilID) REFERENCES SoilTypes (soilID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -152,8 +150,6 @@ VALUES (
     "contains organic matter like leaves"
 );
 
-
-
 -- import data for table Plants
 INSERT INTO Plants (
     displayName,
@@ -178,8 +174,8 @@ VALUES (
     1,
     "Low",
     (SELECT plantTypeID FROM PlantTypes WHERE commonName = "Pothos"),
-    7,
     14,
+    28,
     "2020-03-02"    
 ),
 ( 
@@ -217,16 +213,16 @@ VALUES (
     (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')
 ), 
 ( 
-    '2024-07-09',
-    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')
-),
-( 
     '2024-07-15',
     (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Living Room')
 ),
 ( 
     '2024-07-16',
     (SELECT plantID FROM Plants WHERE displayName = 'Orange Cherry Tomatoes')
+),
+( 
+    '2024-08-12',
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')
 );
     
 -- import data for table FertilizingEvents
@@ -247,16 +243,16 @@ VALUES (
     (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Living Room')   
 ),
 ( 
-    '2024-06-15',
-    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')   
-),
-( 
     '2024-07-02',
     (SELECT plantID FROM Plants WHERE displayName = 'String of Pearls')
 ),
 ( 
     '2024-07-03',
     (SELECT plantID FROM Plants WHERE displayName = 'Orange Cherry Tomatoes')
+),
+( 
+    '2024-08-12',
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')   
 );
 
 -- Data for table PlantSoils

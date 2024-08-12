@@ -32,8 +32,6 @@ const getSoilTypeByID = async (req, res) => {
     const [result] = await db.query(query, [soilID]);
     // Check if SoilType was found
     if (result.length === 0) {
-      // console.log("soildID=" + soilID);  // TODO
-      // console.log(query);
       return res.status(404).json({ error: "SoilType not found" });
     }
     const SoilType = result[0];

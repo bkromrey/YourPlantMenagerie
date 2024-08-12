@@ -1,17 +1,45 @@
+
+// CITATION FOR CSS
+// At the bottom of this file, we import the react-bootsrap defaults.
+// DATE ACCESSED: 27 JULY 2024
+// URL: https://react-bootstrap.netlify.app/
+
+:root {
+  --green1:         #4A9F79;
+  --green-body:     rgba(190, 236, 200, 0.369);
+  --green-bg:       rgb(190, 236, 200);
+  --alert:          rgb(238, 115, 115);
+}
+
+
+.fixed-top{
+  background-color: var(--green-bg)   !important;
+}
+
+body {
+  background-color: var(--green-body) !important;
+}
+
 // prevent navbar & footer from overlapping with content on the page
 .main-content {
   padding-top: 55px;
   padding-bottom: 65px;
+  min-width: 500px;
+  // min-width: 75%;
 }
 
-// TODO - this isn't the best way to theme with color, need to figure that out with bootstrap. 
 //making the footer a solid color allows content to scroll under it without displaying funny
 .fixed-bottom{
   font-size: 0.7em;
-  background-color: rgb(190, 236, 200);
+  background-color: var(--green-bg);
   margin: 0;
 }
 
+// CITATION FOR THE FOLLOWING CSS BLOCK
+// Following default CSS block from the vite default scaffolding
+// Date Accessed: 27 July 2024
+// Version Used: create-vite@5.4.0
+// URL: https://vitejs.dev/
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -19,66 +47,9 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.pastDueRow{
+  background-color: var(--alert) !important;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-
-// TODO ADD THEMING
-
-// Date Accessed: 27 July 2024
-// The following code snippet modified based on information in this posting.
-// URL: https://stackoverflow.com/questions/51928722/how-to-override-bootstrap-theme-colors-in-bootstrapped-react-redux-app
-
-// custom color overrides for bootstrap defaults
-
-$primary:     #13C7CD;
-$danger:      #FF0000;
-$green:       #4A9F79;
-$lime-green:  #8E9E4A;
-
-:root {
---bs-green:          #4A9F79;
---primary:          #4A9F79;
-
-}
-[data-bs-theme="green"] {
-
-  --bs-body-color: var(--bs-green);
-  --bs-body-color-rgb: #{to-rgb($green)};
-  --bs-body-bg: var(--bs-lime-green);
-  --bs-body-bg-rgb: #{to-rgb($lime-green)};
-  --bs-tertiary-bg: #{$green};
-
-  // .dropdown-menu {
-  //   --bs-dropdown-bg: #{mix($blue-500, $blue-600)};
-  //   --bs-dropdown-link-active-bg: #{$blue-700};
-  // }
-
-  // .btn-secondary {
-  //   --bs-btn-bg: #{mix($gray-600, $blue-400, .5)};
-  //   --bs-btn-border-color: #{rgba($white, .25)};
-  //   --bs-btn-hover-bg: #{darken(mix($gray-600, $blue-400, .5), 5%)};
-  //   --bs-btn-hover-border-color: #{rgba($white, .25)};
-  //   --bs-btn-active-bg: #{darken(mix($gray-600, $blue-400, .5), 10%)};
-  //   --bs-btn-active-border-color: #{rgba($white, .5)};
-  //   --bs-btn-focus-border-color: #{rgba($white, .5)};
-  //   --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
-  // }
-}
-
-
-
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import bootstrap last, so our variables override the defaults
 @import 'node_modules/bootstrap/scss/bootstrap';

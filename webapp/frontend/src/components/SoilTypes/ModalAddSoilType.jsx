@@ -12,7 +12,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-//TODO
 
 function AddSoilType(){
     const [showInsertPopup, InsertPopup] = useState(false);
@@ -29,12 +28,17 @@ function AddSoilType(){
     });
         
     const handleSubmit = async (e) => {
+
+        // check for required field(s) otherwise not caught by modal (things that don't have a default in database but are required)
+        if (!formData.soilType){
+            alert("Soil Name is required when creating a Soil Type.");
+        }
+
+        // attempt to add to database if all required fields present
+        else{
+
         // close the popup window
         InsertPopup(false);
-
-        // TODO remove completely, this doesn't play nice with bootstrap stuff 
-        // Prevent page reload
-        // e.preventDefault();  
 
         // Create a new SoilType object from the formData
         const newSoilType = {
@@ -49,8 +53,6 @@ function AddSoilType(){
         const URL = import.meta.env.VITE_API_URL + "soilTypes";
         const response = await axios.post(URL, newSoilType);
         if (response.status === 201) {
-
-            //TODO put something here to re-render the component?
             navigate("/soilTypes");
 
         } else {
@@ -58,19 +60,19 @@ function AddSoilType(){
         }
         } catch (error) {
         alert("Error creating SoilType");
-        // alert(error); 
         console.error("Error creating SoilType:", error);
         }
         // Reset the form fields
         resetFormFields();
-
-        // TODO - i don't like how it forces the entire page to reload, i just want to reload the component
+        
 
         // Citation for this line of code
         // Forces the page to reload to display the new data
         // URL: https://stackoverflow.com/questions/56649094/how-to-reload-a-component-part-of-page-in-reactjs
         // Date Accessed: 5 August 2024
         window.location.reload();
+        
+    }
     };
       
     const resetFormFields = () => {
@@ -92,34 +94,6 @@ function AddSoilType(){
     };
       
 
-    ///////// ORIGINAL FORM 
-    // return (
-    //     <>
-    //     <h2>Create Soil Type</h2>
-    //     <form onSubmit={handleSubmit}>
-    //         <label htmlFor="soilType">Soil Name</label>
-    //         <input
-        //         type="text"
-        //         name="soilType"
-        //         defaultValue={formData.soilType}
-        //         onChange={handleInputChange}
-    //         />
-    //         <label htmlFor="soilDescription">Soil Description</label>
-    //         <input
-        //         type="text" // TODO make this a text box for a longer description
-        //         name="soilDescription"
-        //         defaultValue={formData.soilDescription}
-        //         onChange={handleInputChange}
-    //         />
-    //         <br /><br />
-    //         <Button type="submit">Submit</Button>
-    //     </form>
-    //     </>
-    // );
-
-
-
-      ////////////// MODAL STUFF
     return (
 
         <>
@@ -147,21 +121,19 @@ function AddSoilType(){
                             required
                             type="text"
                             name="soilType"
-                            // defaultValue={formData.soilType}
                             onChange={handleInputChange}
                             autoFocus
                         />
                     </Col>
-                </Row>
 
                 <br /> 
-                <Row>
                     <Col>
                         <Form.Label htmlFor="soilDescription">Description (Optional)</Form.Label>
                         <Form.Control
-                            type="text" // TODO make this a text box for a longer description
+                            type="text"
+                            as="textarea" 
+                            rows={1}
                             name="soilDescription"
-                            // defaultValue={formData.soilDescription}
                             onChange={handleInputChange}
                         />
                     </Col>
