@@ -99,17 +99,17 @@ This post helped us figure out how to pull the primary key out from the double a
 Date: 10 August 2024\
 URL: https://stackoverflow.com/questions/56844536/how-to-get-javascript-objects-value-with-key
 
-**Alignment of Content**
+**Alignment of Content**\
 Used this resource to align row in center\
 Date: 11 August 2024\
 URL: https://react-bootstrap.netlify.app/docs/layout/grid/
 
-**CSS React Bootstrap**
+**CSS React Bootstrap**\
 Used this resource to import react-bootstrap defaults\
 Date: 27 July 2024\
 URL: https://react-bootstrap.netlify.app/
 
-**CSS Vite Default Scaffolding**
+**CSS Vite Default Scaffolding**\
 Used this resource for CSS block from the vite default scaffolding\
 Date: 27 July 2024\
 URL: https://vitejs.dev/
