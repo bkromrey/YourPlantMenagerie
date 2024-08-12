@@ -139,10 +139,7 @@ function AddPlant(){
     // CITATION FOR TODAY'S DATE STUFF
     // URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
     // DATE ACCESSED: 8 AUG 2024
-    // const todayDate = new Date().toLocaleDateString("en-US");
-    // todayDate = 8-8-2024
 
-    // alert("todayDate:" +todayDate + "plantID:" + formData.plantID + " date:" + formData.wateringDate);
 
       
     return (

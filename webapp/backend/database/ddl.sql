@@ -25,8 +25,8 @@ SET AUTOCOMMIT = 0;
 CREATE OR REPLACE TABLE PlantTypes (
   plantTypeID int(11) NOT NULL AUTO_INCREMENT,
   commonName varchar(150) NOT NULL,
-  toxicCat tinyint(4) NOT NULL DEFAULT 1,
-  toxicDog tinyint(4) NOT NULL DEFAULT 1,
+  toxicCat tinyint(4) NOT NULL DEFAULT 0,
+  toxicDog tinyint(4) NOT NULL DEFAULT 0,
   preferredLight enum('Low','Medium','High') DEFAULT NULL,
   latinName varchar(150) DEFAULT NULL,
   PRIMARY KEY (plantTypeID),
