@@ -67,7 +67,7 @@ CREATE OR REPLACE TABLE PlantSoils (
   soilID int(11) NOT NULL,
   PRIMARY KEY (plantSoilID),
   UNIQUE KEY plantSoilID_unique (plantSoilID),
-  FOREIGN KEY (plantId) REFERENCES Plants (plantID) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (plantID) REFERENCES Plants (plantID) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (soilID) REFERENCES SoilTypes (soilID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -150,8 +150,6 @@ VALUES (
     "contains organic matter like leaves"
 );
 
-
-
 -- import data for table Plants
 INSERT INTO Plants (
     displayName,
@@ -176,8 +174,8 @@ VALUES (
     1,
     "Low",
     (SELECT plantTypeID FROM PlantTypes WHERE commonName = "Pothos"),
-    7,
     14,
+    28,
     "2020-03-02"    
 ),
 ( 
@@ -215,16 +213,16 @@ VALUES (
     (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')
 ), 
 ( 
-    '2024-07-09',
-    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')
-),
-( 
     '2024-07-15',
     (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Living Room')
 ),
 ( 
     '2024-07-16',
     (SELECT plantID FROM Plants WHERE displayName = 'Orange Cherry Tomatoes')
+),
+( 
+    '2024-08-12',
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')
 );
     
 -- import data for table FertilizingEvents
@@ -245,16 +243,16 @@ VALUES (
     (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Living Room')   
 ),
 ( 
-    '2024-06-15',
-    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')   
-),
-( 
     '2024-07-02',
     (SELECT plantID FROM Plants WHERE displayName = 'String of Pearls')
 ),
 ( 
     '2024-07-03',
     (SELECT plantID FROM Plants WHERE displayName = 'Orange Cherry Tomatoes')
+),
+( 
+    '2024-08-12',
+    (SELECT plantID FROM Plants WHERE displayName = 'Pothos in Dining Room')   
 );
 
 -- Data for table PlantSoils

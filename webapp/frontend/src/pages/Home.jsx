@@ -32,6 +32,7 @@ function HomePage(){
 
                 {/* render the table */}
                 <HomeTableWatering />
+                <p align='left'>* Red Highlight means your plant is overdue for a watering.</p>
                 <p>*Plants that have not been watered won't show up until they have at least one event logged.</p>
                 <br/>
                 <br/>
@@ -40,6 +41,7 @@ function HomePage(){
 
                 {/* render the table */}
                 <HomeTableFertilzing />
+                <p align='left'>* Red Highlight means your plant is overdue for a fertilizing.</p>
                 <p>*Plants that have not been fertilized won't show up until they have at least one event logged.</p>
 
                 </> 
