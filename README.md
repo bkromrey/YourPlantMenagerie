@@ -79,43 +79,40 @@ URL: https://medium.com/how-to-react/use-react-router-link-with-bootstrap-315a8b
 **Date Formatting**\
 Used the following multiple resources to format date and utilize the current date in certain add events and add plants date attributes\
 Date: 8 August 2024\
-URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString\
+URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
 
 Date: 10 August 2024\
-URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today\
-
-Date: 10 August 2024\
-URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today\
+URL: https://stackoverflow.com/questions/63987168/input-type-date-set-a-default-value-to-date-today
 
 **Modal Code**\
-Code for the modal also modifies the example code on the react-bootstrap documentation.\
-Date: 4 August 2024\
-URL: https://react-bootstrap.netlify.app/docs/components/modal\
+Modified and adapted the code from react-bootstrap's example modal implementation for our implementation.\
+DATE: 4 AUGUST 2024\
+URL: https://react-bootstrap.netlify.app/docs/components/modal
 
 **Page Reload**\
 Used the following resouce to learn how to reload display to display new data\
 Date: 5 August 2024\
-URL: https://stackoverflow.com/questions/56649094/how-to-reload-a-component-part-of-page-in-reactjs\
+URL: https://stackoverflow.com/questions/56649094/how-to-reload-a-component-part-of-page-in-reactjs
 
-**Primary Key Doubel Array**\
+**Primary Key Double Array**\
 This post helped us figure out how to pull the primary key out from the double array\
 Date: 10 August 2024\
-URL: https://stackoverflow.com/questions/56844536/how-to-get-javascript-objects-value-with-key\
+URL: https://stackoverflow.com/questions/56844536/how-to-get-javascript-objects-value-with-key
 
 **Alignment of Content**
 Used this resource to align row in center\
 Date: 11 August 2024\
-URL: https://react-bootstrap.netlify.app/docs/layout/grid/\
+URL: https://react-bootstrap.netlify.app/docs/layout/grid/
 
 **CSS React Bootstrap**
 Used this resource to import react-bootstrap defaults\
 Date: 27 July 2024\
-URL: https://react-bootstrap.netlify.app/\
+URL: https://react-bootstrap.netlify.app/
 
 **CSS Vite Default Scaffolding**
 Used this resource for CSS block from the vite default scaffolding\
 Date: 27 July 2024\
-URL: https://vitejs.dev/\
+URL: https://vitejs.dev/
 
 
 
